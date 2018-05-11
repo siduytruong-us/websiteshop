@@ -1,0 +1,66 @@
+.khung
+{
+	width: 900px;
+	background-color: white;
+	margin: auto;
+	margin-top: 20px;
+	padding-top: 40px;
+}
+
+
+.hinh
+{
+	width: 300px;
+	height: 400px;
+	float: left;
+	margin-right: 20px;
+}
+
+.noidung
+{
+	display: block;
+	width: 800px;	
+	height :400px;
+}
+
+.ten
+{
+	display: block;
+	width: 800px;
+	margin-left: 20px;
+}
+
+.mota
+{
+	margin-top: 20px;
+	border-bottom: 3px solid gray;
+	padding-bottom: 8px; 
+	height: 200px;
+
+}
+
+.giatien
+{
+	margin-top:10px;
+	font-size: 20px;
+	color:#2196F3;
+}
+.soluong
+{
+	margin-top: 10px;
+}
+
+.themgiohang
+{
+	margin-top: 10px;
+
+}
+.nutbam
+{
+	background-color: #2196F3
+}
+
+.nutbam :hover
+{
+	background-color: #black;
+}

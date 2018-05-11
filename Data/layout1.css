@@ -1,0 +1,156 @@
+
+/*New LAYOUT*/
+body {
+	background-image: url("image/background.png");
+	 box-sizing: border-box;
+	background-repeat: repeat-x;
+	background-attachment: fixed;
+    background-size: auto;
+	position: relative;
+}
+
+.contentBox {
+
+	background-color: #f0f0f0;
+ 
+
+	border-radius: 10px;
+
+}
+
+/* Header HTML  */
+#logo {
+	float: left; 
+	left: 5vh;
+	margin-left:20px;  
+
+}
+
+#callNow {
+	float: right;
+	margin-top:25px;
+	right: 5vh;
+
+}
+
+#userName { 
+	font-size:20px;
+}
+
+#logoutBtn {
+	font-size: 15px;
+	margin-top:-10px; 
+	margin-left: 20px;
+		position: absolute;
+ }
+
+ #loginBtn {
+ 	margin-top: -40px;
+ 	margin-right: 10px;
+ }
+
+
+.titleCenter {
+	font-family:Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 30px;
+	
+}
+
+
+/* Header HTML  */
+
+
+
+#arrow1 { 
+    float: right;    
+    margin-left: 620px;
+	position:absolute;
+}
+
+#or { 
+	margin-left: 380px;
+	width: 300px;
+	float:right;
+    font-family: Oswald;
+	color: #5790dc;
+    font-style: italic;
+    font-size: 25px; 
+	position:absolute;
+}
+.GiveTrybutton { 
+
+	background: linear-gradient(#bbe9ff, #5e9ae1);	
+}
+
+/* Header HTML  */
+
+/*Service Section */
+
+#textService { 
+		margin-left: 80px;
+		font-size:13px;
+		    font-family: Oswald;
+}
+
+#iconService { 
+	float:left;
+	width:80px;
+	height:70px;
+	
+	border-radius:40%;
+ }
+
+#seewhatText { 
+    font-family: Oswald;
+    color: #5790dc;
+    font-style: italic;
+    font-size: 25px;
+    margin-left: 3%;
+}
+
+
+
+
+
+/*Service Section */
+
+
+/*-----CoppyRights--------*/
+
+
+
+
+
+#coppyright div:nth-child(0) {
+	
+	float: left; 
+}
+
+
+#coppyright div:nth-child(1) {
+	
+	float:right;
+}
+
+
+
+
+
+
+/*Others*/
+
+.clear  { 
+	clear:both;
+}
+
+.space {
+	margin-top: 40px;
+}
+/*Others*/
+
+
+
+#mail:link { 
+	color :green;
+ }

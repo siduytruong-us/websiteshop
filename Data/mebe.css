@@ -1,0 +1,43 @@
+.khung
+{
+
+	width: 900px;
+
+	margin: auto;
+	margin-top: 20px;
+}
+._1hang
+{
+	width: 900px;
+	height: 320px;
+
+}
+._1sanpham
+{
+	width: 210px;
+	float:left;
+	height: 320px;
+	background-color: white;
+	padding-left: 5px;
+	padding-top: 5px;
+}
+._1sanpham:hover
+{
+	background-color: #89898945;
+}
+.tieude
+{
+	margin-top: 20px;
+	display: block;
+	text-decoration: none;
+}
+
+.tien
+{
+	margin-top: 10px;
+	font-weight: bold;
+	text-decoration: none;
+	display: block;
+	font-size: 14px;
+	color: black;
+}

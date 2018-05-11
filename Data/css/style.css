@@ -1,0 +1,145 @@
+
+body {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+  background-size: cover;
+  min-height: 100vh;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: #3399ff;
+}
+
+#qt {
+  color: #999999;
+}
+
+p .fa[class~=angle] {
+  font-size: 1.3rem;
+  position: relative;
+  top: 0.15rem;
+  margin: 0 20px;
+  cursor: pointer;
+  color: #d8d8d8;
+  transition: all .5s;
+}
+p .fa[class~=angle]:hover {
+  color: #5790dc;
+}
+
+.yellow {
+  color: #fecb6c;
+}
+
+.product {
+  height: 500px;
+  width: 600px;
+  background: white;
+  position: relative;
+  left: calc(50% - 300px);
+  margin-top: calc(50vh - 250px);
+}
+.product.action {
+  animation: bounce 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+.product .header {
+  height: 40px;
+  position: relative;
+  padding: 20px;
+}
+.product .header .back {
+  position: relative;
+  width: 0px;
+  height: 0px;
+  border-top: 30px solid #3366ff;
+  border-bottom: 30px solid transparent;
+  border-left: 30px solid #3366ff;
+  border-right: 30px solid transparent;
+}
+.product .header .back:before {
+  content: "←";
+  position: absolute;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.3rem;
+  font-weight: bold;
+  top: -22px;
+  left: -22px;
+}
+.product .main {
+  padding: 0 30px;
+}
+.product .main .quantity {
+  margin-top: 40px;
+  color: #333;
+}
+.product .main h1 {
+  font-size: 4.5rem;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  margin: 0 -5px -15px;
+  color: #232e3a;
+}
+.product .main h2 {
+  color: #999999;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+  margin: 0 0;
+  text-transform: uppercase;
+}
+.product .main h3 {
+  color: #232e3a;
+  margin: 0;
+}
+.product .main img {
+  max-width: 100%;
+  margin-left: -25px;
+}
+.product .main .left,
+.product .main .right {
+  width: 40%;
+  padding: 0 calc(5% - 1px);
+}
+.product .main .right {
+  color: #999;
+  font-size: .78rem;
+  line-height: 1.5;
+}
+.product .footer {
+  position: absolute;
+  bottom: 0;
+  padding: 5px 40px 5px 0;
+  width: calc(90% - 40px);
+  left: 10%;
+  border-top: 1px solid #ccc;
+}
+.product .footer .left p:before {
+  content: "Total Price";
+  text-transform: uppercase;
+  font-size: .7rem;
+  color: black;
+  position: absolute;
+  top: -12px;
+  width: 200%;
+}
+.product .footer p {
+  color: #6699ff;
+  position: relative;
+  font-size: 1.5rem;
+}
+
+.left {
+  float: left;
+
+}
+
+.right {
+  float: right;
+
+}
+
+@keyframes bounce {
+  50% {
+    transform: translateX(10px);
+  }
+}
