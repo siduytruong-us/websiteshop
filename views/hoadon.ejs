@@ -1,0 +1,190 @@
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="layout1.css">
+  <link rel="stylesheet" href="signin.css">
+  <link rel="stylesheet" href="topNavigation.css">
+  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link re l="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/
+		font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="icon" type="image/png" href="image/logoTitle.png" sizes="16x16" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width = device-width,initial -scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <title>DuDada WebShop </title>
+
+  <style>
+    body {
+      font-family: "Open Sans", sans-serif;
+      height: 100vh;
+      background-image: url("image/background.png");
+      background-size: cover;
+    }
+  </style>
+
+</head>
+
+
+
+<body onload="startTime()">
+
+  <head>
+    <a href="/admin"><img src = "../image/logo.png" style ="margin-top: 30px;"> </a>
+    <% if (user == null) { %>
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Admin Management <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="login">Sign in</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="">Sign up</a></li>
+          </ul>
+        </li>
+      </ul>
+      <% } else { %>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Admin Management <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="">Admin Account</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="../logout">Sign out</a></li>
+            </ul>
+          </li>
+        </ul>
+        <% } %>
+
+          <% if (user == null) { %>
+            <div id="callNow" style="clear: both;">
+              <p id="userName"> </p>
+            </div>
+            <% } else { %>
+              <div id="callNow" style="clear: both;">
+                <center>
+                  <h4 id="welcomeMsg" style="margin-right:20px;">  Welcome,<%=user.name%></h4>
+                </center>
+              </div>
+              <% } %>
+                <div class="clear"></div>
+  </head>
+
+
+  <body>
+    <div class="container contentBox">
+
+
+
+      <center>
+        <h2> Thanh Toán Đơn Hàng </h2>
+        <form method="POST" action="checkout/hoadon" name="frm">
+          <p>
+            <input type="text" id="name" name="hoten" value="<%= user.hoten%>" style="width:80%" disabled/>
+          </p>
+          <p>
+            <input type="text" id="username" name="username" value="<%= user.ID%>" placeholder="Your Username" style="width:80%" disabled/>
+          </p>
+          <p>
+            <input type="text" id="diachi" name="diachi" value="<%= user.diachi%>" style="width:80%" required pattern="[A-Za-z0-9]{1,50}" />
+          </p>
+          <p>
+            <input type="text" id="email" name="email" value="<%= user.email%>" style="width:80%" required/>
+          </p>
+          <p>
+            <input type="text" id="phone" name="phone" value="<%= user.dienthoai%>" style="width:80%" required pattern="[0-9]{1,10}" />
+          </p>
+
+      </center>
+      <div class="w3-container">
+        <h3>Đơn hàng của bạn:</h3>
+
+        <ul class="w3-ul">
+          <% for (var  i = 0; i < cart.items.length; i ++ ) {  %>
+            <li>
+              Tên:
+              <%= cart.items[i].item.name%> - Số lượng:
+                <%= cart.items[i].quantity%>
+            </li>
+            <% } %>
+              <li> <b>Tổng thiệt hại là: <%= total%> </b>
+
+              </li>
+        </ul>
+      </div>
+
+      <center>
+        <b id="timer"></b>
+        <button type="submit" class="button btn-primary submit" style="width:50%">Confirm</button>
+      </center>
+      </form>
+
+
+
+
+
+
+
+
+
+    </div>
+    <!--end container contentBox-->
+    </div>
+
+
+    <script>
+      // Hàm khởi tạo đồng hồ
+      function startTime() {
+        var today = new Date();
+
+        // Giờ, phút, giây hiện tại
+        var h = today.getHours();
+        var m = today.getMinutes();
+        var s = today.getSeconds();
+        var d = today.getDate();
+        var m = today.getMonth();
+        var y = today.getYear();
+        // Chuyển đổi sang dạng 01, 02, 03
+        m = checkTime(m);
+        s = checkTime(s);
+
+        // Ghi ra trình duyệt
+        document.getElementById('timer').innerHTML = h + ":" + m + ":" + s + " - " + d + "/" + m + "/" +y;
+
+        // Dùng hàm setTimeout để thiết lập gọi lại 0.5 giây / lần
+        var t = setTimeout(function() {
+          startTime();
+        }, 500);
+      }
+
+      // Hàm này có tác dụng chuyển những số bé hơn 10 thành dạng 01, 02, 03, ...
+      function checkTime(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+
+      }
+    </script>
+
+
+    <script type="text/javascript">
+      function checkPass() {
+        var password = document.frm.password.value;
+        var re_password = document.frm.re_password.value;
+
+        if (password != re_password) {
+          alert("Vui lòng nhập lại password");
+          document.frm.re_password.value = "";
+        }
+      }
+    </script>
+
+  </body>
+
+  <html>

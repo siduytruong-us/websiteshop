@@ -1,0 +1,114 @@
+<html lang="en">
+
+<head>
+  <link type="text/css" rel="stylesheet" href="layout1.css">
+  <link type="text/css" rel="stylesheet" href="signin.css">
+  <link type="text/css" rel="stylesheet" href="topNavigation.css">
+  <link type="text/css" rel="stylesheet" href="signup.css">
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/
+		font-awesome.min.css">
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link type="text/css" rel="icon" type="image/png" href="image/logoTitle.png" sizes="16x16" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width = device-width,initial -scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <title>DuDada WebShop </title>
+
+  <style>
+    body {
+      font-family: "Open Sans", sans-serif;
+      height: 100vh;
+      background-image: url("image/background.png");
+      background-size: cover;
+    }
+  </style>
+
+</head>
+
+
+
+<body onload="find_update()">
+
+  <div class="container contentBox">
+    <header>
+      <a href="/"><img src = "image/logo.png" style ="margin-top: 30px;"> </a>
+
+
+      <div class="container contentBox">
+        <div class="clear"></div>
+    </header>
+
+    <center>
+      <h3>Tìm kiếm sản phẩm  </h3>
+
+      <span id="find" >
+
+          <form method="POST" action="findProduct" style="position: relative">;
+            <center>
+
+          <input type="text" id="id" name="idProduct" placeholder="ID Product. VD: mebe01,xe02,dientu03, v.v..." style="width:60%"  required/>
+          <br>
+          <button type="submit" class="button btn-primary" style="width:30%"><i class= "fa fa-search"> </i> </button>
+          <br>
+
+
+          </center>
+          </form>
+          <a href = "/"><button class = "button btn-primary" style = "width:7%; float:left; margin-top:-200px;" ><i class = "fa fa-arrow-left"></i> </button> </a>
+        </span>
+
+      <span id="update" >
+
+          <form method="POST" action="update">
+            <center>
+              <% if (flag) {%>
+
+            <input type="text" id="id" name="ID" placeholder="<%= update.ID%>" value="<%= update.ID%>" style="width:60%" disabled/>
+            <input type="text" id="type" name="type" placeholder="<%= update.type%>" value = "<%= update.type%>" style="width:60%" disabled/>
+            <input type="text" id="name" name="name" placeholder="<%= update.name%>" style="width:60%" required/>
+            <input type="text" id="info" name="info" placeholder="<%= update.info%>" style="width:60%" required/>
+            <input type="text" id="price" name="price" placeholder="<%= update.price%>" style="width:60%" required/>
+            <input type="text" id="link" name="link" placeholder="<%= update.link%>" style="width:60%" required/>
+
+            <br>
+            <button type="submit" class="button btn-primary" style="width:30%"><i class="fa fa-edit"> </i> </button>
+            <% } %>
+            </center>
+            </form>
+            <a href = "updateProduct"><button class = "button btn-primary" style = "width:7%; float:left; margin-top:-550px;" ><i class = "fa fa-arrow-left"></i> </button> </a>
+            <a href = "removeProduct"><button class = "button btn-primary" style = "width:7%; float:right; margin-top:-550px; background-color:red" ><i class = "fa fa-times"></i> </button> </a>
+        </span>
+
+
+    </center>
+
+    </div>
+    <!--end container contentBox-->
+  </div>
+
+  <script type="text/javascript">
+    function find_update() {
+      if (<%= flag %>) {
+        document.getElementById("update").style.visibility = "visible";
+        document.getElementById("find").style.visibility = "hidden";
+
+
+
+
+      } else {
+        document.getElementById("update").style.visibility = "hidden";
+        document.getElementById("find").style.visibility = "visible";
+        alert("<%= error%>");
+      }
+    }
+  </script>
+
+
+</body>
+
+<html>

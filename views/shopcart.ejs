@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>DuDaDa Shopping Cart</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+  <link rel="stylesheet" href="shopcart.css">
+
+
+</head>
+
+<body>
+
+  <h1><%= user.hoten%>'s Shopping Cart</h1>
+  <% if (cart) {%>
+    <form method="post" action="checkout">
+      <div class="shopping-cart">
+
+        <div class="column-labels">
+          <label class="product-image">Image</label>
+          <label class="product-details">Product</label>
+          <label class="product-price">Price</label>
+          <label class="product-quantity">Quantity</label>
+          <label class="product-removal">Remove</label>
+          <label class="product-line-price">Total</label>
+        </div>
+
+        <% for (var i=0 ; i< cart.items.length ; i ++)  { %>
+          <div class="product">
+            <div class="product-image">
+              <img src="img/<%= cart.items[i].item.link%>.jpg">
+            </div>
+            <div class="product-details">
+              <div class="product-title">
+                <%=  cart.items[i].item.name %>
+              </div>
+              <p class="product-description">
+                <%=  cart.items[i].item.info%>
+              </p>
+            </div>
+            <div class="product-price">
+              <%=  cart.items[i].item.price %> đ</div>
+            <div class="product-quantity">
+              <input type="number" value="<%= cart.items[i].quantity%>" min="1" max="10" name="quantity">
+            </div>
+            <div class="product-removal">
+              <button class="remove-product">
+        Remove
+      </button>
+            </div>
+            <div class="product-line-price">đ</div>
+          </div>
+          <% } %>
+
+
+            <div class="totals-item totals-item-total" style="float:right">
+              <label>Grand Total</label>
+              <div class="totals-value" id="cart-total">đ</div>
+            </div>
+      </div>
+
+      <button type="submit" class="checkout">Checkout</button>
+    </form>
+    <% } else { %>
+      <center>
+        <h3> Nothing in you shop Cart. </h3> </center>
+      <%}%>
+        </div>
+        <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+
+
+        <script src="shopcart.js"></script>
+
+
+
+
+</body>
+
+</html>
