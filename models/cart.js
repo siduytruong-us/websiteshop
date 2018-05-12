@@ -30,6 +30,14 @@ module.exports = function Cart(cart) {
     return total;
   }
 
+  this.remove = function(id) {
+    var temp = this.items.filter(x => x.item.ID = id);
+
+    var index = this.items.indexOf(temp[0]);
+    this.items.splice(index,1);
+    
+  }
+
 
 }
 

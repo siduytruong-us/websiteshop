@@ -76,9 +76,9 @@ hoadon.hoadonCollection(function(result) {
 
 router.post('/checkout/hoadon', function(req, res) {
   var d = new Date();
-  d.getDate();
-  d.getYear();
-  d.getMonth();
+   var date = ("0" + d.getDate()).slice(-2);
+   var year = d.getFullYear();
+  var month = ("0" + (this.getMonth() + 1)).slice(-2);
   var cart = new Cart(req.session.cart ? req.session.cart : {});
 
   var hoten = req.user.hoten;
@@ -86,7 +86,11 @@ router.post('/checkout/hoadon', function(req, res) {
   var diachi = req.body.diachi;
   var email = req.body.email;
   var phone = req.body.phone;
-  var time = d.toString();
+  var time =  {
+    date: date,
+    month: month,
+    year: year.toString()
+  }
   var cart = cart;
   var total = cart.totalPrice();
   var customer =  {
@@ -108,6 +112,15 @@ router.post('/checkout/hoadon', function(req, res) {
    });
   });
 
+});
+
+router.get('/remove?:ID', function(req, res, next) {
+  var productId = req.query.ID;
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+
+  cart.remove(productId);
+  req.session.cart = cart;
+  res.redirect('/shopcart');
 });
 
 

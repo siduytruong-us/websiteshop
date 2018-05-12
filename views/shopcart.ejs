@@ -16,7 +16,7 @@
 <body>
 
   <h1><%= user.hoten%>'s Shopping Cart</h1>
-  <% if (cart) {%>
+  <% if (cart.items.length > 0) {%>
     <form method="post" action="checkout">
       <div class="shopping-cart">
 
@@ -48,9 +48,10 @@
               <input type="number" value="<%= cart.items[i].quantity%>" min="1" max="10" name="quantity">
             </div>
             <div class="product-removal">
-              <button class="remove-product">
+            <a href="/remove?ID=<%= cart.items[i].item.ID%>">   <button type = "button" class="remove-product">
         Remove
       </button>
+      </a>
             </div>
             <div class="product-line-price">đ</div>
           </div>
