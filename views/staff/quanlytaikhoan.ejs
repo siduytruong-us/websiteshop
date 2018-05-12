@@ -28,7 +28,7 @@
 <body>
   <div class="container contentBox">
     <header>
-      <a href="/loginadmin"><img src = "../image/logo.png" style ="margin-top: 30px;"> </a>
+      <a href="/admin"><img src = "../image/logo.png" style ="margin-top: 30px;"> </a>
         <% if (user == null) { %>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -91,7 +91,7 @@
       <% if (customer.length != 0) {%>
         <% for (var i=0 ; i < customer.length ; i ++)  { %>
             <!-- hàng for fai có product ở trong -->
-            <a href="#" class="list-group-item"><%= customer[i].hoten %> <h6><%= customer[i].email %></h6>  </a>
+            <a href="updateCustomer?ID=<%=customer[i].ID%>" class="list-group-item"><%= customer[i].hoten %> <h6><%= customer[i].email %></h6>  </a>
         <% } %>
       <%} else {%>
             <center><h3>No customer found </h3> </center>

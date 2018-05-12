@@ -90,7 +90,7 @@ router.get('/verify?:ID', function(req, res) {
   MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
     var dbo = db.db("3dwebsite");
-    dbo.collect("customer").update({
+    dbo.collection("customer").update({
       ID: ID
     }, {
       $set: {

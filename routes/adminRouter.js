@@ -91,27 +91,6 @@ router.get('/admin', isAdminLoggedin, function(req, res) { // ham index de vao w
 
 
 
-router.get('/admin/quanlytaikhoan', isAdminLoggedin, function(req, res) { // ham index de vao web chinh
-  if (req.user == null) {
-    res.render('index', {
-      user: null
-    });
-  } else {
-    if (req.user.ID[0] == 's') {
-      customer.customerCollection(function(customer) {
-        res.render('staff/quanlytaikhoan', {
-          user: req.user,
-          customer: customer
-        });
-      });
-
-    } else {
-      res.render('index', {
-        user: null
-      });
-    }
-  }
-});
 
 router.get('/addProduct', isAdminLoggedin, function(req, res) {
   res.render("staff/addProduct", {

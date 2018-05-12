@@ -57,6 +57,7 @@ var loginRouter = require('./routes/loginRouter.js');
 var customerRouter = require('./routes/customerRouter.js');
 var productRouter = require('./routes/productRouter.js');
 var cartAndPaymentRouter = require('./routes/cartAndPaymentRouter.js');
+var customerManager = require('./routes/admin/customerManager');
 
 app.use(customerRouter);
 app.use(indexRouter);
@@ -65,6 +66,7 @@ app.use(emailRouter);
 app.use(loginRouter);
 app.use(productRouter);
 app.use(cartAndPaymentRouter);
+app.use(customerManager);
 
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"

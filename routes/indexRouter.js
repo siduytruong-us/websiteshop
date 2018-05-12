@@ -2,11 +2,18 @@ var express = require("express"),
   router = express.Router(),
   Passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy
-
+var nodemailer = require("nodemailer");
 var MongoClient = require('mongodb').MongoClient; // connect online
 var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connect online
 
 
+var transporter = nodemailer.createTransport({ // config mail server
+  service: 'Gmail',
+  auth: {
+    user: 'nguyenthanhdai261097@gmail.com',
+    pass: 'thanhdai123'
+  }
+});
 
 // default direct for css and html bug not load
 var directName = require('../demo');
@@ -93,6 +100,7 @@ router.post('/signup', function(req, res) {
           diachi: diachi,
           email: email,
           dienthoai: phone,
+          verify: 0
         });
       });
       var link = "localhost/verify?ID=" + username;
