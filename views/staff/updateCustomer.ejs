@@ -52,10 +52,10 @@
               <center>
               <input type="text"  name="idkh" value="<%= updateCustomer.ID%>" style="width:60%" disabled/>
               <input type="text"  name="hoten" value="<%= updateCustomer.hoten%>" style="width:60%" required/>
-              <input type="text" name="password" value="<%= updateCustomer.password%>" style="width:60%" required/>
+              <input type="password" name="password" value="<%= updateCustomer.password%>" style="width:60%" readonly = "on" required/>
               <input type="text"  name="diachi" value="<%= updateCustomer.diachi%>" style="width:60%" required/>
-              <input type="text"  name="email" value="<%= updateCustomer.email%>" style="width:60%" required/>
-              <input type="text"  name="dienthoai" value="<%= updateCustomer.dienthoai%>" style="width:60%" required/>
+              <input type="email"  name="email" value="<%= updateCustomer.email%>" style="width:60%" required/>
+              <input type="tel"  name="dienthoai" value="<%= updateCustomer.dienthoai%>" style="width:60%" required/>
               <br>
               <button type="submit" class="button btn-primary" style="width:30%"><i class="fa fa-edit"> </i> </button>
 

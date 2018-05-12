@@ -122,10 +122,9 @@ function updateCus(id, hoten, password, diachi, email, dienthoai) { // customer
 var updateCustomer;
 router.get('/admin/updateCustomer?:ID', function(req, res) { //, isAdminLoggedin
   findCustomer(req.query.ID, function(result) {
-    updateCustomer = result;
     res.render('staff/updateCustomer', {
       user: req.user,
-      updateCustomer: updateCustomer,
+      updateCustomer: result,
     });
   });
 })
