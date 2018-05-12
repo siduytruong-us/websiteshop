@@ -36,8 +36,4 @@ function chitiethoadonCollecttion(callback) { // customer
 
 
 
-
-
-
-
-module.exports.gettop10 = gettop10
+module.exports.chitiethoadonCollecttion = chitiethoadonCollecttion

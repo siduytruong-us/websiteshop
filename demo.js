@@ -58,7 +58,7 @@ var customerRouter = require('./routes/customerRouter.js');
 var productRouter = require('./routes/productRouter.js');
 var cartAndPaymentRouter = require('./routes/cartAndPaymentRouter.js');
 var customerManager = require('./routes/admin/customerManager');
-var thongKe = require('./routes/admin/thongKe');
+var thongKe = require('./routes/admin/thongkeRouter');
 app.use(customerRouter);
 app.use(indexRouter);
 app.use(adminRouter);
