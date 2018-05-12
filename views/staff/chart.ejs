@@ -106,15 +106,17 @@
       data.addColumn('string', 'Topping');
       data.addColumn('number', 'Slices');
       data.addRows([
-        ['Mushrooms', 8],
-        ['Onions', 1],
-        ['Olives', 1],
-        ['Zucchini', 1],
-        ['Pepperoni', 2]
+        ['Mẹ bé', <%= tongket["mebe"]%>],
+        ['Thú Cưng', <%= tongket["thucung"]%>],
+        ['Fashion', <%= tongket["fashion"]%>],
+        ['Gia Dụng', <%= tongket["giadung"]%>],
+        ['Điện tử', <%= tongket["dientu"]%>],
+        ['Công nghệ Xe', <%= tongket["xe"]%>]
       ]);
 
       // Set chart options
-      var options = {'title':'How Much Pizza I Ate Last Night',
+      var options = {'title': 'Thống kê theo sản phẩm đã bán\nTổng sản phẩm là: <%= tongSP%> ',
+                      'is3D': true,
                      'width':400,
                      'height':300};
 

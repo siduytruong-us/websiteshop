@@ -136,7 +136,7 @@ router.get('/admin/chitiethoadon?:id', function(req, res) {
   hoadon.hoadonCollection(function(result) {
 
     var temp = result.filter(x => x.ID === ID);
-      console.log(temp);
+    console.log(temp);
     res.render('staff/chitiethoadon', {
       user: req.user,
       hoadon: temp
@@ -151,13 +151,6 @@ router.get('/admin/chitiethoadon?:id', function(req, res) {
 
 
 
-router.get('/admin/chart', function(req, res) {
-  var product = require('../models/product')
-
-  product.findProductByType("mebe", function(result) {
-    product = result;
-  });
-});
 
 
 
