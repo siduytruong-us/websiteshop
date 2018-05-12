@@ -105,32 +105,6 @@ router.post('/addProduct', function(req, res) {
   });
 });
 
-router.get('/admin/gianhang', isAdminLoggedin, function(req, res) {
-  res.render('staff/productManagement', {
-    user: req.user
-  })
-});
-
-
-
-router.get('/admin/product?:type', isAdminLoggedin, function(req, res) {
-  console.log(directName.dirname);
-  var type = req.query.type;
-  var product = require('../models/product')
-  product.findProductByType(type, function(result) {
-    product = result;
-    console.log("type danh sach trong admin: " + type);
-    res.render('staff/products', {
-      user: req.user,
-      type: type,
-      product: product
-    });
-  });
-});
-
-
-
-
 router.get('/admin/hoadon', function(req, res) {
   var hoadon = require('../models/hoadon');
   hoadon.hoadonCollection(function(result) {

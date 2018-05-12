@@ -30,7 +30,7 @@ function isAdminLoggedin(req, res, next) {
 
 
 
-router.get('/admin/quanlytaikhoan', function(req, res) { // ham index de vao web chinh , isAdminLoggedin
+router.get('/admin/quanlytaikhoan', isAdminLoggedin, function(req, res) { // ham index de vao web chinh
 
   var customer = require('../../models/customer');
   customer.customerCollection(function(result) {
@@ -65,7 +65,7 @@ function findCustomer(idkh, callback) { // customer
 }
 
 var cusresult;
-router.post('/admin/findCustomer', function(req, res) { //, isAdminLoggedin
+router.post('/admin/findCustomer', isAdminLoggedin, function(req, res) { //
   var idCustomer = req.body.idCustomer;
 
   findCustomer(idCustomer, function(result) {
@@ -80,7 +80,7 @@ router.post('/admin/findCustomer', function(req, res) { //, isAdminLoggedin
   });
 });
 
-router.get('/admin/findSuccessCustomer', function(req, res) { //, isAdminLoggedin
+router.get('/admin/findSuccessCustomer', isAdminLoggedin, function(req, res) { //
   res.render('staff/quanlytaikhoan', {
     user: req.user,
     customer: customer,
@@ -89,7 +89,7 @@ router.get('/admin/findSuccessCustomer', function(req, res) { //, isAdminLoggedi
   });
 });
 
-router.get('/admin/findFailedCustomer', function(req, res) { //, isAdminLoggedin
+router.get('/admin/findFailedCustomer', isAdminLoggedin, function(req, res) { //
   res.render('staff/quanlytaikhoan', {
     user: req.user,
     customer: customer,
@@ -120,7 +120,7 @@ function updateCus(id, hoten, password, diachi, email, dienthoai) { // customer
 }
 
 var updateCustomer;
-router.get('/admin/updateCustomer?:ID', function(req, res) { //, isAdminLoggedin
+router.get('/admin/updateCustomer?:ID', isAdminLoggedin, function(req, res) { //
   findCustomer(req.query.ID, function(result) {
     res.render('staff/updateCustomer', {
       user: req.user,
@@ -130,7 +130,7 @@ router.get('/admin/updateCustomer?:ID', function(req, res) { //, isAdminLoggedin
 })
 
 
-router.post('/admin/adminUpdateCustomer', function(req, res) { //, isAdminLoggedin
+router.post('/admin/adminUpdateCustomer', isAdminLoggedin, function(req, res) { //
 
   var hoten = req.body.hoten;
   var password = req.body.password;
@@ -163,13 +163,13 @@ function removeCustomer(id) { // customer
   });
 }
 
-router.get('/admin/removeCustomer', function(req, res) { //, isAdminLoggedin
+router.get('/admin/removeCustomer', isAdminLoggedin, function(req, res) { //, isAdminLoggedin
   removeCustomer(updateCustomer.ID);
   console.log("remove Success" + updateCustomer.ID);
   res.redirect('/admin/removeSuccess');
 });
 
-router.get('/admin/removeSuccess', function(req, res) { //, isAdminLoggedin
+router.get('/admin/removeSuccess', isAdminLoggedin, function(req, res) { //, isAdminLoggedin
   var customer = require("../../models/customer")
   customer.customerCollection(function(result) {
     res.render('staff/quanlytaikhoan', {
