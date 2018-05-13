@@ -151,8 +151,8 @@ router.get('/admin/hoadon/delivery', function(req, res) {
   var dagiao =  req.query.dagiao;
   console.log( "delivery : " +ID + dagiao);
   var hoadon = require('../models/hoadon');
-
-
+  hoadon.updateHoaDonByID(ID,dagiao);
+  res.redirect('back');
 });
 
 

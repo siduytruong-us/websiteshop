@@ -112,8 +112,24 @@ function DoanhThuThangInYear(year, callback) {
           count.push(thang);
 
         });
-				
+
         callback(count);
+      }
+    });
+  });
+}
+
+
+function updateHoaDonByID(ID,dagiao) { // customer
+  MongoClient.connect(uri, function(err, db) {
+    //var ids = "/"+nameProduct+"/";
+    if (err) throw err;
+    var dbo = db.db("3dwebsite");
+    dbo.collection("hoadon").update({
+      ID: ID
+    }, {
+      $set: {
+        dagiao: dagiao,
       }
     });
   });
@@ -125,3 +141,4 @@ module.exports = mongoose.model('Hoadon', someschema);
 module.exports.hoadonCollection = hoadonCollection;
 module.exports.TongDoanhThu = TongDoanhThu;
 module.exports.DoanhThuThangInYear = DoanhThuThangInYear;
+module.exports.updateHoaDonByID = updateHoaDonByID;

@@ -113,7 +113,7 @@ router.post('/checkout/hoadon', function(req, res) {
  	 if (err) throw err;
  	 var dbo = db.db("3dwebsite");
  	 dbo.collection("hoadon").insert({
-     ID: "2",
+     ID: dbo.collection("hoadon").find().count(),
      time:time,
      total:total,
      customer:customer,
