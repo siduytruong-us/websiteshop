@@ -31,11 +31,13 @@ module.exports = function Cart(cart) {
   }
 
   this.remove = function(id) {
-    var temp = this.items.filter(x => x.item.ID = id);
+    var temp = this.items.filter(x => x.item.ID == id);
 
     var index = this.items.indexOf(temp[0]);
+    console.log("remove index :" + index );
+    console.log("remove index :" + JSON.stringify(temp[0]) );
     this.items.splice(index,1);
-    
+
   }
 
 

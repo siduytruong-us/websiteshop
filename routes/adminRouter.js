@@ -104,9 +104,10 @@ router.post('/addProduct', function(req, res) {
     Test: null
   });
 });
-console.log("dirname adminrouter" +__dirname);
+
 router.get('/admin/hoadon', function(req, res) {
   var hoadon = require('../models/hoadon');
+  console.log("dirname adminrouter" +__dirname);
   hoadon.hoadonCollection(function(result) {
     res.render('staff/hoadonAdmin', {
       user: req.user,
@@ -142,11 +143,17 @@ router.get('/admin/chitiethoadon?:id', function(req, res) {
       hoadon: temp
     })
   });
-
 });
 
 
+router.get('/admin/hoadon/delivery', function(req, res) {
+  var ID = req.query.ID;
+  var dagiao =  req.query.dagiao;
+  console.log( "delivery : " +ID + dagiao);
+  var hoadon = require('../models/hoadon');
 
+
+});
 
 
 

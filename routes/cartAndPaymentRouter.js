@@ -27,22 +27,43 @@ var directName = require('../demo');
 router.use(express.static(directName.dirname + '/Data'));
 //
 
+router.post('/checkout', isLoggedin, function(req, res) {
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+  var total = cart.totalPrice();
+  var soluong = req.body.quantity;
+  console.log("soluong: " + soluong);
+  res.render("hoadonKH", {
+    user: req.user,
+    cart: cart,
+    total: total
+  });
+});
+
 
 router.post('/addToCart', function(req, res) {
-
+console.log("info " + info);
   var soluong = req.body.soluong;
-  var cart = new Cart(req.session.cart ? req.session.cart : {});
-  cart.add(info, soluong);
+  var ID = req.query.ID;
+  var product = require('../models/product')
+  product.productCollection(function(result) {
+    var temp = result.filter(x => x.ID  == ID);
 
-  req.session.cart = cart;
-  console.log("My cart" + cart);
-  // console.log("user cart" + session.cart.items[0].item.ID); // dung
-  // console.log("length cart" + session.cart.items.length); // dung
-  console.log("user name" + req.session.cart.items);
-  console.log("Tong tien:" + cart.totalPrice());
-  // console.log(cart.items[0].item.price);
+    var cart = new Cart(req.session.cart ? req.session.cart : {});
 
-  res.redirect('/danhsach?type=' + info.type);
+    cart.add(temp[0], soluong);
+
+    req.session.cart = cart;
+    console.log("My cart" + JSON.stringify(cart));
+    // console.log("user cart" + session.cart.items[0].item.ID); // dung
+    // console.log("length cart" + session.cart.items.length); // dung
+    console.log("user name" + req.session.cart.items);
+    console.log("Tong tien:" + JSON.stringify(temp));
+    // console.log(cart.items[0].item.price);
+
+    res.redirect('/danhsach?type=' + temp[0].type);
+    temp =null;
+  });
+
 });
 
 
@@ -55,17 +76,6 @@ router.get('/shopcart', function(req, res) { // ham index de vao web chinh
   });
 });
 
-router.post('/checkout', isLoggedin, function(req, res) {
-  var cart = new Cart(req.session.cart ? req.session.cart : {});
-  var total = cart.totalPrice();
-  var soluong = req.body.quantity;
-  console.log("soluong: " + soluong);
-  res.render("hoadonKH", {
-    user: req.user,
-    cart: cart,
-    total: total
-  });
-});
 
 
 var hoadon = require('../models/hoadon');
@@ -120,7 +130,7 @@ router.get('/remove?:ID', function(req, res, next) {
 
   cart.remove(productId);
   req.session.cart = cart;
-  res.redirect('/shopcart');
+  res.redirect('back');
 });
 
 

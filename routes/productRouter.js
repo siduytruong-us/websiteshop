@@ -53,7 +53,6 @@ router.get('/chitietsanpham?:ID', function(req, res) { // ham index de vao web c
       }
 
     }
-    console.log(info);
     type = null;
     res.render('chitietsanpham', {
       user: req.user,

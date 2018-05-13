@@ -93,13 +93,13 @@
 
         <% for (var i=0 ; i < hoadon.length ; i ++)  { %>
           <!-- hàng for fai có product ở trong -->
-          <a href="chitiethoadon?id=<%= hoadon[i].ID%>" class="list-group-item" id="hoadon" onload="chuaGiao(<%= hoadon[i].dagiao%>)">
-             <div> Mã hóa đon: <%= hoadon[i].ID %>
+          <a href="chitiethoadon?id=<%= hoadon[i].ID%>" > <div class="list-group-item" id="hoadon">
+              Mã hóa đon: <%= hoadon[i].ID %>
                <h6>Tên khách hàng: <%= hoadon[i].customer.hoten %> - Địa chỉ: <%= hoadon[i].customer.diachi %></h6>
                 <a href = "hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=yes"> <button class = "buttonDelivery" style = "background-color: #79ff4d"> Đã giao </button> </a>
-                <a href = "hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=now"> <button class = "buttonDelivery" style = "background-color: #ffff33"> Đang giao </button> </a>
-                <a href = "hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=no"> <button class = "buttonDelivery" style = "background-color: #ff3333"> Hủy Bỏ </button> </a>
-              </div>
+                <a href = "hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=now"> <button class = "buttonDelivery" style = "background-color: #1a75ff"> Đang giao </button> </a>
+                <a href = "hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=no"> <button class = "buttonDelivery" style = "background-color: #ff3333"> Hủy bỏ </button> </a>
+
               <% if ( hoadon[i].dagiao == "no") {%>
               Tình trạng giao hàng: <i  class = "fa fa-remove" style= "color: #ff3333;"></i>
               <%} else if ( hoadon[i].dagiao == "yes") { %>
@@ -107,8 +107,8 @@
                 <%} else {%>
                   Tình trạng giao hàng: ON THE WAY !!!
                   <%}%>
-
-              </a>
+                </div>
+                  </a>
           <% } %>
             <%} else {%>
               <center>
@@ -116,11 +116,6 @@
               <%}%>
       </div>
 </body>
-<script>
-  function chuaGiao(check) {
-    console.log(check);
-    if (check == 0) {
-      document.getElementByID(hoadon).style.backgroundColor = "#f46842";
-    }
-  }
-</script>
+
+
+</html>
