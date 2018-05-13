@@ -141,7 +141,7 @@ function updateHoaDonByID(ID,dagiao) { // customer
     if (err) throw err;
     var dbo = db.db("3dwebsite");
     dbo.collection("hoadon").update({
-      ID: ID
+      ID: parseInt(ID)
     }, {
       $set: {
         dagiao: dagiao,

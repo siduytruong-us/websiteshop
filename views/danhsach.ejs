@@ -138,7 +138,7 @@
             </div>
           </div>
           <div class="col-sm-3">
-            <img src="image/map.png" alt="map" style="margin-top : 40px;" />
+            <div id="map" style="margin-top : 10px; width:80%; height:80%;"> </div>
           </div>
           <div class="col-sm-3">
             <h4 id="about">Address</h4>
@@ -176,8 +176,27 @@
   <!--end container contentBox-->
 
 
-  <script src="/socket.io/socket.io.js"></script>
+  
+  <script>
+    function initMap() {
 
+      var benThanh = {
+        lat: 10.772197,
+        lng: 106.698272
+      };
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: benThanh
+      });
+      var marker = new google.maps.Marker({
+        position: benThanh,
+        map: map,
+        title: "Welcome to Dudada WebShop !!!"
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCodndO4xHHgof1F3omVMpxJ_kNy1-8x18&callback=initMap">
+  </script>
 
 </body>
 
