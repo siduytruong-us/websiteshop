@@ -78,7 +78,7 @@ router.post('/checkout/hoadon', function(req, res) {
   var d = new Date();
    var date = ("0" + d.getDate()).slice(-2);
    var year = d.getFullYear();
-  var month = ("0" + (this.getMonth() + 1)).slice(-2);
+  var month = ("0" + (d.getMonth() + 1)).slice(-2);
   var cart = new Cart(req.session.cart ? req.session.cart : {});
 
   var hoten = req.user.hoten;
