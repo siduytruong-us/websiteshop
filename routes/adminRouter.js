@@ -23,8 +23,9 @@ function isAdminLoggedin(req, res, next) {
 // default direct for css and html bug not load
 var directName = require('../demo');
 
-router.use(express.static('/Data'));
+router.use(express.static(directName.dirname + './Data'));
 //
+
 var update;
 router.post('/findProduct', function(req, res) {
   var idProduct = req.body.idProduct;
@@ -117,11 +118,11 @@ router.get('/admin/hoadon', function(req, res) {
 
 });
 
-router.post('/search/hoadon', function(req, res) {
+router.post('/admin/search/hoadon', function(req, res) {
   var ID = req.body.hoadon;
   var hoadon = require('../models/hoadon');
   hoadon.hoadonCollection(function(result) {
-    var temp = result.filter(x => x.ID === ID);
+    var temp = result.filter(x => x.ID == ID);
     res.render('staff/hoadonAdmin', {
       user: req.user,
       hoadon: temp
@@ -135,8 +136,7 @@ router.get('/admin/chitiethoadon?:id', function(req, res) {
   console.log(ID);
   var hoadon = require('../models/hoadon');
   hoadon.hoadonCollection(function(result) {
-
-    var temp = result.filter(x => x.ID === ID);
+    var temp = result.filter(x => x.ID == ID);
     console.log(temp);
     res.render('staff/chitiethoadon', {
       user: req.user,
