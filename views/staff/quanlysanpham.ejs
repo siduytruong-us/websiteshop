@@ -89,9 +89,9 @@
       <% if (product.length != 0) {%>
         <% for (var i=0 ; i < product.length ; i ++)  { %>
           <!-- hàng for fai có product ở trong -->
-          <a href="#" class="list-group-item">
-            <%= product[i]._id %>
-              <h6><%= product[i].tongso %></h6> </a>
+          <a href="updateProduct?ID=<%=product[i].ID%>" class="list-group-item">
+            <%= product[i].name %>
+              <h6><%= product[i].ID %></h6> </a>
           <% } %>
             <%} else {%>
               <center>
