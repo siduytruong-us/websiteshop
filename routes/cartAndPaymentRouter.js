@@ -41,12 +41,12 @@ router.post('/checkout', isLoggedin, function(req, res) {
 
 
 router.post('/addToCart', function(req, res) {
-console.log("info " + info);
+  console.log("info " + info);
   var soluong = req.body.soluong;
   var ID = req.query.ID;
   var product = require('../models/product')
   product.productCollection(function(result) {
-    var temp = result.filter(x => x.ID  == ID);
+    var temp = result.filter(x => x.ID == ID);
 
     var cart = new Cart(req.session.cart ? req.session.cart : {});
 
@@ -61,7 +61,7 @@ console.log("info " + info);
     // console.log(cart.items[0].item.price);
 
     res.redirect('/danhsach?type=' + temp[0].type);
-    temp =null;
+    temp = null;
   });
 
 });
@@ -83,11 +83,10 @@ hoadon.hoadonCollection(function(result) {
   console.log(result);
 })
 
-
 router.post('/checkout/hoadon', function(req, res) {
   var d = new Date();
-   var date = ("0" + d.getDate()).slice(-2);
-   var year = d.getFullYear();
+  var date = ("0" + d.getDate()).slice(-2);
+  var year = d.getFullYear();
   var month = ("0" + (d.getMonth() + 1)).slice(-2);
   var cart = new Cart(req.session.cart ? req.session.cart : {});
 
@@ -96,30 +95,34 @@ router.post('/checkout/hoadon', function(req, res) {
   var diachi = req.body.diachi;
   var email = req.body.email;
   var phone = req.body.phone;
-  var time =  {
+  var time = {
     date: date,
     month: month,
     year: year.toString()
   }
   var cart = cart;
   var total = cart.totalPrice();
-  var customer =  {
+  var customer = {
     hoten: hoten,
     id: username,
     diachi: diachi,
   }
 
   MongoClient.connect(uri, function(err, db) {
- 	 if (err) throw err;
- 	 var dbo = db.db("3dwebsite");
- 	 dbo.collection("hoadon").insert({
-     ID: dbo.collection("hoadon").find().count(),
-     time:time,
-     total:total,
-     customer:customer,
-     dagiao: 0,
-     danhsachsanpham: cart.items
-   });
+    if (err) throw err;
+    var dbo = db.db("3dwebsite");
+    var hoadon = require('../models/hoadon');
+    hoadon.hoadonCount(function(result) {
+      console.log(result);
+      dbo.collection("hoadon").insert({
+        ID: result,
+        time: time,
+        total: total,
+        customer: customer,
+        dagiao: 0,
+        danhsachsanpham: cart.items
+      });
+    });
   });
 
 });

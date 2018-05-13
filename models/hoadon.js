@@ -13,6 +13,21 @@ var someschema = new Schema({
   danhsachsanpham: []
 });
 
+function hoadonCount(callback) {
+  MongoClient.connect(uri, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("3dwebsite");
+    dbo.collection("hoadon").find().count(function(err, result) {
+      if (err) {
+        throw err;
+        console.log(err);
+      }
+      else{
+        callback(result);
+      }
+    });
+  });
+}
 
 function hoadonCollection(callback) {
   MongoClient.connect(uri, function(err, db) {
@@ -139,6 +154,7 @@ function updateHoaDonByID(ID,dagiao) { // customer
 
 module.exports = mongoose.model('Hoadon', someschema);
 module.exports.hoadonCollection = hoadonCollection;
+module.exports.hoadonCount = hoadonCount;
 module.exports.TongDoanhThu = TongDoanhThu;
 module.exports.DoanhThuThangInYear = DoanhThuThangInYear;
 module.exports.updateHoaDonByID = updateHoaDonByID;
