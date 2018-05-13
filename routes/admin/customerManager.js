@@ -13,8 +13,6 @@ router.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
-
 function isAdminLoggedin(req, res, next) {
   if (req.isAuthenticated() && req.user.ID[0] == 's') {
     return next();
@@ -22,28 +20,20 @@ function isAdminLoggedin(req, res, next) {
   res.redirect('/');
 }
 
-
 // default direct for css and html bug not load
-
-
-
-
-
 
 router.get('/admin/quanlytaikhoan', isAdminLoggedin, function(req, res) { // ham index de vao web chinh
 
   var customer = require('../../models/customer');
   customer.customerCollection(function(result) {
-    customer = result;
     res.render('staff/quanlytaikhoan', {
       user: req.user,
-      customer: customer,
+      customer: result,
       flag: false,
       customerresult: null,
     });
   });
 });
-
 
 function findCustomer(idkh, callback) { // customer
   MongoClient.connect(uri, function(err, db) {
@@ -81,20 +71,26 @@ router.post('/admin/findCustomer', isAdminLoggedin, function(req, res) { //
 });
 
 router.get('/admin/findSuccessCustomer', isAdminLoggedin, function(req, res) { //
-  res.render('staff/quanlytaikhoan', {
-    user: req.user,
-    customer: customer,
-    customerresult: cusresult,
-    flag: true,
+  var customer = require('../../models/customer');
+  customer.customerCollection(function(result) {
+    res.render('staff/quanlytaikhoan', {
+      user: req.user,
+      customer: result,
+      flag: true,
+      customerresult: cusresult,
+    });
   });
 });
 
 router.get('/admin/findFailedCustomer', isAdminLoggedin, function(req, res) { //
-  res.render('staff/quanlytaikhoan', {
-    user: req.user,
-    customer: customer,
-    customerresult: cusresult,
-    flag: false,
+  var customer = require('../../models/customer');
+  customer.customerCollection(function(result) {
+    res.render('staff/quanlytaikhoan', {
+      user: req.user,
+      customer: result,
+      flag: false,
+      customerresult: cusresult,
+    });
   });
 });
 
@@ -131,25 +127,24 @@ router.get('/admin/updateCustomer?:ID', isAdminLoggedin, function(req, res) { //
 
 
 router.post('/admin/adminUpdateCustomer', isAdminLoggedin, function(req, res) { //
-
+  var idkh = req.body.idkh;
   var hoten = req.body.hoten;
   var password = req.body.password;
   var diachi = req.body.diachi;
   var email = req.body.email;
   var dienthoai = req.body.dienthoai;
-  updateCus(updateCustomer.ID, hoten, password, diachi, email, dienthoai);
-  console.log("Update Success Customer");
-  var customer = require("../../models/customer")
+  updateCus(idkh, hoten, password, diachi, email, dienthoai);
+  console.log("Update Success Customer "+idkh);
+  var customer = require("../../models/customer");
   customer.customerCollection(function(result) {
-    customer = result;
     res.render('staff/quanlytaikhoan', {
       user: req.user,
-      customer: customer,
+      customer: result,
       flag: false,
       customerresult: null,
     });
   });
-  updateCustomer = null;
+  idkh = null;
 });
 
 function removeCustomer(id) { // customer
@@ -163,9 +158,10 @@ function removeCustomer(id) { // customer
   });
 }
 
-router.get('/admin/removeCustomer', isAdminLoggedin, function(req, res) { //, isAdminLoggedin
-  removeCustomer(updateCustomer.ID);
-  console.log("remove Success" + updateCustomer.ID);
+router.get('/admin/removeCustomer?:ID', isAdminLoggedin, function(req, res) {
+  var idkh = req.query.ID; //, isAdminLoggedin
+  removeCustomer(idkh);
+  console.log("remove Success " +idkh);
   res.redirect('/admin/removeSuccess');
 });
 
@@ -179,7 +175,6 @@ router.get('/admin/removeSuccess', isAdminLoggedin, function(req, res) { //, isA
       customerresult: null,
     });
   });
-  updateCustomer = null;
 });
 
 module.exports = router;
