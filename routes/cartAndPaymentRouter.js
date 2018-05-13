@@ -119,7 +119,7 @@ router.post('/checkout/hoadon', function(req, res) {
         time: time,
         total: total,
         customer: customer,
-        dagiao: 0,
+        dagiao: "no",
         danhsachsanpham: cart.items
       });
     });
