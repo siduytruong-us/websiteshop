@@ -124,8 +124,12 @@ router.post('/checkout/hoadon', function(req, res) {
       });
     });
   });
-
+  res.render('thanksPage', {
+    user: req.user
+  });
 });
+
+
 
 router.get('/remove?:ID', function(req, res, next) {
   var productId = req.query.ID;
