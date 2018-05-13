@@ -163,7 +163,7 @@ var idsp;
 var type;
 router.get('/admin/removeProduct?:ID', isAdminLoggedin, function(req, res) { //, isAdminLoggedin
   idsp = req.query.ID;
-  for(var i=0;i<idsp;i++)
+  for(var i=0;i<idsp.length;i++)
   {
     if(idsp[i]>='0'&&idsp[i]<='9')
     {
