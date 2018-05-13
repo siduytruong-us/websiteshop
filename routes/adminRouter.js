@@ -104,7 +104,7 @@ router.post('/addProduct', function(req, res) {
     Test: null
   });
 });
-
+console.log("dirname adminrouter" +__dirname);
 router.get('/admin/hoadon', function(req, res) {
   var hoadon = require('../models/hoadon');
   hoadon.hoadonCollection(function(result) {
