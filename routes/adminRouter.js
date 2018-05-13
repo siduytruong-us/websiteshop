@@ -108,7 +108,7 @@ router.post('/addProduct', function(req, res) {
 router.get('/admin/hoadon', function(req, res) {
   var hoadon = require('../models/hoadon');
   hoadon.hoadonCollection(function(result) {
-    res.render('staff/hoadon', {
+    res.render('staff/hoadonAdmin', {
       user: req.user,
       hoadon: result
     })
@@ -121,7 +121,7 @@ router.post('/search/hoadon', function(req, res) {
   var hoadon = require('../models/hoadon');
   hoadon.hoadonCollection(function(result) {
     var temp = result.filter(x => x.ID === ID);
-    res.render('staff/hoadon', {
+    res.render('staff/hoadonAdmin', {
       user: req.user,
       hoadon: temp
     })

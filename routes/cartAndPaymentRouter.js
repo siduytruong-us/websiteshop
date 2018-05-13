@@ -60,7 +60,7 @@ router.post('/checkout', isLoggedin, function(req, res) {
   var total = cart.totalPrice();
   var soluong = req.body.quantity;
   console.log("soluong: " + soluong);
-  res.render("hoadon", {
+  res.render("hoadonKH", {
     user: req.user,
     cart: cart,
     total: total
