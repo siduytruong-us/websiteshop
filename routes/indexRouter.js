@@ -53,7 +53,9 @@ router.get('/me', function(req, res) {
 
 
 router.get("/signup", function(req, res) {
-  res.render("signup");
+  res.render("signup", {
+    error: "true"
+  });
 });
 
 
@@ -83,7 +85,7 @@ router.post('/signup', function(req, res) {
   customer.customerCollection(function(customer) {
 
     for (var i = 0; i < customer.length; i++) { //  check email da dang ki
-      if (customer[i].ID == username) {
+      if (customer[i].ID == username  || customer[i].email == email) {
         check = false;
       }
     }
@@ -120,7 +122,7 @@ router.post('/signup', function(req, res) {
         }
       });
     } else {
-      res.render('/signupFail');
+      res.redirect('/signupFail');
     }
   });
 
@@ -128,8 +130,10 @@ router.post('/signup', function(req, res) {
 
 });
 
-router.get('signupFail', function(req, res) {
-  res.render('signup');
+router.get('/signupFail', function(req, res) {
+  res.render('signup', {
+    error: "Username hoặc email đã được đăng kí"
+  });
 });
 
 
