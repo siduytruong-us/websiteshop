@@ -103,7 +103,7 @@ router.post('/signup', function(req, res) {
           verify: 0
         });
       });
-      var link = "localhost/verify?ID=" + username;
+      var link = "http://dudadawebshop.herokuapp.com/verify?ID=" + username;
       var sendMail = require("../models/email.js");
 
       var sendMail = new sendMail();
