@@ -49,9 +49,9 @@
             <center>
               <input type="text" id="id" name="ID" value="<%= updateProduct.ID%>"  style="width:60%" readonly = "on"/>
               <input type="text" id="type" name="type" value="<%= updateProduct.type%>" style="width:60%" readonly = "on"/>
-              <input type="text" id="name" name="name" value="<%= updateProduct.name%>" style="width:60%" required/>
-              <input type="text" id="info" name="info" value="<%= updateProduct.info%>" style="width:60%" required/>
-              <input type="text" id="price" name="price" value="<%= updateProduct.price%>" style="width:60%" required/>
+              <input type="text" id="name" name="name" value="<%= updateProduct.name%>" style="width:60%" required pattern="[A-Za-z0-9\s]{5,}" title="Không chứa kí tự đặc biệt, nhiều hơn 5 kí tự" />
+              <input type="text" id="info" name="info" value="<%= updateProduct.info%>" style="width:60%" required pattern="[A-Za-z0-9\s]{1,50}" title="Không chứa kí tự đặc biệt" />
+              <input type="text" id="price" name="price" value="<%= updateProduct.price%>" style="width:60%"  required pattern="[0-9]" title="Chỉ có kí tự số" />
               <input type="text" id="link" name="link" value="<%= updateProduct.link%>" style="width:60%" required/>
 
               <br>
