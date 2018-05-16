@@ -33,7 +33,21 @@ function chitiethoadonCollecttion(callback) { // customer
   });
 }
 
-
+////chitiethoadon
+function chitiethoadonGroup(callback) {
+  MongoClient.connect(uri, function(err, db) {
+    if (err) throw err;
+    var dbo = db.db("3dwebsite");
+    dbo.collection("chitiethoadon").aggregate([{$group : {_id : {idsp : "$IDsp", tensp : "$name", loaisp : "$type"}, tongso : {$sum : "$soluong"} } }]).toArray(function(err, result) {
+      if (err) {
+        console.log(err);
+      } else if (result.length > 0) {
+        callback(result);
+      }
+    });
+  });
+}//////
 
 
 module.exports.chitiethoadonCollecttion = chitiethoadonCollecttion
+module.exports.chitiethoadonGroup = chitiethoadonGroup///chitiethoadon
