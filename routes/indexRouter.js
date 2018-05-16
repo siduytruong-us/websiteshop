@@ -34,12 +34,19 @@ function isLoggedin(req, res, next) {
   }
 }
 //  Routes in Index
-router.get('/', function(req, res) {
 
-  console.log("index in router");
+
+router.get('/', function(req, res) {
+var typeproduct = require("../models/typeproduct");
+typeproduct.typeproductCollection(function(kq)
+{
+ console.log("index in router");
   res.render('index', {
-    user: req.user
+    user: req.user,
+    typeproduct: kq
   });
+});
+ 
 });
 
 
@@ -53,9 +60,7 @@ router.get('/me', function(req, res) {
 
 
 router.get("/signup", function(req, res) {
-  res.render("signup", {
-    error: "true"
-  });
+  res.render("signup");
 });
 
 
@@ -85,7 +90,7 @@ router.post('/signup', function(req, res) {
   customer.customerCollection(function(customer) {
 
     for (var i = 0; i < customer.length; i++) { //  check email da dang ki
-      if (customer[i].ID == username  || customer[i].email == email) {
+      if (customer[i].ID == username) {
         check = false;
       }
     }
@@ -105,7 +110,7 @@ router.post('/signup', function(req, res) {
           verify: 0
         });
       });
-      var link = "http://dudadawebshop.herokuapp.com/verify?ID=" + username;
+      var link = "localhost/verify?ID=" + username;
       var sendMail = require("../models/email.js");
 
       var sendMail = new sendMail();
@@ -122,7 +127,7 @@ router.post('/signup', function(req, res) {
         }
       });
     } else {
-      res.redirect('/signupFail');
+      res.render('/signupFail');
     }
   });
 
@@ -130,30 +135,10 @@ router.post('/signup', function(req, res) {
 
 });
 
-router.get('/signupFail', function(req, res) {
-  res.render('signup', {
-    error: "Username hoặc email đã được đăng kí"
-  });
+router.get('signupFail', function(req, res) {
+  res.render('signup');
 });
 
-
-router.post("/fileupload", function(req, res) {
-  var form = new formidable.IncomingForm();
-  form.parse(req, function(err, fields, files) {
-    var oldpath = files.filetoupload.path;
-    var newpath = 'C:/Users/Your Name/' + files.filetoupload.name;
-    fs.rename(oldpath, newpath, function(err) {
-      if (err) throw err;
-      res.write('File uploaded and moved!');
-      res.end();
-    });
-
-  });
-
-})
-router.get('/upload', function(req, res) {
-  res.render('upload');
-})
 
 
 module.exports = router;
