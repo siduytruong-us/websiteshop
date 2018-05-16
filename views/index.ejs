@@ -92,6 +92,14 @@
     </div>
 
     <!--Top Navigation -->
+    <div class="dropdown">
+  	<button class="dropbtn">Menu</button>
+	 <div class="dropdown-content">
+	<% for(var i = 0; i < typeproduct.length; i++ ){%> 
+	  <a href="danhsach?type=<%= typeproduct[i].type %>"><%= typeproduct[i].name %></a>
+	  <%}%>
+	  </div>
+	</div>
     <div class="space"> </div>
 
     <!--Slider -->
