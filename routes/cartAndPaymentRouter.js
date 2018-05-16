@@ -76,12 +76,15 @@ router.get('/shopcart', function(req, res) { // ham index de vao web chinh
   });
 });
 
-
-
-var hoadon = require('../models/hoadon');
-hoadon.hoadonCollection(function(result) {
-  console.log(result);
-})
+// var hoadon = require('../models/hoadon');
+// hoadon.hoadonCollection(function(result) {
+//   console.log(result);
+// })
+var chitiethoadon = require('../models/chitiethoadon');/////// chi tiet hoa don
+chitiethoadon.chitiethoadonGroup(function(result) {
+  result.sort((a, b) => b.tongso - a.tongso);
+  console.log(result[0]);
+})/////
 
 router.post('/checkout/hoadon', function(req, res) {
   var d = new Date();
@@ -122,8 +125,20 @@ router.post('/checkout/hoadon', function(req, res) {
         dagiao: "no",
         danhsachsanpham: cart.items
       });
+       //// chitiethoadon
+      for(var i = 0; i < cart.items.length; i++)
+      {
+        dbo.collection("chitiethoadon").insert({
+          IDhd: result,
+          IDsp: cart.items[i].item.ID,
+          name: cart.items[i].item.name,
+          type: cart.items[i].item.type,
+          soluong: parseInt(cart.items[i].quantity)
+        });
+      }/////
     });
   });
+  
   res.render('thanksPage', {
     user: req.user
   });
