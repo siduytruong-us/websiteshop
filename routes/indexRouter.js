@@ -35,11 +35,15 @@ function isLoggedin(req, res, next) {
 }
 //  Routes in Index
 router.get('/', function(req, res) {
-
-  console.log("index in router");
-  res.render('index', {
-    user: req.user
-  });
+var typeproduct = require("../models/typeproduct");
+    typeproduct.typeproductCollection(function(kq)
+    {
+     console.log("index in router");
+      res.render('index', {
+        user: req.user,
+        typeproduct: kq
+      });
+    });
 });
 
 
