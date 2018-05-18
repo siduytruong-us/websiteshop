@@ -35,12 +35,12 @@ app.use(sessions({
   saveUninitialized: true
 }));
 
-
+var path = require('path');
 const dirname = __dirname;
 module.exports = {
   dirname: dirname
 }
-app.use(express.static(dirname + '/Data'));
+app.use(express.static(path.join(__dirname, 'Data')));
 
 var Passport = require("./models/Passport");
 var LocalStrategy = require("passport-local").Strategy;
@@ -49,7 +49,7 @@ app.use(Passport.session())
 
 app.set("view engine", "ejs");
 app.set("views", "./views")
-
+app.set("view options", { layout: "layout" });
 var indexRouter = require('./routes/indexRouter.js');
 var adminRouter = require('./routes/adminRouter.js');
 var emailRouter = require('./routes/emailRouter.js');
@@ -60,6 +60,9 @@ var cartAndPaymentRouter = require('./routes/cartAndPaymentRouter.js');
 var customerManager = require('./routes/admin/customerManager');
 var thongKe = require('./routes/admin/thongkeRouter');
 var productManager = require('./routes/admin/productManager');
+
+var hoadonManager = require('./routes/admin/hoadonManager');
+app.use(hoadonManager);
 app.use(customerRouter);
 app.use(indexRouter);
 app.use(adminRouter);

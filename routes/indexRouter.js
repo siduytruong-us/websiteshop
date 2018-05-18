@@ -41,7 +41,8 @@ var typeproduct = require("../models/typeproduct");
      console.log("index in router");
       res.render('index', {
         user: req.user,
-        typeproduct: kq
+        typeproduct: kq,
+        body: 'product/index.ejs'
       });
     });
 });

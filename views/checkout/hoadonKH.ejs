@@ -1,0 +1,74 @@
+<center>
+  <h2> Thanh Toán Đơn Hàng </h2>
+  <form method="POST" action="checkout/hoadon" name="frm">
+    <p>
+      <input type="text" id="name" name="hoten" value="<%= user.hoten%>" style="width:80%" disabled/>
+    </p>
+    <p>
+      <input type="text" id="username" name="username" value="<%= user.ID%>" placeholder="Your Username" style="width:80%" disabled/>
+    </p>
+    <p>
+      <input type="text" id="diachi" name="diachi" value="<%= user.diachi%>" style="width:80%" required pattern="[A-Za-z0-9]{1,50}" />
+    </p>
+    <p>
+      <input type="text" id="email" name="email" value="<%= user.email%>" style="width:80%" required/>
+    </p>
+    <p>
+      <input type="text" id="phone" name="phone" value="<%= user.dienthoai%>" style="width:80%" required pattern="[0-9]{1,10}" />
+    </p>
+
+</center>
+<div class="w3-container">
+  <h3>Đơn hàng của bạn:</h3>
+
+  <ul class="w3-ul">
+    <% for (var  i = 0; i < cart.items.length; i ++ ) {  %>
+      <li>
+        Tên:
+        <%= cart.items[i].item.name%> - Số lượng:
+          <%= cart.items[i].quantity%>
+      </li>
+      <% } %>
+        <li> <b>Tổng thiệt hại là: <%= total%> </b>
+
+        </li>
+  </ul>
+</div>
+
+<center>
+   <b id="timer"></b> 
+  <button type="submit" class="button btn-primary submit" style="width:50%">Confirm</button>
+</center>
+</form>
+
+
+
+<script>
+  // Hàm khởi tạo đồng hồ
+  function startTime() {
+    var today = new Date();
+    // Giờ, phút, giây hiện tại
+    var h = today.getHours();
+    var m = today.getMinutes();
+    var s = today.getSeconds();
+    var d = today.getDate();
+    var m = today.getMonth();
+    var y = today.getYear();
+    // Chuyển đổi sang dạng 01, 02, 03
+    m = checkTime(m);
+    s = checkTime(s);
+    // Ghi ra trình duyệt
+    document.getElementById('timer').innerHTML = h + ":" + m + ":" + s + " - " + d + "/" + m + "/" +y;
+    // Dùng hàm setTimeout để thiết lập gọi lại 0.5 giây / lần
+    var t = setTimeout(function() {
+      startTime();
+    }, 500);
+  }
+  // Hàm này có tác dụng chuyển những số bé hơn 10 thành dạng 01, 02, 03, ...
+  function checkTime(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+</script>

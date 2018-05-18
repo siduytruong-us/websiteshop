@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link type="text/css" rel="stylesheet" href="../layout1.css">
+  <link type="text/css" rel="stylesheet" href="../signin.css">
+  <link type="text/css" rel="stylesheet" href="../topNavigation.css">
+  <link type="text/css" rel="stylesheet" href="../signup.css">
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/
+		font-awesome.min.css">
+  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link type="text/css" rel="icon" type="../image/png" href="../image/logoTitle.png" sizes="16x16" />
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width = device-width,initial -scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+
+  <title>DuDada WebShop Manager</title>
+  <style>
+    body {
+      background-image: url("../image/background.png");
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container contentBox">
+    <header>
+      <a href="/admin"><img src = "../image/logo.png" style ="margin-top: 30px;"> </a>
+      <% if (user == null) { %>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Admin Management <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="login">Sign in</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="">Sign up</a></li>
+            </ul>
+          </li>
+        </ul>
+        <% } else { %>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Admin Management <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="">Admin Account</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="logout">Sign out</a></li>
+              </ul>
+            </li>
+          </ul>
+          <% } %>
+
+            <% if (user == null) { %>
+              <div id="callNow" style="clear: both;">
+                <p id="userName"> </p>
+              </div>
+              <% } else { %>
+                <div id="callNow" style="clear: both;">
+                  <center>
+                    <h4 id="welcomeMsg" style="margin-right:20px;">  Welcome,<%=user.name%></h4>
+                  </center>
+                </div>
+                <% } %>
+                  <div class="clear"></div>
+    </header>
+    <div class="space"> </div>
+
+    <article>
+      <%- include(body)%>
+    </article>
+
+</body>
+
+</html>

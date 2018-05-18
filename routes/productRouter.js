@@ -19,16 +19,18 @@ router.use(express.static(directName.dirname + '/Data'));
 //
 
 
+
 router.get('/danhsach?:type', function(req, res) { // ham index de vao web chinh
   var type = req.query.type;
   var product = require('../models/product')
   product.findProductByType(type, function(result) {
     product = result;
     console.log("type danh sach: " + type);
-    res.render('danhsach', {
+    res.render('index', {
       user: req.user,
       type: type,
-      product: product
+      product: product,
+      body: 'product/danhsach.ejs'
     });
   });
 });
@@ -54,10 +56,11 @@ router.get('/chitietsanpham?:ID', function(req, res) { // ham index de vao web c
 
     }
     type = null;
-    res.render('chitietsanpham', {
+    res.render('index', {
       user: req.user,
       infoProduct: info,
-      product: OtherProducts
+      product: OtherProducts,
+      body: "product/chitietsanpham"
     });
   });
 });

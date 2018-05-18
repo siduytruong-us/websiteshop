@@ -22,7 +22,7 @@ Passport.use(new LocalStrategy(
 
         user = temp.filter(x => x.ID === username);
 
-        if (!user) {
+        if (!user[0]) {
           return done(null, false);
         }
         if (user[0].password != password) {
@@ -36,7 +36,7 @@ Passport.use(new LocalStrategy(
 
         user = temp.filter(x => x.ID === username);
 
-        if (!user) {
+        if (!user[0]) {
           return done(null, false);
         }
         if (user[0].password != password) {

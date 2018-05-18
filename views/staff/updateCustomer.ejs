@@ -1,72 +1,31 @@
-<html lang="en">
-
-<head>
-  <link type="text/css" rel="stylesheet" href="../layout1.css">
-  <link type="text/css" rel="stylesheet" href="../signin.css">
-  <link type="text/css" rel="stylesheet" href="../topNavigation.css">
-  <link type="text/css" rel="stylesheet" href="../signup.css">
-  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/
-		font-awesome.min.css">
-  <link type="text/css" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link type="text/css" rel="icon" type="image/png" href="image/logoTitle.png" sizes="16x16" />
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width = device-width,initial -scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-  <title>DuDada WebShop </title>
-
-  <style>
+<!-- <style>
     body {
       font-family: "Open Sans", sans-serif;
       height: 100vh;
       background-image: url("../image/background.png");
       background-size: cover;
     }
-  </style>
-
-</head>
-
-<body>
-
-  <div class="container contentBox">
-    <header>
-      <a href="/admin"><img src = "../image/logo.png" style ="margin-top: 30px;"> </a>
-
-
-      <div class="container contentBox">
-        <div class="clear"></div>
-    </header>
-
-    <center>
-      <h3>Thông tin khách hàng </h3>
-
-      <span id="update" >
-
+  </style> -->
+<center><h3>Quản lý thông tin chi tiết khách hàng (sửa xóa)</h3></center>
+<div class="space"> </div>
+<center>
+  <h3>Thông tin khách hàng </h3>
+  <span id="update">
           <form method="POST" action="adminUpdateCustomer">
               <center>
               <input type="text"  name="idkh" value="<%= updateCustomer.ID%>" style="width:60%" readonly = "on"/>
               <input type="text"  name="hoten" value="<%= updateCustomer.hoten%>" style="width:60%" required/>
               <input type="password" name="password" value="<%= updateCustomer.password%>" style="width:60%" readonly = "on" required/>
               <input type="text"  name="diachi" value="<%= updateCustomer.diachi%>" style="width:60%" required pattern="[A-Za-z0-9\s]{1,50}" title="Không chứa kí tự đặc biệt" />
-              <input type="email"  name="email" value="<%= updateCustomer.email%>" style="width:60% " required/>
-              <input type="tel"  name="dienthoai" value="<%= updateCustomer.dienthoai%>" style="width:60%"  required pattern="[0-9]{1,11}" title="Chỉ có kí tự số" />
+              <input type="email" name="email" value="<%= updateCustomer.email%>" style="height: 40px;width: 60%;" required="">
+              <input type="tel" name="dienthoai" value="<%= updateCustomer.dienthoai%>" style="height:  40px;width:60%;" required="" pattern="[0-9]{1,11}" title="Chỉ có kí tự số">
               <br>
               <button type="submit" class="button btn-primary" style="width:30%"><i class="fa fa-edit"> </i> </button>
 
               </center>
             </form>
-            <a href = "removeCustomer?ID=<%=updateCustomer.ID%>"><button class = "button btn-primary" style = "width:7%; float:right; margin-top:-550px; background-color:red" ><i class = "fa fa-times"></i> </button> </a>
+            <a href = "removeCustomer?ID=<%=updateCustomer.ID%>"><button class = "button btn-primary" style = "width:7%; float:right; margin-top:-440px; background-color:red" ><i class = "fa fa-times"></i> </button> </a>
         </span>
-    </center>
+</center>
 
-    </div>
-    <!--end container contentBox-->
-  </div>
-
-</body>
-
-<html>
+<!--end container contentBox-->

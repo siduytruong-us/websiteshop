@@ -73,21 +73,10 @@ router.post('/update', function(req, res) {
 
 router.get('/admin', isAdminLoggedin, function(req, res) { // ham index de vao web chinh
   console.log("admin login index: " + req.user);
-  if (req.user == null) {
-    res.render('index', {
-      user: null
-    });
-  } else {
-    if (req.user.ID[0] == 's') {
-      res.render('staff/admin', {
-        user: req.user
-      });
-    } else {
-      res.render('index', {
-        user: null
-      });
-    }
-  }
+  res.render('manage', {
+    user: req.user,
+    body: "staff/admin.ejs"
+  });
 });
 
 
@@ -104,55 +93,6 @@ router.post('/addProduct', function(req, res) {
   res.render("staff/addProduct", {
     Test: null
   });
-});
-
-router.get('/admin/hoadon', function(req, res) {
-  var hoadon = require('../models/hoadon');
-  console.log("dirname adminrouter" +__dirname);
-  hoadon.hoadonCollection(function(result) {
-    res.render('staff/hoadonAdmin', {
-      user: req.user,
-      hoadon: result
-    })
-  });
-
-});
-
-router.post('/admin/search/hoadon', function(req, res) {
-  var ID = req.body.hoadon;
-  var hoadon = require('../models/hoadon');
-  hoadon.hoadonCollection(function(result) {
-    var temp = result.filter(x => x.ID == ID);
-    res.render('staff/hoadonAdmin', {
-      user: req.user,
-      hoadon: temp
-    })
-  });
-
-});
-
-router.get('/admin/chitiethoadon?:id', function(req, res) {
-  var ID = req.query.id;
-  console.log(ID);
-  var hoadon = require('../models/hoadon');
-  hoadon.hoadonCollection(function(result) {
-    var temp = result.filter(x => x.ID == ID);
-    console.log(temp);
-    res.render('staff/chitiethoadon', {
-      user: req.user,
-      hoadon: temp
-    })
-  });
-});
-
-
-router.get('/admin/hoadon/delivery', function(req, res) {
-  var ID = req.query.ID;
-  var dagiao =  req.query.dagiao;
-  console.log( "delivery : " +ID + dagiao);
-  var hoadon = require('../models/hoadon');
-  hoadon.updateHoaDonByID(ID,dagiao);
-  res.redirect('back');
 });
 
 

@@ -12,7 +12,7 @@ body {
 .contentBox {
 
 	background-color: #f0f0f0;
- 
+
 
 	border-radius: 10px;
 
@@ -20,9 +20,9 @@ body {
 
 /* Header HTML  */
 #logo {
-	float: left; 
+	float: left;
 	left: 5vh;
-	margin-left:20px;  
+	margin-left:20px;
 
 }
 
@@ -33,13 +33,13 @@ body {
 
 }
 
-#userName { 
+#userName {
 	font-size:20px;
 }
 
 #logoutBtn {
 	font-size: 15px;
-	margin-top:-10px; 
+	margin-top:-10px;
 	margin-left: 20px;
 		position: absolute;
  }
@@ -54,7 +54,7 @@ body {
 	font-family:Arial, Helvetica, sans-serif;
 	text-align: center;
 	font-size: 30px;
-	
+
 }
 
 
@@ -62,46 +62,46 @@ body {
 
 
 
-#arrow1 { 
-    float: right;    
+#arrow1 {
+    float: right;
     margin-left: 620px;
 	position:absolute;
 }
 
-#or { 
+#or {
 	margin-left: 380px;
 	width: 300px;
 	float:right;
     font-family: Oswald;
 	color: #5790dc;
     font-style: italic;
-    font-size: 25px; 
+    font-size: 25px;
 	position:absolute;
 }
-.GiveTrybutton { 
+.GiveTrybutton {
 
-	background: linear-gradient(#bbe9ff, #5e9ae1);	
+	background: linear-gradient(#bbe9ff, #5e9ae1);
 }
 
 /* Header HTML  */
 
 /*Service Section */
 
-#textService { 
+#textService {
 		margin-left: 80px;
 		font-size:13px;
 		    font-family: Oswald;
 }
 
-#iconService { 
+#iconService {
 	float:left;
 	width:80px;
 	height:70px;
-	
+
 	border-radius:40%;
  }
 
-#seewhatText { 
+#seewhatText {
     font-family: Oswald;
     color: #5790dc;
     font-style: italic;
@@ -123,13 +123,13 @@ body {
 
 
 #coppyright div:nth-child(0) {
-	
-	float: left; 
+	font-size: 20px;
+	float: left;
 }
 
 
 #coppyright div:nth-child(1) {
-	
+
 	float:right;
 }
 
@@ -140,7 +140,7 @@ body {
 
 /*Others*/
 
-.clear  { 
+.clear  {
 	clear:both;
 }
 
@@ -151,7 +151,7 @@ body {
 
 
 
-#mail:link { 
+#mail:link {
 	color :green;
  }
  /* css Menu */

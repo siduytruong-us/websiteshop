@@ -24,8 +24,9 @@ function isAdminLoggedin(req, res, next) {
 
 
 router.get('/admin/gianhang', isAdminLoggedin, function(req, res) {
-  res.render('staff/productManagement', {
-    user: req.user
+  res.render('manage', {
+    user: req.user,
+    body: 'staff/productManagement.ejs'
   })
 });
 
@@ -35,10 +36,11 @@ router.get('/admin/quanlysanpham?:type', isAdminLoggedin, function(req, res) {
   var product = require('../../models/product')
   product.findProductByType(type, function(result) {
     console.log("type danh sach trong admin: " + type);
-    res.render('staff/quanlysanpham', {
+    res.render('manage', {
       user: req.user,
       type: type,
-      product: result
+      product: result,
+      body:"staff/quanlysanpham.ejs"
     });
   });
 });
@@ -79,20 +81,22 @@ router.post('/admin/findProduct', isAdminLoggedin, function(req, res) { //
 });
 
 router.get('/admin/findSuccessProduct', isAdminLoggedin, function(req, res) { //
-  res.render('staff/quanlysanpham', {
+  res.render('manage', {
     user: req.user,
     product: product,
     productresult: proresult,
     flag: true,
+    body: "staff/quanlysanpham.ejs"
   });
 });
 
 router.get('/admin/findFailedProduct', isAdminLoggedin, function(req, res) { //
-  res.render('staff/quanlysanpham', {
+  res.render('manage', {
     user: req.user,
     product: product,
     productresult: proresult,
     flag: false,
+    body:"staff/quanlysanpham.ejs"
   });
 });
 
@@ -120,9 +124,10 @@ var updateProduct;
 router.get('/admin/updateProduct?:ID', isAdminLoggedin, function(req, res) { //
   console.log("ID: "+req.query.ID);
   findProduct(req.query.ID, function(result) {
-    res.render('staff/updateProduct', {
+    res.render('manage', {
       user: req.user,
       updateProduct: result,
+      body:"staff/updateProduct.ejs"
     });
   });
 })
@@ -140,10 +145,11 @@ router.post('/admin/adminUpdateProduct', isAdminLoggedin, function(req, res) { /
   var product = require('../../models/product')
   product.findProductByType(type, function(result) {
     console.log("type danh sach trong admin: " + type);
-    res.render('staff/quanlysanpham', {
+    res.render('manage', {
       user: req.user,
       type: type,
-      product: result
+      product: result,
+      body:"staff/quanlysanpham.ejs"
     });
   });
 });
@@ -186,10 +192,11 @@ router.get('/admin/removeProductSuccess', isAdminLoggedin, function(req, res) { 
     var product = require('../../models/product')
     product.findProductByType(type, function(result) {
       console.log("type danh sach trong admin: " + type);
-      res.render('staff/quanlysanpham', {
+      res.render('manage', {
         user: req.user,
         type: type,
-        product: result
+        product: result,
+        body:"staff/quanlysanpham.ejs"
       });
     });
   type = null;

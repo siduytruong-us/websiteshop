@@ -19,7 +19,7 @@ router.use(express.static(directName.dirname + '/Data'));
 
 router.get('/login', function(req, res) {
   console.log("login in routes");
-  res.render('login', {
+  res.render('login/login.ejs', {
     error: " "
   })
 });
@@ -34,13 +34,16 @@ router.post('/login', Passport.authenticate('local', {
 
 router.get('/loginFailed', function(req, res) {
   console.log("loginfail");
-  res.render('login', {
+  res.render('login/login.ejs', {
     error: "Invalid username or password !"
   });
 });
 
 router.get('/forgotPassword', function(req, res) {
-  res.render("forgotPassword");
+  res.render("index",{
+    body: 'login/forgotPassword.ejs',
+    user: req.user
+  });
 })
 
 

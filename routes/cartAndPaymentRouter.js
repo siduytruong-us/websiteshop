@@ -32,10 +32,11 @@ router.post('/checkout', isLoggedin, function(req, res) {
   var total = cart.totalPrice();
   var soluong = req.body.quantity;
   console.log("soluong: " + soluong);
-  res.render("hoadonKH", {
+  res.render("index", {
     user: req.user,
     cart: cart,
-    total: total
+    total: total,
+    body: "checkout/hoadonKH.ejs"
   });
 });
 
@@ -138,8 +139,8 @@ router.post('/checkout/hoadon', function(req, res) {
       }/////
     });
   });
-  
-  res.render('thanksPage', {
+
+  res.render('checkout/thanksPage', {
     user: req.user
   });
 });

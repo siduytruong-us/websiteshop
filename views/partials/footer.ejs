@@ -1,0 +1,58 @@
+<footer style="background-color:#969696">
+  <!-- Contract details-->
+
+
+  <div class="row">
+    <div class="col-sm-3">
+      <h4 id="contact">Contact</h4>
+      <div>Please contact us through this email:
+        <a href="mailto: duytruong0702@gmail.com" style="color:green;">
+                            <br>  <b>Duytruong0702@gmail.com  </b>
+                        </a>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div id="map" style="margin-top : 10px; width:80%; height:80%;"> </div>
+    </div>
+    <div class="col-sm-3">
+      <h4 id="about">Address</h4>
+      <div>15CTT1 - Khoa học tự nhiên
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <h4>Visit us on facebook</h4>
+
+      <a href="https://www.facebook.com/truongsi.duy"> <img src = "image/facebook.png" alt = "map" sizes="50x50" /> </a>
+      <img src="image/clickme.png" style="margin-top: -10px;" />
+    </div>
+  </div>
+
+  <!-- Contract details-->
+  <div class="clear"> </div>
+  <!--CoppyRights-->
+
+  <div id="coppyright" style="background-color:#515151">Copyright 2018 - DUDADA-WEBISTE - All rights reserved</div>
+
+</footer>
+
+
+  <script>
+    function initMap() {
+
+      var benThanh = {
+        lat: 10.772197,
+        lng: 106.698272
+      };
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 14,
+        center: benThanh
+      });
+      var marker = new google.maps.Marker({
+        position: benThanh,
+        map: map,
+        title: "Welcome to Dudada WebShop !!!"
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCodndO4xHHgof1F3omVMpxJ_kNy1-8x18&callback=initMap">
+  </script>

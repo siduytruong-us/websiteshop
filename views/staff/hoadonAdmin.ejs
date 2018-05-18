@@ -1,121 +1,50 @@
-<!DOCTYPE html>
+<center><h3 >Quản lý hóa đơn</h3></center>
+<div class="space"> </div>
+<!-- Services Details-->
+<!--Top Navigation -->
+<div class="topnav">
+  <a class="active" style="width:80px;" href=""> <i class = "fa fa-home" ></i> </a>
+  <div class="search-container">
+    <form action="search/hoadon" method="POST">
+      <input type="text" placeholder="Search by ID " name="hoadon">
+    </form>
+  </div>
+</div>
 
-<html lang="en">
+<!--Top Navigation -->
+<center>
+  <h2>Quản lí hóa đơn</h2> </center>
+<% if (hoadon.length != 0) {%>
+  <div class="space"> </div>
+  <a href="" style="float:right">  <button type = "button" class = "button btn-primary"><i class = "fa fa-plus"></i>  </button> </a>
+  <br>
 
-<head>
-  <link rel="stylesheet" href="../layout1.css">
-  <link rel="stylesheet" href="../signin.css">
-  <link rel="stylesheet" href="../hoadon.css">
-  <link rel="stylesheet" href="../topNavigation.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/
-		font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="icon" type="image/png" href="../image/logoTitle.png" sizes="16x16" />
+  <div class="space"> </div>
+  <div class="list-group">
 
-  <meta charset="utf-8">
-  <meta name="viewport" content="width = device-width,initial -scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <% for (var i=0 ; i < hoadon.length ; i ++)  { %>
+      <!-- hàng for fai có product ở trong -->
+      <a href="chitiethoadon?id=<%= hoadon[i].ID%>">
+        <div class="list-group-item" id="hoadon">
+          Mã hóa đon:
+          <%= hoadon[i].ID %>
+            <h6>Tên khách hàng: <%= hoadon[i].customer.hoten %> - Địa chỉ: <%= hoadon[i].customer.diachi %></h6>
+            <a href="hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=yes"> <button class = "buttonDelivery" style = "background-color: #79ff4d"> Đã giao </button> </a>
+            <a href="hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=now"> <button class = "buttonDelivery" style = "background-color: #1a75ff"> Đang giao </button> </a>
+            <a href="hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=no"> <button class = "buttonDelivery" style = "background-color: #ff3333"> Hủy bỏ </button> </a>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
-  <title>DuDada WebShop Manager</title>
-</head>
-
-<body>
-  <div class="container contentBox">
-    <header>
-      <a href="/admin"><img src = "../image/logo.png" style ="margin-top: 30px;"> </a>
-      <% if (user == null) { %>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="dropdown">
-            <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Admin Management <span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="login">Sign in</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="">Sign up</a></li>
-            </ul>
-          </li>
-        </ul>
-        <% } else { %>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> Admin Management <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="">Admin Account</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="../logout">Sign out</a></li>
-              </ul>
-            </li>
-          </ul>
-          <% } %>
-
-            <% if (user == null) { %>
-              <div id="callNow" style="clear: both;">
-                <p id="userName"> </p>
-              </div>
-              <% } else { %>
-                <div id="callNow" style="clear: both;">
-                  <center>
-                    <h4 id="welcomeMsg" style="margin-right:20px;">  Welcome,<%=user.name%></h4>
-                  </center>
-                </div>
-                <% } %>
-                  <div class="clear"></div>
-    </header>
-
-
-    <div class="space"> </div>
-    <!-- Services Details-->
-    <!--Top Navigation -->
-    <div class="topnav">
-      <a class="active" style="width:80px;" href=""> <i class = "fa fa-home" ></i> </a>
-      <div class="search-container">
-        <form action="search/hoadon" method="POST">
-          <input type="text" placeholder="Search by ID " name="hoadon">
-        </form>
-      </div>
-    </div>
-
-    <!--Top Navigation -->
-    <center>
-      <h2>Quản lí hóa đơn</h2> </center>
-    <% if (hoadon.length != 0) {%>
-      <div class="space"> </div>
-      <a href="" style="float:right">  <button type = "button" class = "button btn-primary"><i class = "fa fa-plus"></i>  </button> </a>
-      <br>
-
-      <div class="space"> </div>
-      <div class="list-group">
-
-        <% for (var i=0 ; i < hoadon.length ; i ++)  { %>
-          <!-- hàng for fai có product ở trong -->
-          <a href="chitiethoadon?id=<%= hoadon[i].ID%>" > <div class="list-group-item" id="hoadon">
-              Mã hóa đon: <%= hoadon[i].ID %>
-               <h6>Tên khách hàng: <%= hoadon[i].customer.hoten %> - Địa chỉ: <%= hoadon[i].customer.diachi %></h6>
-                <a href = "hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=yes"> <button class = "buttonDelivery" style = "background-color: #79ff4d"> Đã giao </button> </a>
-                <a href = "hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=now"> <button class = "buttonDelivery" style = "background-color: #1a75ff"> Đang giao </button> </a>
-                <a href = "hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=no"> <button class = "buttonDelivery" style = "background-color: #ff3333"> Hủy bỏ </button> </a>
-
-              <% if ( hoadon[i].dagiao == "no") {%>
-              Tình trạng giao hàng: <i  class = "fa fa-remove" style= "color: #ff3333;"></i>
+            <% if ( hoadon[i].dagiao == "no") {%>
+              Tình trạng giao hàng: <i class="fa fa-remove" style="color: #ff3333;"></i>
               <%} else if ( hoadon[i].dagiao == "yes") { %>
-                Tình trạng giao hàng: <i class = "fa fa-check" style="color: #79ff4d;"></i>
+                Tình trạng giao hàng: <i class="fa fa-check" style="color: #79ff4d;"></i>
                 <%} else {%>
-                  Tình trạng giao hàng: <span style="color: #1a75ff";> <b>ON THE WAY !!! </b> </span>
+                  Tình trạng giao hàng: <span style="color: #1a75ff" ;> <b>ON THE WAY !!! </b> </span>
                   <%}%>
-                </div>
-                  </a>
-          <% } %>
-            <%} else {%>
-              <center>
-                <h3>Notthing found </h3> </center>
-              <%}%>
-      </div>
-</body>
-
-
-</html>
+        </div>
+      </a>
+      <% } %>
+        <%} else {%>
+          <center>
+            <h3>Notthing found </h3> </center>
+          <%}%>
+  </div>

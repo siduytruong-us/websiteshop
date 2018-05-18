@@ -1,0 +1,51 @@
+<header>
+  <a href="/"><img src = "image/logo.png" style ="margin-top: 30px;"> </a>
+  <% if (user == null) { %>
+    <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
+      <li class="dropdown">
+        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Management <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="login">Sign in</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="signup">Sign up</a></li>
+        </ul>
+      </li>
+    </ul>
+    <% } else { %>
+    <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
+        <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Management <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="">User Account</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="/customer/history">History Purchase</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="logout">Sign out</a></li>
+          </ul>
+        </li>
+      </ul>
+      <% } %>
+
+        <% if (user == null) { %>
+          <div id="callNow" style="clear: both;">
+            <p id="userName"> </p>
+          </div>
+          <% } else { %>
+            <div id="callNow" style="clear: both;">
+              <center>
+                <h4 id="welcomeMsg" style="margin-right:20px;">  Welcome,<%=user.hoten%></h4>
+              </center>
+            </div>
+            <% } %>
+              <!--<script>
+            // Get the modal
+            var modal = document.getElementById('id01');
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+          </script>-->
+              <div class="clear"></div>
+</header>
