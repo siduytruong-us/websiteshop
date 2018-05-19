@@ -2,7 +2,7 @@ var express = require("express"),
   router = express.Router(),
   Passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy
-
+var typeproduct = require("../models/typeproduct"); ///// menu
 
 var MongoClient = require('mongodb').MongoClient; // connect online
 var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connect online
@@ -26,11 +26,14 @@ router.get('/danhsach?:type', function(req, res) { // ham index de vao web chinh
   product.findProductByType(type, function(result) {
     product = result;
     console.log("type danh sach: " + type);
-    res.render('index', {
-      user: req.user,
-      type: type,
-      product: product,
-      body: 'product/danhsach.ejs'
+    typeproduct.typeproductCollection(function(kq) {
+      res.render('index', {
+        typeproduct: kq,
+        user: req.user,
+        type: type,
+        product: product,
+        body: 'product/danhsach.ejs'
+      });
     });
   });
 });
@@ -40,7 +43,7 @@ router.get('/chitietsanpham?:ID', function(req, res) { // ham index de vao web c
   var ID = req.query.ID;
   console.log(ID);
   var product = require('../models/product');
-  var OtherProducts  = [];
+  var OtherProducts = [];
   product.productCollection(function(result) {
     product = result;
     for (var i = 0; i < product.length; i++) {
@@ -49,18 +52,21 @@ router.get('/chitietsanpham?:ID', function(req, res) { // ham index de vao web c
       }
     }
 
-    for (var i =0 ;  i  < product.length;i++) {
-      if ( product[i].type  == info.type && product[i].ID != info.ID) {
+    for (var i = 0; i < product.length; i++) {
+      if (product[i].type == info.type && product[i].ID != info.ID) {
         OtherProducts.push(product[i]);
       }
 
     }
     type = null;
-    res.render('index', {
-      user: req.user,
-      infoProduct: info,
-      product: OtherProducts,
-      body: "product/chitietsanpham"
+    typeproduct.typeproductCollection(function(kq) {
+      res.render('index', {
+        typeproduct: kq,
+        user: req.user,
+        infoProduct: info,
+        product: OtherProducts,
+        body: "product/chitietsanpham"
+      });
     });
   });
 });
@@ -119,10 +125,15 @@ router.get('/searchProduct?:search', function(req, res) {
 router.get('/searchSuccess', function(req, res) {
   var temp = searchProduct;
   //searchProduct = [];
-  res.render('danhsach', {
-    product: temp,
-    user: req.user
-  })
+  typeproduct.typeproductCollection(function(kq) {
+    res.render('index', {
+      typeproduct: kq,
+      user: req.user,
+      type: type,
+      product: temp,
+      body: 'product/danhsach.ejs'
+    });
+  });
 });
 
 

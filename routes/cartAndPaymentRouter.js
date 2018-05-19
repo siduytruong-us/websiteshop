@@ -3,7 +3,7 @@ var express = require("express"),
 var Cart = require('../models/cart.js');
 var MongoClient = require('mongodb').MongoClient; // connect online
 var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connect online
-
+var typeproduct = require("../models/typeproduct"); ///// menu
 
 
 var bodyParser = require('body-parser');
@@ -32,11 +32,14 @@ router.post('/checkout', isLoggedin, function(req, res) {
   var total = cart.totalPrice();
   var soluong = req.body.quantity;
   console.log("soluong: " + soluong);
-  res.render("index", {
-    user: req.user,
-    cart: cart,
-    total: total,
-    body: "checkout/hoadonKH.ejs"
+  typeproduct.typeproductCollection(function(kq) {
+    res.render("index", {
+      user: req.user,
+      cart: cart,
+      total: total,
+      typeproduct: kq,
+      body: "checkout/hoadonKH.ejs"
+    });
   });
 });
 
@@ -81,11 +84,11 @@ router.get('/shopcart', function(req, res) { // ham index de vao web chinh
 // hoadon.hoadonCollection(function(result) {
 //   console.log(result);
 // })
-var chitiethoadon = require('../models/chitiethoadon');/////// chi tiet hoa don
+var chitiethoadon = require('../models/chitiethoadon'); /////// chi tiet hoa don
 chitiethoadon.chitiethoadonGroup(function(result) {
   result.sort((a, b) => b.tongso - a.tongso);
   console.log(result[0]);
-})/////
+}) /////
 
 router.post('/checkout/hoadon', function(req, res) {
   var d = new Date();
@@ -126,9 +129,8 @@ router.post('/checkout/hoadon', function(req, res) {
         dagiao: "no",
         danhsachsanpham: cart.items
       });
-       //// chitiethoadon
-      for(var i = 0; i < cart.items.length; i++)
-      {
+      //// chitiethoadon
+      for (var i = 0; i < cart.items.length; i++) {
         dbo.collection("chitiethoadon").insert({
           IDhd: result,
           IDsp: cart.items[i].item.ID,
@@ -136,7 +138,7 @@ router.post('/checkout/hoadon', function(req, res) {
           type: cart.items[i].item.type,
           soluong: parseInt(cart.items[i].quantity)
         });
-      }/////
+      } /////
     });
   });
 

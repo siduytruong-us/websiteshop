@@ -5,7 +5,7 @@ var express = require("express"),
 var nodemailer = require("nodemailer");
 var MongoClient = require('mongodb').MongoClient; // connect online
 var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connect online
-
+var typeproduct = require("../models/typeproduct"); ///// menu
 
 var transporter = nodemailer.createTransport({ // config mail server
   service: 'Gmail',
@@ -35,16 +35,14 @@ function isLoggedin(req, res, next) {
 }
 //  Routes in Index
 router.get('/', function(req, res) {
-var typeproduct = require("../models/typeproduct");
-    typeproduct.typeproductCollection(function(kq)
-    {
-     console.log("index in router");
-      res.render('index', {
-        user: req.user,
-        typeproduct: kq,
-        body: 'product/index.ejs'
-      });
+  typeproduct.typeproductCollection(function(kq) {
+    console.log("index in router");
+    res.render('index', {
+      user: req.user,
+      typeproduct: kq,
+      body: 'product/index.ejs'
     });
+  });
 });
 
 
@@ -67,8 +65,13 @@ router.get("/signup", function(req, res) {
 router.get('/logout', function(req, res) { // ham index de vao web chinh
   req.logout();
   user = null;
-  res.render('index', {
-    user: user
+  typeproduct.typeproductCollection(function(kq) {
+    console.log("index in router");
+    res.render('index', {
+      user: user,
+      typeproduct: kq,
+      body: 'product/index.ejs'
+    });
   });
 });
 
@@ -90,7 +93,7 @@ router.post('/signup', function(req, res) {
   customer.customerCollection(function(customer) {
 
     for (var i = 0; i < customer.length; i++) { //  check email da dang ki
-      if (customer[i].ID == username  || customer[i].email == email) {
+      if (customer[i].ID == username || customer[i].email == email) {
         check = false;
       }
     }
