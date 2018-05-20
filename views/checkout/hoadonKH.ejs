@@ -8,13 +8,13 @@
       <input type="text" id="username" name="username" value="<%= user.ID%>" placeholder="Your Username" style="width:80%" disabled/>
     </p>
     <p>
-      <input type="text" id="diachi" name="diachi" value="<%= user.diachi%>" style="width:80%" required pattern="[A-Za-z0-9]{1,50}" />
+      <input type="text" id="diachi" name="diachi" value="<%= user.diachi%>" style="width:80%" required pattern="[A-Za-z0-9\s]{1,50}" />
     </p>
     <p>
       <input type="text" id="email" name="email" value="<%= user.email%>" style="width:80%" required/>
     </p>
     <p>
-      <input type="text" id="phone" name="phone" value="<%= user.dienthoai%>" style="width:80%" required pattern="[0-9]{1,10}" />
+      <input type="text" id="phone" name="phone" value="<%= user.dienthoai%>" style="width:80%" required pattern="[0-9]{1,12}" />
     </p>
 
 </center>
@@ -36,7 +36,7 @@
 </div>
 
 <center>
-   <b id="timer"></b> 
+   <b id="timer"></b>
   <button type="submit" class="button btn-primary submit" style="width:50%">Confirm</button>
 </center>
 </form>
