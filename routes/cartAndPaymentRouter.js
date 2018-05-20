@@ -74,9 +74,12 @@ router.post('/addToCart', function(req, res) {
 router.get('/shopcart', function(req, res) { // ham index de vao web chinh
   // console.log("shop cart username: " + session.cart.username.ID);
   console.log("length in shopcart" + req.session);
-  res.render("shopcart", {
-    cart: req.session.cart,
-    user: req.user || ""
+  var cart = new Cart(req.session.cart ? req.session.cart : {});
+  res.render("index", {
+    cart: cart,
+    user: req.user ? req.user : "",
+    body: "shopcart.ejs",
+    typeproduct: null
   });
 });
 
