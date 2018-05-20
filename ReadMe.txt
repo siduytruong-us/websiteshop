@@ -11,5 +11,3 @@ Web chúng em chia theo mô hình MVC, Models chứa xử lí DB, Views chứa U
 Các chức năng web của em đều có các chức năng của các web thực tế. Thầy có thể thao tác bình thường. Tuy nhiên có vài chức năng đang trong quá trình phát triển nên không sử dụng được.
 
 Tài khoản: admin: s01-123;  khách hàng: kh01-123.
-
-LƯU Ý: DATABASE CỦA BỌN EM XÀI LÀ MONGODB FREE NÊN ĐÔI KHI SERVER DATA SẼ BỊ CHẶN DO LIMIT CỦA TÀI KHOẢN FREE. 
