@@ -39,4 +39,19 @@ router.get('/history', isLoggedin, function(req, res) {
     })
   })
 });
+
+router.get('/chitiethoadon?:id', isLoggedin, function(req, res) {
+  var  id = req.query.id;
+  var hoadon = require('../models/hoadon');
+  hoadon.hoadonCollection(function(result) {
+    var temp = result.filter(x => x.ID == id);
+        console.log(temp);
+    res.render('index', {
+      user: req.user,
+      hoadon:temp,
+      body: "customer/chitiethoadon.ejs",
+      typeproduct: null
+    })
+  })
+});
 module.exports = router;
