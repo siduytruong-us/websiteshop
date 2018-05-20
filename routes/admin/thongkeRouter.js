@@ -2,6 +2,7 @@ var express = require("express"),
   router = express.Router()
 var MongoClient = require('mongodb').MongoClient; // connect online
 var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connect online
+var chitiethoadon = require('../../models/chitiethoadon'); /////// chi tiet hoa don
 
 var directName = require('../../demo');
 router.use(express.static('/Data'));
@@ -13,8 +14,6 @@ router.use(bodyParser.urlencoded({
   extended: true
 }));
 
-
-
 function isAdminLoggedin(req, res, next) {
   if (req.isAuthenticated() && req.user.ID[0] == 's') {
     return next();
@@ -22,21 +21,21 @@ function isAdminLoggedin(req, res, next) {
   res.redirect('/');
 }
 
-
-
-
-// router.get('/admin/top10', function(req, res) {
-//
-//
-//   res.render("staff/quanlysanpham", {
-//     product: top.gettop10(),
-//     user: req.user
-//   });
-// });
+router.get('/admin/top10', isAdminLoggedin, function(req, res) {
+  chitiethoadon.chitiethoadonGroup(function(result) {
+    result.sort((a, b) => b.tongso - a.tongso);
+    res.render("manage", {
+      user: req.user,
+      top10Product: result,
+      n: result.length<=10 ? result.length : 10,
+      body: "staff/top10.ejs",
+    });
+  });
+});
 
 
 var doanhthuTheoNam;
-router.get('/admin/chart', function(req, res) {
+router.get('/admin/chart', isAdminLoggedin, function(req, res) {
 
   var thongke = require('../../models/hoadon');
 
@@ -56,7 +55,6 @@ router.get('/admin/chart', function(req, res) {
       user: req.user
     })
   }, 3000);
-
 
 });
 

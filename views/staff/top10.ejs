@@ -1,0 +1,17 @@
+<center>
+  <h3>Danh sách top 10 sản phẩm bán chạy nhất</h3></center>
+<div class="space"> </div>
+<div class="list-group">
+  <% if (top10Product) {%>
+    <% for (var i=0 ; i < n ; i ++)  { %>
+      <!-- hàng for fai có product ở trong -->
+      <a href="" class="list-group-item">
+        <%= top10Product[i]._id.tensp %>(
+          <%= top10Product[i]._id.idsp %>)
+            <h6><%= top10Product[i].tongso %></h6> </a>
+      <% } %>
+        <%} else {%>
+          <center>
+            <h3>Chưa có mặt hàng nào được bán </h3> </center>
+          <%}%>
+</div>
