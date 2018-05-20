@@ -58,10 +58,11 @@ function findCustomer(idkh, callback) { // customer
 var cusresult;
 router.post('/admin/findCustomer', isAdminLoggedin, function(req, res) { //
   var idCustomer = req.body.idCustomer;
-
+  console.log("id: "+idCustomer);
   findCustomer(idCustomer, function(result) {
-    if (result == "e" || result == null) {
+    if (result[0] == "e" || result == null) {
       console.log("find Failed customer");
+      cusresult = null;
       res.redirect('/admin/findFailedCustomer');
     } else {
       console.log("findCustomer" + result);
