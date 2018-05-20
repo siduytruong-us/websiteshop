@@ -35,7 +35,7 @@ router.get('/admin/top10', isAdminLoggedin, function(req, res) {
 
 
 var doanhthuTheoNam;
-router.get('/admin/chart', isAdminLoggedin, function(req, res) {
+router.get('/admin/chart', function(req, res) {
 
   var thongke = require('../../models/hoadon');
 
