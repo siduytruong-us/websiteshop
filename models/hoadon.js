@@ -9,7 +9,7 @@ var someschema = new Schema({
   time: String,
   total: Number,
   customer: [],
-  dagiao: Number,
+  dagiao: String,
   danhsachsanpham: []
 });
 

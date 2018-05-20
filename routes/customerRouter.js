@@ -27,13 +27,15 @@ router.get('/profile', isLoggedin, function(req, res) {
   })
 });
 
-router.get('/customer/history', isLoggedin, function(req, res) {
+router.get('/history', isLoggedin, function(req, res) {
   var hoadon = require('../models/hoadon');
   hoadon.hoadonCollection(function(result) {
     var temp = result.filter(x => x.customer.id === req.user.ID);
-    res.render('customer/history', {
+    res.render('index', {
       user: req.user,
-      hoadon:temp
+      hoadon:temp,
+      body: "customer/history.ejs",
+      typeproduct: null
     })
   })
 });
