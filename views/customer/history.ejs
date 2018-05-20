@@ -19,9 +19,6 @@
             Mã hóa đon:
             <%= hoadon[i].ID %>
               <h6>Tên khách hàng: <%= hoadon[i].customer.hoten %> - Địa chỉ: <%= hoadon[i].customer.diachi %></h6>
-              <a href="hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=yes"> <button class = "buttonDelivery" style = "background-color: #79ff4d"> Đã giao </button> </a>
-              <a href="hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=now"> <button class = "buttonDelivery" style = "background-color: #1a75ff"> Đang giao </button> </a>
-              <a href="hoadon/delivery?ID=<%= hoadon[i].ID %>&dagiao=no"> <button class = "buttonDelivery" style = "background-color: #ff3333"> Hủy bỏ </button> </a>
 
               <% if ( hoadon[i].dagiao == "no") {%>
                 Tình trạng giao hàng: <i class="fa fa-remove" style="color: #ff3333;"></i>
