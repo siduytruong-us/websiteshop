@@ -30,6 +30,7 @@ function chitiethoadonCollecttion(callback) { // customer
         callback(result);
       }
     });
+    db.close();
   });
 }
 
@@ -45,6 +46,7 @@ function chitiethoadonGroup(callback) {
         callback(result);
       }
     });
+    db.close();
   });
 }//////
 

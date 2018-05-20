@@ -71,6 +71,7 @@ Passport.deserializeUser((id, done) => {
         done(err, result[0]);
       });
     }
+    db.close();
   });
 });
 

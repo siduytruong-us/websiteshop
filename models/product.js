@@ -26,6 +26,7 @@ function productCollection(callback) { // product
         callback(result);
       }
     });
+		db.close();
   });
 }
 
@@ -47,6 +48,7 @@ function findItemByID(id, callback) { // customer
       }
 
     });
+		db.close();
   });
 }
 
@@ -63,6 +65,7 @@ function findProductByType (type, callback) {
 				callback(result);
 			}
 		});
+		db.close();
 	})
 }
 
@@ -84,6 +87,7 @@ function searchProductByName(nameProduct, callback) { // customer
         callback("error Nameproduct");
       }
     });
+		db.close();
   });
 }
 
@@ -106,6 +110,7 @@ function updateProductByID(id, name, info, price, link) { // customer
     }, {
       multi: true
     });
+		db.close();
   });
 }
 
@@ -118,6 +123,7 @@ function removeProductByID(id) { // customer
     dbo.collection("product").remove({
       ID: id
     });
+		db.close();
   });
 }
 

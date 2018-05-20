@@ -21,6 +21,7 @@ name: String
 				callback(result);
 			}
 		});
+    db.close();
 	});
 }
 

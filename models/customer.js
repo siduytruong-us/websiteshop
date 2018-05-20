@@ -25,6 +25,7 @@ var someschema = new Schema({
 				callback(result);
 			}
 		});
+    db.close();
 	});
 }
 
@@ -46,6 +47,7 @@ function customerUpdate(id, hoten, password, diachi, email, dienthoai) { // cust
     }, {
       multi: true
     });
+    db.close();
   });
 }
 
@@ -57,6 +59,7 @@ function customerRemove(id) { // customer
     dbo.collection("customer").remove({
       ID: id
     });
+    db.close();
   });
 }
 
@@ -77,6 +80,7 @@ function findCustomer(idkh, callback) { // customer
         callback(result);
       }
     });
+    db.close();
   });
 }
 

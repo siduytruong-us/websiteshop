@@ -26,6 +26,7 @@ function hoadonCount(callback) {
         callback(result);
       }
     });
+    db.close();
   });
 }
 
@@ -41,6 +42,7 @@ function hoadonCollection(callback) {
         callback(result);
       }
     });
+    db.close();
   });
 }
 
@@ -96,6 +98,7 @@ function TongDoanhThu(callback) {
         callback(result);
       }
     });
+    db.close();
   });
 }
 
@@ -131,6 +134,7 @@ function DoanhThuThangInYear(year, callback) {
         callback(count);
       }
     });
+    db.close();
   });
 }
 
@@ -147,6 +151,7 @@ function updateHoaDonByID(ID,dagiao) { // customer
         dagiao: dagiao,
       }
     });
+    db.close();
   });
 }
 

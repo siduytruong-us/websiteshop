@@ -24,6 +24,7 @@ function staffCollection(callback) { // staff
         callback(result);
       }
     });
+		db.close();
   });
 }
 
