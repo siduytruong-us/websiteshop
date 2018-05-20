@@ -1,99 +1,30 @@
-<html lang="en">
+<center>
 
-<head>
-  <link rel="stylesheet" href="layout1.css">
-  <link rel="stylesheet" href="signin.css">
-  <link rel="stylesheet" href="topNavigation.css">
-  <link rel="stylesheet" href="signup.css">
-  <link re l="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/
-		font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="icon" type="image/png" href="image/logoTitle.png" sizes="16x16" />
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width = device-width,initial -scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-  <title>DuDada WebShop </title>
-
-  <style>
-    body {
-      font-family: "Open Sans", sans-serif;
-      height: 100vh;
-      background-image: url("image/background.png");
-      background-size: cover;
-    }
-  </style>
-
-</head>
+  <form method="post" action="updateProfile" name="frm">
+    <p>Name:
+      <input type="text" id="name" name="name" value="<%=user.hoten%>" readonly="on" style="width:80%" required pattern="[A-Za-z]{1,50}" title="Chỉ có kí tự chữ cái" />
+    </p>
+    <p>Username:
+      <input type="text" id="username" name="username" value="<%=user.ID%>" readonly="on" style="width:80%" required/>
+    </p>
+    <p>Password:
+      <input type="password" id="password" name="password" value="<%=user.password%>" style="width:80%" required/>
+    </p>
+    <p>Confilm Password:
+      <input type="password" id="re_password" onchange="checkPass()" value="<%=user.password%>" placeholder="Confilm Password" style="width:80%" required/>
+    </p>
+    <p>Dia chi:
+      <input type="text" id="diachi" name="diachi" value="<%=user.diachi%>" style="width:80%" required pattern="[A-Za-z0-9]{1,50/s}" title="Không chứa kí tự đặc biệt" />
+    </p>
+    <p>Email:
+      <input type="email" name="email" value="<%= user.email%>" style="height: 40px;width: 60%;" required="">
+    </p>
+    <p>Phone:
+      <input type="tel" name="dienthoai" value="<%= user.dienthoai%>" style="height:  40px;width:60%;" required="" pattern="[0-9]{1,11}" title="Chỉ có kí tự số">
+    </p>
 
 
+    <button type="submit" class="button btn-primary submit" style="width:40%">Update</button>
+  </form>
 
-<body>
-
-  <div class="container contentBox">
-    <header>
-      <a href="/"><img src = "image/logo.png" style ="margin-top: 30px;"> </a>
-
-
-      <div class="container contentBox">
-        <div class="clear"></div>
-    </header>
-
-    <center>
-
-        <form method="post" action="updatecus" name="frm">
-          <p>Name:
-            <input type="text" id="name" name="name" value="<%=user.hoten%>" readonly="on" style="width:80%" required pattern="[A-Za-z]{1,50}" title="Chỉ có kí tự chữ cái" />
-          </p>
-          <p>Username:
-            <input type="text" id="username" name="username" value="<%=user.ID%>" readonly="on" style="width:80%" required/>
-          </p>
-          <p>Password:
-            <input type="password" id="password" name="password" value="<%=user.password%>" style="width:80%" required/>
-          </p>
-          <p>Confilm Password:
-            <input type="password" id="re_password" onchange="checkPass()" value="<%=user.password%>" placeholder="Confilm Password" style="width:80%" required/>
-          </p>
-          <p>Dia chi:
-            <input type="text" id="diachi" name="diachi" value="<%=user.diachi%>" style="width:80%" required pattern="[A-Za-z0-9]{1,50}" title="Không chứa kí tự đặc biệt" />
-          </p>
-          <p>Email:
-            <input type="text" id="email" name="email" value="<%=user.email%>" style="width:80%" />
-          </p>
-          <p>Phone:
-            <input type="text" id="phone" name="phone" value="<%=user.dienthoai%>" style="width:80%" required pattern="[0-9]{1,10}" title="Chỉ có kí tự số" />
-          </p>
-
-          <button type="submit" class="button btn-primary submit" style="width:40%">Update</button>
-        </form>
-
-    </center>
-
-
-
-
-    </div>
-    <!--end container contentBox-->
-  </div>
-
-
-
-  <script type="text/javascript">
-    function checkPass() {
-      var password = document.frm.password.value;
-      var re_password = document.frm.re_password.value;
-
-      if (password != re_password) {
-        alert("Vui lòng nhập lại password");
-        document.frm.re_password.value = "";
-      }
-    }
-  </script>
-
-</body>
-
-<html>
+</center>

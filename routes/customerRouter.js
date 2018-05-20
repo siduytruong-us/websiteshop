@@ -19,36 +19,60 @@ var directName = require('../demo');
 router.use(express.static('/Data'));
 
 
-
-
-router.get('/profile', isLoggedin, function(req, res) {
-  res.render('customer/profile', {
-    user: req.user
-  })
-});
-
 router.get('/history', isLoggedin, function(req, res) {
   var hoadon = require('../models/hoadon');
   hoadon.hoadonCollection(function(result) {
     var temp = result.filter(x => x.customer.id === req.user.ID);
     res.render('index', {
       user: req.user,
-      hoadon:temp,
+      hoadon: temp,
       body: "customer/history.ejs",
       typeproduct: null
     })
   })
 });
 
+
+router.get('/profile', isLoggedin, function(req, res) {
+  res.render('index', {
+    user: req.user,
+    body: "customer/profile.ejs",
+    typeproduct: null
+  });
+});
+
+
+
+router.post('/updateProfile', isLoggedin, function(req, res) { //
+  var idkh = req.body.idkh;
+  var hoten = req.body.hoten;
+  var password = req.body.password;
+  var diachi = req.body.diachi;
+  var email = req.body.email;
+  var dienthoai = req.body.dienthoai;
+
+  var customer = require("../models/customer");
+  customer.customerUpdate(idkh, hoten, password, diachi, email, dienthoai);
+  console.log("Update Success Customer " + idkh);
+
+  res.render('index', {
+    user: req.user,
+    body: "customer/profile.ejs",
+    typeproduct: null
+  });
+  idkh = null;
+});
+
+
 router.get('/chitiethoadon?:id', isLoggedin, function(req, res) {
-  var  id = req.query.id;
+  var id = req.query.id;
   var hoadon = require('../models/hoadon');
   hoadon.hoadonCollection(function(result) {
     var temp = result.filter(x => x.ID == id);
-        console.log(temp);
+    console.log(temp);
     res.render('index', {
       user: req.user,
-      hoadon:temp,
+      hoadon: temp,
       body: "customer/chitiethoadon.ejs",
       typeproduct: null
     })
