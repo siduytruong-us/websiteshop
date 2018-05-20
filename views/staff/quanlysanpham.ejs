@@ -5,20 +5,34 @@
 <div class="topnav">
   <a class="active" style="width:80px;" href=""> <i class = "fa fa-home" ></i> </a>
   <div class="search-container">
-    <form action="">
-      <input type="text" placeholder="Search.." name="search">
+    <form method="POST" action="findProduct">
+      <input type="text" placeholder="Search.." name="idProduct">
     </form>
   </div>
 </div>
 
-<!--Top Navigation -->
+<div class="space"> </div>
+<div class="list-group">
+  <% if (productresult) {%>
+    <center>
+      <h3>Kết quả tìm kiếm</h3> </center>
+    <a href="updateProduct?ID=<%=productresult.ID%>" class="list-group-item">
+      <%= productresult.name %> (
+        <%= productresult.ID %>)
+          <h6><%= productresult.price %></h6> </a>
+    <%} else {%>
+      <center>
+        <h3>Empty or not found product </h3> </center>
+      <%}%>
+</div>
+
 <div class="space"> </div>
 <a href="" style="float:right">  <button type = "button" class = "button btn-primary"><i class = "fa fa-plus"></i>  </button> </a>
 <br>
 
 <div class="space"> </div>
 <div class="list-group">
-  <% if (product.length != 0) {%>
+  <% if (product) {%>
     <% for (var i=0 ; i < product.length ; i ++)  { %>
       <!-- hàng for fai có product ở trong -->
       <a href="updateProduct?ID=<%=product[i].ID%>" class="list-group-item">
