@@ -1,7 +1,8 @@
 var express = require("express"),
- router = express.Router()
+  router = express.Router()
 var MongoClient = require('mongodb').MongoClient; // connect online
 var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connect online
+var product = require('../../models/product');
 
 var directName = require('../../demo');
 router.use(express.static('/Data'));
@@ -33,21 +34,20 @@ router.get('/admin/gianhang', isAdminLoggedin, function(req, res) {
 router.get('/admin/quanlysanpham?:type', isAdminLoggedin, function(req, res) {
   console.log(directName.dirname);
   var type = req.query.type;
-  var product = require('../../models/product')
   product.findProductByType(type, function(result) {
     console.log("type danh sach trong admin: " + type);
     res.render('manage', {
       user: req.user,
       type: type,
       product: result,
-      body:"staff/quanlysanpham.ejs"
+      productresult: null,
+      body: "staff/quanlysanpham.ejs"
     });
   });
 });
 
 function findProduct(idsp, callback) { // customer
   MongoClient.connect(uri, function(err, db) {
-
     if (err) throw err;
     var dbo = db.db("3dwebsite");
     dbo.collection("product").findOne({
@@ -67,36 +67,41 @@ function findProduct(idsp, callback) { // customer
 var proresult;
 router.post('/admin/findProduct', isAdminLoggedin, function(req, res) { //
   var idProduct = req.body.idProduct;
-
-  findProduct(idProduct, function(result) {
-    if (result == "e" || result == null) {
+  findProduct(idProduct, function(kq) {
+    if (kq == "errorIDproduct" || kq == null) {
       console.log("find Failed Product");
-      res.redirect('/admin/findFailedProcduct');
+      proresult = null;
+      res.redirect('/admin/findFailedProduct');
     } else {
-      console.log("findProduct" + result);
-      proresult = result;
-      res.redirect('/admin/findSuccessProduct');
+      proresult = kq;
+      var type = "";
+      for (var i = 0; i < idProduct.length; i++) {
+        if (idProduct[i] >= '0' && idProduct[i] <= '9') {
+          break;
+        } else {
+          type += idProduct[i];
+        }
+      }
+      product.findProductByType(type, function(result) {
+        res.render('manage', {
+          user: req.user,
+          type: type,
+          product: result,
+          productresult: proresult,
+          body: "staff/quanlysanpham.ejs"
+        });
+      });
     }
-  });
-});
-
-router.get('/admin/findSuccessProduct', isAdminLoggedin, function(req, res) { //
-  res.render('manage', {
-    user: req.user,
-    product: product,
-    productresult: proresult,
-    flag: true,
-    body: "staff/quanlysanpham.ejs"
   });
 });
 
 router.get('/admin/findFailedProduct', isAdminLoggedin, function(req, res) { //
   res.render('manage', {
     user: req.user,
-    product: product,
-    productresult: proresult,
-    flag: false,
-    body:"staff/quanlysanpham.ejs"
+    type: null,
+    product: null,
+    productresult: null,
+    body: "staff/quanlysanpham.ejs"
   });
 });
 
@@ -122,12 +127,12 @@ function updatePro(id, name, info, price, link) { // customer
 
 var updateProduct;
 router.get('/admin/updateProduct?:ID', isAdminLoggedin, function(req, res) { //
-  console.log("ID: "+req.query.ID);
+  console.log("ID: " + req.query.ID);
   findProduct(req.query.ID, function(result) {
     res.render('manage', {
       user: req.user,
       updateProduct: result,
-      body:"staff/updateProduct.ejs"
+      body: "staff/updateProduct.ejs"
     });
   });
 })
@@ -139,7 +144,7 @@ router.post('/admin/adminUpdateProduct', isAdminLoggedin, function(req, res) { /
   var name = req.body.name;
   var info = req.body.info;
   var price = req.body.price;
-  var link  = req.body.link;
+  var link = req.body.link;
   updatePro(idsp, name, info, price, link);
   console.log("Update Success Product");
   var product = require('../../models/product')
@@ -149,7 +154,8 @@ router.post('/admin/adminUpdateProduct', isAdminLoggedin, function(req, res) { /
       user: req.user,
       type: type,
       product: result,
-      body:"staff/quanlysanpham.ejs"
+      productresult: null,
+      body: "staff/quanlysanpham.ejs"
     });
   });
 });
@@ -169,15 +175,11 @@ var idsp;
 var type;
 router.get('/admin/removeProduct?:ID', isAdminLoggedin, function(req, res) { //, isAdminLoggedin
   idsp = req.query.ID;
-  for(var i=0;i<idsp.length;i++)
-  {
-    if(idsp[i]>='0'&&idsp[i]<='9')
-    {
+  for (var i = 0; i < idsp.length; i++) {
+    if (idsp[i] >= '0' && idsp[i] <= '9') {
       break;
-    }
-    else
-    {
-        type+=idsp[i];
+    } else {
+      type += idsp[i];
     }
   }
   removeProduct(idsp);
@@ -188,19 +190,19 @@ router.get('/admin/removeProduct?:ID', isAdminLoggedin, function(req, res) { //,
 });
 
 router.get('/admin/removeProductSuccess', isAdminLoggedin, function(req, res) { //, isAdminLoggedin
-
-    var product = require('../../models/product')
-    product.findProductByType(type, function(result) {
-      console.log("type danh sach trong admin: " + type);
-      res.render('manage', {
-        user: req.user,
-        type: type,
-        product: result,
-        body:"staff/quanlysanpham.ejs"
-      });
+  var product = require('../../models/product')
+  product.findProductByType(type, function(result) {
+    console.log("type danh sach trong admin: " + type);
+    res.render('manage', {
+      user: req.user,
+      type: type,
+      product: result,
+      productresult: null,
+      body: "staff/quanlysanpham.ejs"
     });
+  });
   type = null;
-  console.log("180 "+type + idsp);
-});   /// sai r, bo tay r
+  console.log("180 " + type + idsp);
+}); /// sai r, bo tay r
 
 module.exports = router;

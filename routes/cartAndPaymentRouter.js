@@ -80,16 +80,6 @@ router.get('/shopcart', function(req, res) { // ham index de vao web chinh
   });
 });
 
-// var hoadon = require('../models/hoadon');
-// hoadon.hoadonCollection(function(result) {
-//   console.log(result);
-// })
-var chitiethoadon = require('../models/chitiethoadon'); /////// chi tiet hoa don
-chitiethoadon.chitiethoadonGroup(function(result) {
-  result.sort((a, b) => b.tongso - a.tongso);
-  console.log(result[0]);
-}) /////
-
 router.post('/checkout/hoadon', function(req, res) {
   var d = new Date();
   var date = ("0" + d.getDate()).slice(-2);

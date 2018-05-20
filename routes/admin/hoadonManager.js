@@ -27,7 +27,7 @@ router.use(express.static(directName.dirname + './Data'));
 //
 
 
-router.get('/admin/hoadon', function(req, res) {
+router.get('/admin/hoadon', isAdminLoggedin, function(req, res) {
   var hoadon = require('../../models/hoadon');
   console.log("dirname adminrouter" + __dirname);
   hoadon.hoadonCollection(function(result) {
@@ -41,7 +41,7 @@ router.get('/admin/hoadon', function(req, res) {
 
 
 
-router.post('/admin/search/hoadon', function(req, res) {
+router.post('/admin/search', isAdminLoggedin, function(req, res) {
   var ID = req.body.hoadon;
   var hoadon = require('../../models/hoadon');
   hoadon.hoadonCollection(function(result) {
@@ -55,7 +55,7 @@ router.post('/admin/search/hoadon', function(req, res) {
 
 });
 
-router.get('/admin/chitiethoadon?:id', function(req, res) {
+router.get('/admin/chitiethoadon?:id', isAdminLoggedin, function(req, res) {
   var ID = req.query.id;
   console.log(ID);
   var hoadon = require('../../models/hoadon');
@@ -71,7 +71,7 @@ router.get('/admin/chitiethoadon?:id', function(req, res) {
 });
 
 
-router.get('/admin/hoadon/delivery', function(req, res) {
+router.get('/admin/hoadon/delivery',isAdminLoggedin, function(req, res) {
   var ID = req.query.ID;
   var dagiao = req.query.dagiao;
   console.log("delivery : " + ID + dagiao);
