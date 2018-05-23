@@ -1,5 +1,9 @@
 <div class="hinh">
-  <img id="imageproduct" src="img/<%=infoProduct.link%>.jpg" width=" 300px" height="400px">
+  <%if (infoProduct.link) { %>
+    <img id="imageproduct" src="img/<%=infoProduct.link%>.jpg" width=" 300px" height="400px">
+    <%} else {%>
+      <img id="imageproduct" src="img/noimage.jpg" width=" 300px" height="400px">
+      <%}%>
 </div>
 
 <div class="noidung">
@@ -41,17 +45,24 @@
 <div class="space"> </div>
 <h3> Các sản phẩm liên quan </h3>
 
-  <% if (product.length != 0) { %>
-    <% for (var i=0 ; i< product.length ; i ++)  { %>
-      <!-- hàng for fai có product ở trong -->
+<% if (product.length != 0) { %>
+  <% for (var i=0 ; i< product.length ; i ++)  { %>
+    <!-- hàng for fai có product ở trong -->
 
-      <div class="_1sanpham">
-        <a href="chitietsanpham?ID=<%= product[i].ID%>" id="link04"><img src="img/<%=product[i].link%>.jpg" id="img04" src="" width="200" height="200">
-                        <p class="tieude" id = "productName4"><%= product[i].name %></p>
-                      </a>
-        <p class="tien" id="productPrice4">
-          <%= product[i].price %> đ
-        </p>
-      </div>
+    <div class="_1sanpham">
+      <a href="chitietsanpham?ID=<%= product[i].ID%>" id="link04">
+        <%if (product[i].link) { %>
+          <img id="imageproduct" src="img/<%=product[i].link%>.jpg" width=" 200px" height="200px">
+          <%} else {%>
+            <img id="imageproduct" src="img/noimage.jpg" width=" 200px" height="200px">
+            <%}%>
+              <p class="tieude" id="productName4">
+                <%= product[i].name %>
+              </p>
+      </a>
+      <p class="tien" id="productPrice4">
+        <%= product[i].price %> đ
+      </p>
+    </div>
+    <% } %>
       <% } %>
-        <% } %>
