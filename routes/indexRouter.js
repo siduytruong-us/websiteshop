@@ -77,7 +77,6 @@ router.get('/logout', function(req, res) { // ham index de vao web chinh
 
 
 
-
 router.post('/signup', function(req, res) {
   var firstname = req.body.firstname;
   var lastname = req.body.lastname;
