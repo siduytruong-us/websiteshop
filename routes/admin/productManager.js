@@ -46,6 +46,19 @@ router.get('/admin/quanlysanpham?:type', isAdminLoggedin, function(req, res) {
   });
 });
 
+//addproduct
+var test;
+router.get('/admin/addproduct',isAdminLoggedin, function(req, res) { //
+  test = null;
+     res.render('manage', {
+      Test: test,
+      user: req.user,
+      body: "staff/addProduct.ejs"
+    });
+  });
+
+
+
 function findProduct(idsp, callback) { // customer
   MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
