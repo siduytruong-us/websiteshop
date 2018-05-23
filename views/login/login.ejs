@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
   <link rel="icon" type="image/png" href="image/logoTitle.png" sizes="16x16" />
-
+    <meta name="google-signin-client_id" content="819466002903-t92er87nik173j1mo6e150a7vjjkh1kj.apps.googleusercontent.com">
   <style>
     /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
 
@@ -204,6 +204,7 @@
 
         <input type="password" placeholder="Your Password" name="password" id="m_password" />
         <i class="fa fa-key"></i>
+          <div id="my-signin2"></div>
 
         <a href="forgotPassword">Forgot your password?</a>
         <button type="submit" id="loginbtn">
@@ -213,7 +214,7 @@
       </form>
     </div>
 
-    <footer><a target="blank" href="http://boudra.me/">DuDaDa WebShop</a></footer>
+    <footer><a  href="/">DuDaDa WebShop</a></footer>
     </p>
   </div>
 
@@ -229,15 +230,37 @@
       if (<%= error.length%> > 3 ) {
         alert("<%= error%>");
       }
-      else if ( error = " ") {
-        
+      else if (error= " ") {
+
       }
       else {
         alert("Tài khoảng của bạn đăng ký thành công. Vui lòng check email để xác nhận tài khoản !");
       }
     }
 
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + JSON.stringify(googleUser.getBasicProfile()));
+
+    }
+
+    function onFailure(error) {
+      console.log(error);
+    }
+
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
   </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
 
 </body>
