@@ -79,28 +79,6 @@ router.get('/admin', isAdminLoggedin, function(req, res) { // ham index de vao w
   });
 });
 
-
-
-
-router.get('/addProduct', isAdminLoggedin, function(req, res) {
-  res.render("staff/addProduct", {
-    Test: null
-  });
-});
-
-
-router.post('/addProduct', function(req, res) {
-  res.render("staff/addProduct", {
-    Test: null
-  });
-});
-
-
-
-
-
-
-
 // res.render('staff/chart', {
 //   user: req.user,
 //   product: product
