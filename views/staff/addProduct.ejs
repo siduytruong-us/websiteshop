@@ -42,10 +42,10 @@
 
 
        <p>
-          <input type="text" id="id" name="id" value="<%= Test.id%>" style="width:80%" readonly = "on" required pattern="[A-Za-z0-9]{1,50}  >
+          <input type="text" id="id" name="id" value="<%= Test.id%>" style="width:80%" readonly = "on" required pattern="[A-Za-z0-9]{1,50} ">
         </p>
         <p>
-          <input type="text" id="name" name="name" value="<%= Test.name%>" style="width:80%" required pattern="[A-Za-z0-9]{1,50}" >
+          <input type="text" id="name" name="name" value="<%= Test.name%>" style="width:80%" required pattern="[A-Za-z0-9/s]{1,50}" >
         </p>
         <p>
           <input type="text" id="price" name="price" value="<%= Test.price%>" style="width:80%" required pattern="[0-9]{1,10}" >
@@ -53,7 +53,7 @@
         <p>Type: <%= Test.type%>
         </p>
         <p>
-          <input type="text" id="info" name="info" value="<%= Test.Info%>" style="width:80%" required pattern="[A-Za-z0-9]{1,1000}" >
+          <input type="text" id="info" name="info" value="<%= Test.Info%>" style="width:80%" required pattern="[A-Za-z0-9/s]{1,1000}" >
         </p>
       </form>
        <form method = "post" enctype="multipart/form-data" action = "addimage" name = "frm">
@@ -62,6 +62,3 @@
        </form>
        <%}%>
  </center>
-
-
-
