@@ -164,4 +164,9 @@ router.get('/upload', function(req, res) {
 })
 
 
+router.get('/fb', function(req, res) {
+  res.render('facebook');
+})
+
+
 module.exports = router;
