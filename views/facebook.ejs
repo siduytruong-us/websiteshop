@@ -58,7 +58,12 @@
       statusChangeCallback(response);
     });
 
+    FB.login(function(response) {
+    // handle the response
+  }, {scope: 'email,user_likes'});
+
   };
+
 
   // Load the SDK asynchronously
   (function(d, s, id) {
@@ -73,10 +78,11 @@
   // successful.  See statusChangeCallback() for when this call is made.
   function testAPI() {
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
+    FB.api('/me', {locale: 'vi_VN', fields: 'name,email,location'}, function(response) {
+      console.log('Successful login for: ' + JSON.stringify(response));
+          console.log('Successful login for: ' + JSON.stringify(response.location));
       document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
+        'Thanks for logging in, ' + response.email + '!';
     });
   }
 </script>

@@ -98,7 +98,7 @@ router.get('/verify?:ID', function(req, res) {
       }
     })
   })
-  res.render('login', {
+  res.render('login/login', {
     error: "Tai khoan da kick hoat, vui long dang nhap lai"
   });
 });
