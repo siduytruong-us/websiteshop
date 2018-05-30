@@ -3,7 +3,7 @@ var express = require("express"),
 var MongoClient = require('mongodb').MongoClient; // connect online
 var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connect online
 var product = require('../../models/product');
-
+var multer  = require('multer')
 var directName = require('../../demo');
 router.use(express.static('/Data'));
 
@@ -48,14 +48,138 @@ router.get('/admin/quanlysanpham?:type', isAdminLoggedin, function(req, res) {
 
 //addproduct
 var test;
-router.get('/admin/addproduct',isAdminLoggedin, function(req, res) { //
-  test = null;
-     res.render('manage', {
+   router.get('/admin/addproduct',isAdminLoggedin, function(req, res) { //
+    console.log("ID get: " +  JSON.stringify(test));
+      if(test != null && nameimg != null)
+      {
+
+            MongoClient.connect(uri, function(err, db) {
+           //var ids = "/"+nameProduct+"/";
+           if (err) throw err;
+
+           var dbo = db.db("3dwebsite");
+           dbo.collection("product").insert({
+             ID: test.id,
+             name: test.name,
+             price: test.price,
+             type: test.type,
+             link: nameimg,
+             info: test.Info,
+             url: '0',
+             status:20
+           });
+           db.close();
+        });
+         test = null;
+         nameimg = null;
+
+      }
+
+
+
+      res.render('manage', {
       Test: test,
       user: req.user,
       body: "staff/addProduct.ejs"
     });
+
   });
+
+/*async function TTest()
+{
+    await MongoClient.connect(uri, function(err, db) {
+   //var ids = "/"+nameProduct+"/";
+   if (err) throw err;
+
+   var dbo = db.db("3dwebsite");
+   dbo.collection("product").insert({
+     ID: test.id,
+     name: test.name,
+     price: test.price,
+     type: test.type,
+     link: nameimg,
+     info: test.Info,
+     url: '0',
+     status:20
+   });
+   db.close();
+});
+ test = await null;
+ nameimg = await null;
+}*/
+
+
+var nameimg;
+var Storage = multer.diskStorage({
+  destination: function(req, file,callback){
+    callback(null,"Data/img");
+  },
+  filename: function(req, file, callback){
+    nameimg = file.fieldname + "_" + Date.now() + "_" + file.originalname;
+    callback(null,nameimg);
+    console.log(nameimg);
+  }
+
+});
+var upload = multer({
+  storage: Storage
+}).array("imgUploader",3);
+
+router.post('/admin/addproduct', isAdminLoggedin, function(req,res){
+  //test = null;
+  var id = req.body.id;
+  var name = req.body.name;
+  var price = req.body.price;
+  var type = req.body.type;
+  var Info = req.body.info;
+  console.log(id);
+  var checkid = true;
+  product.productCollection(function(result) {
+
+       for(var i = 0; i< result.length; i++)
+      {
+        if(id == result[i].ID)
+        {
+          checkid = false;
+          console.log(checkid);
+        }
+      }
+      console.log("checkid: " +checkid);
+      if(checkid == true)
+      {
+        test = {id,name,price,type,Info};
+        console.log(test);
+        res.redirect('/admin/addproduct');
+      }
+      else
+      {
+        res.redirect('/admin/addproductFail');
+      }
+    });
+
+});
+
+router.post('/admin/addimage', isAdminLoggedin, function(req,res){
+  upload(req,res,function(err){
+    if(err){
+      console.log("Something went wrong!!!");
+    }
+    else
+    {
+      console.log("File uploaded successfully!");
+    }
+  });
+  res.redirect('/admin/addproduct');
+});
+
+router.get('/admin/addproductFail', isAdminLoggedin, function(req,res){
+  test = null;
+  res.render('manage', {
+      Test: test,
+      user: req.user,
+      body: "staff/addProduct.ejs"
+    });
+});
 
 
 
@@ -172,6 +296,10 @@ router.post('/admin/adminUpdateProduct', isAdminLoggedin, function(req, res) { /
     });
   });
 });
+
+
+
+
 
 function removeProduct(id) { // customer
   MongoClient.connect(uri, function(err, db) {

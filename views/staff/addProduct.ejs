@@ -1,20 +1,9 @@
-
-<center><h3> Add Product</h3></center>
-
- <center><% if (Test == null  ){ %>
+<center><h3>Add Product</h3></center>
+ <center>
+<% if (Test == null  ){ %>
 
       <form method = "post"  action = "addproduct" name = "frm">
 
-        <p>Type:
-        <select required name = "type">
-              <option value="mebe">mẹ bé</option>
-              <option value="xe">Xe</option>
-              <option value="dientu">Điện Tử</option>
-              <option value="fashion">fashion</option>
-              <option value="giadung">Gia Dụng</option>
-              <option value="thucung">Thú Cưng</option>
-            </select>
-        </p>
        <p>
           <input type="text" id="id" name="id" placeholder="ID product" style="width:80%"   required pattern="[A-Za-z0-9]{1,50}" >
         </p>
@@ -25,7 +14,18 @@
         <p>
           <input type="text" id="price" name="price" placeholder="Price" style="width:80%" required pattern="[0-9]{1,10}" >
         </p>
+        <p>Type
+        <select required name = "type">
 
+              <option value="mebe">mẹ bé</option>
+              <option value="xe">Xe</option>
+              <option value="dientu">điện tử</option>
+              <option value="fashion">fashion</option>
+              <option value="giadung">gia dụng</option>
+              <option value="thucung">thú cưng</option>
+            </select>
+
+        </p>
         <p>
           <input type="text" id="info" name="info" placeholder="Info" style="width:80%" required pattern="[A-Za-z0-9]{1,1000}" >
         </p>
@@ -42,18 +42,18 @@
 
 
        <p>
-          <input type="text" id="id" name="id" value="<%= Test.id%>" style="width:80%" readonly = "on" required pattern="[A-Za-z0-9]{1,50} ">
+          <input type="text" id="id" name="id" value="<%= Test.id%>" style="width:80%" readonly = "on" required pattern="[A-Za-z0-9]{1,50}"  >
         </p>
         <p>
-          <input type="text" id="name" name="name" value="<%= Test.name%>" style="width:80%" required pattern="[A-Za-z0-9/s]{1,50}" >
+          <input type = "text" id="name" name="name" value="<%= Test.name%>" style="width:80%" readonly = "on" required pattern="[A-Za-z0-9]{1,50}" >
         </p>
         <p>
-          <input type="text" id="price" name="price" value="<%= Test.price%>" style="width:80%" required pattern="[0-9]{1,10}" >
+          <input type="text" id="price" name="price" value="<%= Test.price%>" style="width:80%" readonly = "on" required pattern="[0-9]{1,10}" >
         </p>
         <p>Type: <%= Test.type%>
         </p>
         <p>
-          <input type="text" id="info" name="info" value="<%= Test.Info%>" style="width:80%" required pattern="[A-Za-z0-9/s]{1,1000}" >
+          <input type="text" id="info" name="info" value="<%= Test.Info%>" style="width:80%" readonly = "on" required pattern="[A-Za-z0-9]{1,1000}" >
         </p>
       </form>
        <form method = "post" enctype="multipart/form-data" action = "addimage" name = "frm">
@@ -61,4 +61,5 @@
          <button type ="submit"  class ="btn-primary"  style="width:80%">Add product</button>
        </form>
        <%}%>
+
  </center>

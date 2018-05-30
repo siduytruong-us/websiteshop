@@ -7,6 +7,27 @@
   <div class="search-container">
     <form action="/searchProduct">
       <input type="text" placeholder="Search.." name="search">
+             <select required name = "tproduct" >
+                <option value="all" selected="">All</option>
+                <option value="id">ID</option>
+                <option value="name">Name</option>
+                <optgroup label="Price">
+                  <option value="price_1">Dưới 100.000đ</option>
+                  <option value="price_11">100.000 - 500.000đ</option>
+                  <option value="price_51">500.000 - 1.000.000đ</option>
+                  <option value="price_101">1.000.000 - 2.000.000đ</option>
+                  <option value="price_201">Trên 2.000.000đ</option>
+                </optgroup>
+                <optgroup label="Type">
+                <option value="mebe">Mẹ bé</option>
+                <option value="xe">Xe</option>
+                <option value="dientu">Điện tử</option>
+                <option value="fashion">Fashion</option>
+                <option value="giadung">Gia dụng</option>
+                <option value="thucung">Thú cưng</option>
+                </optgroup>
+
+              </select>
     </form>
   </div>
 </div>

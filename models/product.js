@@ -70,6 +70,7 @@ function findProductByType (type, callback) {
 }
 
 
+
 function searchProductByName(nameProduct, callback) { // customer
   MongoClient.connect(uri, function(err, db) {
     var ids = "/" + nameProduct + "/";
@@ -87,9 +88,69 @@ function searchProductByName(nameProduct, callback) { // customer
         callback("error Nameproduct");
       }
     });
-		db.close();
   });
 }
+
+function searchProductByID(nameProduct, callback) { // customer
+  MongoClient.connect(uri, function(err, db) {
+    var ids = "/" + nameProduct + "/";
+    if (err) throw err;
+    var dbo = db.db("3dwebsite");
+    dbo.collection("product").find({
+      ID: eval(ids)
+    }).toArray(function(err, result) {
+      if (err) {
+        console.log(err);
+        throw err;
+      } else if (result.length > 0) {
+        callback(result);
+      } else if (result.length == 0) {
+        callback("error IDproduct");
+      }
+    });
+  });
+}
+
+
+function searchProductByType(nameProduct, callback) { // customer
+  MongoClient.connect(uri, function(err, db) {
+    var ids = "/" + nameProduct + "/";
+    if (err) throw err;
+    var dbo = db.db("3dwebsite");
+    dbo.collection("product").find({
+      type: eval(ids)
+    }).toArray(function(err, result) {
+      if (err) {
+        console.log(err);
+        throw err;
+      } else if (result.length > 0) {
+        callback(result);
+      } else if (result.length == 0) {
+        callback("error IDproduct");
+      }
+    });
+  });
+}
+
+function searchProductByPrice(nameProduct, callback) { // customer
+  MongoClient.connect(uri, function(err, db) {
+    var ids = "/" + nameProduct + "/";
+    if (err) throw err;
+    var dbo = db.db("3dwebsite");
+    dbo.collection("product").find({
+      price: eval(ids)
+    }).toArray(function(err, result) {
+      if (err) {
+        console.log(err);
+        throw err;
+      } else
+      {
+        callback(result);
+      }
+    });
+  });
+}
+
 
 
 
@@ -131,6 +192,11 @@ module.exports = mongoose.model('Product',someschema);
 module.exports.productCollection = productCollection;
 module.exports.findItem = findItemByID;
 module.exports.searchProductByName =searchProductByName;
+
+module.exports.searchProductByID =searchProductByID;
+//module.exports.searchAll = searchAll;
+module.exports.searchProductByType =searchProductByType;
+module.exports.searchProductByPrice =searchProductByPrice;
 module.exports.updateProductByID =updateProductByID;
 module.exports.removeProductByID =removeProductByID;
 module.exports.findProductByType =findProductByType;

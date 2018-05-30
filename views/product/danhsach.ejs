@@ -9,7 +9,7 @@
     <div class="_1sanpham">
       <a href="chitietsanpham?ID=<%= product[i].ID%>" id="link04">
        <%if (product[i].link) {%>
-            <img src="img/<%=product[i].link%>.jpg" id="img04" src="" width="200" height="200">
+            <img src="img/<%=product[i].link%>" id="<%= product[i].ID%>" src="" width="200" height="200">
             <%} else {%>
               <img src="img/noimage.jpg" id="img04" src="" width="200" height="200">
               <%}%>

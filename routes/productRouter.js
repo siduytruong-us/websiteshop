@@ -103,23 +103,259 @@ router.get('/removeSuccess', function(req, res) {
 })
 
 
-var searchProduct;
+var searchProduct = new Array();
+
 router.get('/searchProduct?:search', function(req, res) {
   var nameProduct = req.query.search;
+  var searchtype = req.query.tproduct;
+  console.log(searchtype);
+  var sproduct = new Array();
+  sproduct = [];
+  searchProduct = [];
   var product = require('../models/product');
 
   console.log("nameProduct: " + nameProduct);
+  if(searchtype == "name")
+  {
+       product.searchProductByName(nameProduct.toString(), function(result) {
+      searchProduct = result;
+      if (result[0] == "e" || nameProduct == " ") {
+        searchProduct = [];
+      } else {
+        console.log(result.length);
+        console.log("in ra mang search");
+       //console.log(result);
+      }
+      res.redirect('searchSuccess');
+    });
+  }
 
-  product.searchProductByName(nameProduct.toString(), function(result) {
-    searchProduct = result;
-    if (result[0] == "e" || nameProduct == " ") {
-      searchProduct = [];
-    } else {
-      console.log("in ra mang search");
-      console.log(searchProduct);
-    }
-    res.redirect('searchSuccess');
-  });
+  else if(searchtype == "id")
+  {
+       product.searchProductByID(nameProduct.toString(), function(result) {
+      searchProduct = result;
+      if (result[0] == "e" || nameProduct == " ") {
+        searchProduct = [];
+      } else {
+        console.log("in ra mang search");
+       // console.log(searchProduct);
+      }
+      res.redirect('searchSuccess');
+    });
+  }
+  //price
+  else if(searchtype == "price_1" || searchtype =="price_11"|| searchtype == "price_51" || searchtype == "price_101" || searchtype == "price_201")
+    {
+      var kt = true;
+    product.searchProductByName(nameProduct.toString(), function(result) {
+          //searchProduct = result;
+          if (result[0] == "e" || nameProduct == " ") {
+            //searchProduct = [];
+          } else {
+            searchProduct = result;
+            console.log("in ra mang search");
+           // console.log(searchProduct);
+          }
+          //res.redirect('searchSuccess');
+      });
+    product.searchProductByID(nameProduct.toString(), function(result) {
+          //searchProduct = result;
+          if (result[0] == "e" || nameProduct == " ") {
+            //searchProduct = [];
+          } else {
+            for(var i = 0; i<result.length; i++)
+            {
+              for(var j = 0; j<searchProduct.length;j++)
+              {
+                if(result[i].ID == searchProduct[j].ID)
+                {
+                  kt = false;
+                }
+              }
+              if(kt == false)
+              {
+                kt = true;
+              }
+              else
+              {
+                searchProduct.push(result[i]);
+              }
+            }
+            console.log("in ra mang search");
+          }
+    });
+    //type
+    product.searchProductByType(nameProduct.toString(), function(result) {
+          //searchProduct = result;
+          if (result[0] == "e" || nameProduct == " ") {
+            console.log("err");
+            //searchProduct = [];
+          } else {
+            for(var i = 0; i<result.length; i++)
+            {
+              for(var j = 0; j<searchProduct.length;j++)
+              {
+                if(result[i].ID == searchProduct[j].ID)
+                {
+                  kt = false;
+                }
+              }
+              if(kt == false)
+              {
+                kt = true;
+              }
+              else
+              {
+                searchProduct.push(result[i]);
+              }
+            }
+                 console.log("in ra mang search");
+                console.log(searchProduct.length);
+               for(var k = 0; k< searchProduct.length;k++)
+               {
+                if(searchProduct[k].price <= 100000 && searchProduct[k].price > 0 && searchtype == "price_1")
+                {
+                  sproduct.push(searchProduct[k]);
+                }
+               else if(searchProduct[k].price >= 100000 && searchProduct[k].price <= 500000 && searchtype == "price_11")
+                {
+                  sproduct.push(searchProduct[k]);
+                }
+                 else if(searchProduct[k].price >= 500000 && searchProduct[k].price <= 1000000 && searchtype == "price_51")
+                {
+                  sproduct.push(searchProduct[k]);
+                }
+                 else if(searchProduct[k].price >= 1000000 && searchProduct[k].price <= 2000000 && searchtype == "price_101")
+                {
+                  sproduct.push(searchProduct[k]);
+                }
+                 else if(searchProduct[k].price >=2000000 && searchtype == "price_201")
+                {
+                  sproduct.push(searchProduct[k]);
+                }
+               }
+          }
+             searchProduct = sproduct;
+            res.redirect('searchSuccess');
+    });
+  }
+  //search type
+  else if(searchtype == "mebe" || searchtype == "xe" || searchtype == "dientu" || searchtype == "fashion" || searchtype == "giadung" ||searchtype == "thucung")
+  {
+     product.searchProductByName(nameProduct.toString(), function(result) {
+          //searchProduct = result;
+          if (result[0] == "e" || nameProduct == " ") {
+            //searchProduct = [];
+          } else {
+            searchProduct = result;
+            console.log("in ra mang search");
+          }
+      });
+    product.searchProductByID(nameProduct.toString(), function(result) {
+          //searchProduct = result;
+          if (result[0] == "e" || nameProduct == " ") {
+            //searchProduct = [];
+          } else {
+            for(var i = 0; i<result.length; i++)
+            {
+              for(var j = 0; j<searchProduct.length;j++)
+              {
+                if(result[i].ID == searchProduct[j].ID)
+                {
+                  kt = false;
+                }
+              }
+              if(kt == false)
+              {
+                kt = true;
+              }
+              else
+              {
+                searchProduct.push(result[i]);
+              }
+            }
+            console.log("in ra mang search");
+            console.log(searchProduct.length);
+            for(var k = 0 ; k<searchProduct.length; k++)
+            {
+              if(searchtype == searchProduct[k].type)
+              {
+                sproduct.push(searchProduct[k]);
+              }
+            }
+          }
+         searchProduct = sproduct;
+         res.redirect('searchSuccess');
+    });
+  }
+  else if(searchtype == "all")
+  {
+    var kt = true;
+    product.searchProductByName(nameProduct.toString(), function(result) {
+          if (result[0] == "e" || nameProduct == " ") {
+
+          } else {
+            searchProduct = result;
+            console.log("in ra mang search");
+          }
+      });
+    product.searchProductByID(nameProduct.toString(), function(result) {
+          //searchProduct = result;
+          if (result[0] == "e" || nameProduct == " ") {
+            //searchProduct = [];
+          } else {
+            for(var i = 0; i<result.length; i++)
+            {
+              for(var j = 0; j<searchProduct.length;j++)
+              {
+                if(result[i].ID == searchProduct[j].ID)
+                {
+                  kt = false;
+                }
+              }
+              if(kt == false)
+              {
+                kt = true;
+              }
+              else
+              {
+                searchProduct.push(result[i]);
+              }
+            }
+            console.log("in ra mang search");
+          }
+    });
+
+    //type
+    product.searchProductByType(nameProduct.toString(), function(result) {
+          //searchProduct = result;
+          if (result[0] == "e" || nameProduct == " ") {
+            console.log("err");
+            //searchProduct = [];
+          } else {
+            for(var i = 0; i<result.length; i++)
+            {
+              for(var j = 0; j<searchProduct.length;j++)
+              {
+                if(result[i].ID == searchProduct[j].ID)
+                {
+                  kt = false;
+                }
+              }
+              if(kt == false)
+              {
+                kt = true;
+              }
+              else
+              {
+                searchProduct.push(result[i]);
+              }
+            }
+            console.log("in ra mang search");
+          }
+          res.redirect('searchSuccess');
+    });
+  }
 });
 
 router.get('/searchSuccess', function(req, res) {
@@ -129,12 +365,13 @@ router.get('/searchSuccess', function(req, res) {
     res.render('index', {
       typeproduct: kq,
       user: req.user,
-      type: type,
+    //  type: type,
       product: temp,
       body: 'product/danhsach.ejs'
     });
   });
 });
+
 
 
 

@@ -1,6 +1,6 @@
 <div class="hinh">
   <%if (infoProduct.link) { %>
-    <img id="imageproduct" src="img/<%=infoProduct.link%>.jpg" width=" 300px" height="400px">
+    <img id="imageproduct" src="img/<%=infoProduct.link%> " width=" 300px" height="400px">
     <%} else {%>
       <img id="imageproduct" src="img/noimage.jpg" width=" 300px" height="400px">
       <%}%>
@@ -52,7 +52,7 @@
     <div class="_1sanpham">
       <a href="chitietsanpham?ID=<%= product[i].ID%>" id="link04">
         <%if (product[i].link) { %>
-          <img id="imageproduct" src="img/<%=product[i].link%>.jpg" width=" 200px" height="200px">
+          <img id="imageproduct" src="img/<%=product[i].link%> " width=" 200px" height="200px">
           <%} else {%>
             <img id="imageproduct" src="img/noimage.jpg" width=" 200px" height="200px">
             <%}%>
