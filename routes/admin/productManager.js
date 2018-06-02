@@ -48,35 +48,34 @@ router.get('/admin/quanlysanpham?:type', isAdminLoggedin, function(req, res) {
 
 //addproduct
 var test;
-   router.get('/admin/addproduct',isAdminLoggedin, function(req, res) { //
-    console.log("ID get: " +  JSON.stringify(test));
+router.get('/admin/addproduct',isAdminLoggedin, function(req, res) { //
+  //  console.log("ID get: " +  JSON.stringify(test));
       if(test != null && nameimg != null)
       {
-
+          var test1 = test;
+          var nameimg1 = nameimg;
             MongoClient.connect(uri, function(err, db) {
            //var ids = "/"+nameProduct+"/";
            if (err) throw err;
 
            var dbo = db.db("3dwebsite");
            dbo.collection("product").insert({
-             ID: test.id,
-             name: test.name,
-             price: test.price,
-             type: test.type,
-             link: nameimg,
-             info: test.Info,
+             ID: test1.id,
+             name: test1.name,
+             price: test1.price,
+             type: test1.type,
+             link: nameimg1,
+             info: test1.Info,
              url: '0',
              status:20
            });
            db.close();
+
         });
-         test = null;
-         nameimg = null;
-
+        test = null;
+        nameimg = null;
       }
-
-
-
+  
       res.render('manage', {
       Test: test,
       user: req.user,
@@ -84,6 +83,7 @@ var test;
     });
 
   });
+
 
 /*async function TTest()
 {
