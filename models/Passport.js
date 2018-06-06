@@ -4,15 +4,18 @@ var express = require("express"),
   LocalStrategy = require("passport-local").Strategy,
   mongoose = require('mongoose'),
   MongoClient = require('mongodb').MongoClient, // connect online
-  uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test" // connect online
-
+  uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test", // connect online
+  crypto = require('crypto-js')
 
 var staff = require('./staff'),
   customer = require('./customer')
-
-
+var pass;
+//sua
 Passport.use(new LocalStrategy(
   (username, password, done) => {
+    console.log('passport pass: '+ password);
+
+
 
     var temp
     if (username[0] != 's') {
@@ -21,11 +24,11 @@ Passport.use(new LocalStrategy(
         temp = result;
 
         user = temp.filter(x => x.ID === username);
-
+        console.log('passport passuser: '+ user[0].password);
         if (!user[0]) {
           return done(null, false);
         }
-        if (user[0].password != password) {
+        if (user[0].password != password) {//user[0] là database password là trên ejs
           return done(null, false)
         }
         return done(null, user[0]);
@@ -63,12 +66,21 @@ Passport.deserializeUser((id, done) => {
     if (id[0] != 's') {
       var dbo = db.db("3dwebsite");
       dbo.collection("customer").find(params).toArray(function(err, result) {
+        var bytes = crypto.AES.decrypt(result[0].password,'dudada');
+        pass = bytes.toString(crypto.enc.Utf8);
+        result[0].password = pass;
+        pass = null;
         done(err, result[0]);
       });
     } else if (id[0] == 's') {
       var dbo = db.db("3dwebsite");
       dbo.collection("staff").find(params).toArray(function(err, result) {
+        var bytes = crypto.AES.decrypt(result[0].password,'dudada');
+        pass = bytes.toString(crypto.enc.Utf8);
+        result[0].password = pass;
+        pass = null;
         done(err, result[0]);
+      
       });
     }
     db.close();

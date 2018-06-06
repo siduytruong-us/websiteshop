@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var MongoClient = require('mongodb').MongoClient; // connect online
 var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connect online
-
+var crypto = require('crypto-js');
 
 var someschema = new Schema({
   ID: String,
@@ -12,7 +12,7 @@ var someschema = new Schema({
   email: String,
   dienthoai: String,
 });
-
+var pass;
  function customerCollection(callback) {
 	MongoClient.connect(uri, function(err, db) {
 		if (err) throw err;
@@ -22,14 +22,25 @@ var someschema = new Schema({
 				throw err;
 				console.log(err);
 			} else if (result.length > 0) {
+        for(var i = 0; i< result.length; i++)
+        {
+          var bytes = crypto.AES.decrypt(result[i].password,'dudada');
+          pass = bytes.toString(crypto.enc.Utf8);
+          result[i].password = pass;
+        }
+        pass = null;
 				callback(result);
 			}
 		});
     db.close();
 	});
 }
-
+//sua
 function customerUpdate(id, hoten, password, diachi, email, dienthoai) { // customer
+  pass = crypto.AES.encrypt(password,'dudada').toString();
+  password = pass;
+  pass = null;
+  console.log("password update: " +password);
   MongoClient.connect(uri, function(err, db) {
     //var ids = "/"+nameProduct+"/";
     if (err) throw err;
@@ -77,13 +88,18 @@ function findCustomer(idkh, callback) { // customer
         throw err;
         callback("errorIDcustomer");
       } else {
+
+          var bytes = crypto.AES.decrypt(result.password,'dudada');
+          pass = bytes.toString(crypto.enc.Utf8);
+          result.password = pass;
+
         callback(result);
+          pass = null;
       }
     });
     db.close();
   });
 }
-
 
 module.exports = mongoose.model('Customer', someschema);
 module.exports.customerCollection = customerCollection;

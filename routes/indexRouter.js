@@ -6,6 +6,7 @@ var nodemailer = require("nodemailer");
 var MongoClient = require('mongodb').MongoClient; // connect online
 var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connect online
 var typeproduct = require("../models/typeproduct"); ///// menu
+var crypto = require('crypto-js');
 
 var transporter = nodemailer.createTransport({ // config mail server
   service: 'Gmail',
@@ -75,7 +76,7 @@ router.get('/logout', function(req, res) { // ham index de vao web chinh
   });
 });
 
-
+// chổ cần sửa.
 router.post('/signup', function(req, res) {
   var firstname = req.body.firstname;
   var lastname = req.body.lastname;
@@ -87,6 +88,12 @@ router.post('/signup', function(req, res) {
   var hoten = firstname + " " + lastname;
   var check = true;
   var customer = require('../models/customer');
+  console.log('pass1:' + password);
+  var pass;
+  pass = crypto.AES.encrypt(password,'dudada').toString();
+  password = pass;
+  pass = null;
+console.log('pass2:' + password);
 
   customer.customerCollection(function(customer) {
 

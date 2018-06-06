@@ -44,14 +44,13 @@ router.get('/profile', isLoggedin, function(req, res) {
 
 
 router.post('/updateProfile', isLoggedin, function(req, res) { //
-  var idkh = req.body.idkh;
-  var hoten = req.body.hoten;
+  var idkh = req.body.username;
+  var hoten = req.body.name;
   var password = req.body.password;
   var diachi = req.body.diachi;
   var email = req.body.email;
   var dienthoai = req.body.dienthoai;
-
-  var customer = require("../models/customer");
+req.user.password = password;
   customer.customerUpdate(idkh, hoten, password, diachi, email, dienthoai);
   console.log("Update Success Customer " + idkh);
 
@@ -78,4 +77,5 @@ router.get('/chitiethoadon?:id', isLoggedin, function(req, res) {
     })
   })
 });
+
 module.exports = router;
