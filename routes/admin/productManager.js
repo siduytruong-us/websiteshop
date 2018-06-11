@@ -48,11 +48,7 @@ router.get('/admin/quanlysanpham?:type', isAdminLoggedin, function(req, res) {
 
 //addproduct
 var test;
-<<<<<<< HEAD
-   router.get('/admin/addproduct',isAdminLoggedin, function(req, res) { //
-=======
 router.get('/admin/addproduct',isAdminLoggedin, function(req, res) { //
->>>>>>> 50762539c55e83e51769fbb5f2a6e2e42981e4e5
   //  console.log("ID get: " +  JSON.stringify(test));
       if(test != null && nameimg != null)
       {
