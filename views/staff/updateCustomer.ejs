@@ -16,7 +16,7 @@
               <input type="text"  name="idkh" value="<%= updateCustomer.ID%>" style="width:60%" readonly = "on"/>
               <input type="text"  name="hoten" value="<%= updateCustomer.hoten%>" style="width:60%" required/>
               <input type="password" name="password" value="<%= updateCustomer.password%>" style="width:60%" readonly = "on" required/>
-              <input type="text"  name="diachi" value="<%= updateCustomer.diachi%>" style="width:60%" required pattern="[A-Za-z0-9\s]{1,50}" title="Không chứa kí tự đặc biệt" />
+              <input type="text"  name="diachi" value="<%= updateCustomer.diachi%>" style="width:60%" required pattern="[A-Za-z0-9\s]{5,}" title="Không chứa kí tự đặc biệt" />
               <input type="email" name="email" value="<%= updateCustomer.email%>" style="height: 40px;width: 60%;" required="">
               <input type="tel" name="dienthoai" value="<%= updateCustomer.dienthoai%>" style="height:  40px;width:60%;" required="" pattern="[0-9]{1,11}" title="Chỉ có kí tự số">
               <br>
@@ -24,7 +24,6 @@
 
               </center>
             </form>
-            <a href = "removeCustomer?ID=<%=updateCustomer.ID%>"><button class = "button btn-primary" style = "width:7%; float:right; margin-top:-440px; background-color:red" ><i class = "fa fa-times"></i> </button> </a>
         </span>
 </center>
 
