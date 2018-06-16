@@ -28,10 +28,18 @@ router.use(express.static(directName.dirname + '/Data'));
 //
 
 router.post('/checkout', isLoggedin, function(req, res) {
+
+
+  var soluong = req.body.quantity;
+  console.log("soluong: " + soluong[1]);
+
+  for (var i=0 ; i < req.session.cart.items.length; i ++) {
+    req.session.cart.items[i].quantity = soluong[i];
+  }
+
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   var total = cart.totalPrice();
-  var soluong = req.body.quantity;
-  console.log("soluong: " + soluong);
+
   typeproduct.typeproductCollection(function(kq) {
     res.render("index", {
       user: req.user,
