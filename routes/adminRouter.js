@@ -79,9 +79,22 @@ router.get('/admin', isAdminLoggedin, function(req, res) { // ham index de vao w
   });
 });
 
-// res.render('staff/chart', {
-//   user: req.user,
-//   product: product
-// });
+router.get('/admin/logout', isAdminLoggedin, function(req, res) { // ham index de vao web chinh
+  console.log("logout from admin");
+  req.logout();
+  res.redirect("/logout");
+});
+
+router.get('/logout', function(req, res) { // ham index de vao web chinh
+  req.logout();
+  user = null;
+  typeproduct.typeproductCollection(function(kq) {
+    res.render('index', {
+      user: user,
+      typeproduct: kq,
+      body: 'product/index.ejs'
+    });
+  });
+});
 
 module.exports = router;
