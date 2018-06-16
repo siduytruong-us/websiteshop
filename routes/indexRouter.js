@@ -36,6 +36,12 @@ function isLoggedin(req, res, next) {
 }
 //  Routes in Index
 router.get('/', function(req, res) {
+  if ( req.user == null) {}
+  else if (req.user.ID[0] == "s") {
+    console.log("admin: " + req.user.name);
+    req.logout();
+    req.user = null;
+  }
   typeproduct.typeproductCollection(function(kq) {
     console.log("index in router");
     res.render('index', {

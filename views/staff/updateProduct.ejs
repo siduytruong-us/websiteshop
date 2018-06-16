@@ -1,5 +1,10 @@
 <center><h3 >Quản lý thông tin chi tiết sản phẩm</h3></center>
-<div class="space"> </div>
+<br>
+<a href = "removeProduct?ID=<%=updateProduct.ID%>" style="float:right">
+  <button class = "button btn-primary" style = "background-color:red" ><i class = "fa fa-times"></i> </button>
+</a>
+<a href="quanlysanpham?type=<%= updateProduct.type%>" style="float:left">  <button type = "button" class = "button btn-primary"><i class="fa fa-arrow-left"></i>  </button> </a>
+<br>
 <center>
   <span id="update">
           <form method="POST" action="adminUpdateProduct">
@@ -16,8 +21,6 @@
 
             </center>
           </form>
-            <a href = "removeProduct?ID=<%=updateProduct.ID%>">
-              <button class = "button btn-primary" style = "width:7%; float:right; margin-top:-470px; background-color:red" ><i class = "fa fa-times"></i> </button>
-            </a>
+
         </span>
 </center>

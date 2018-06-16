@@ -1,5 +1,3 @@
-<center><h3 >Quản lý hóa đơn</h3></center>
-<div class="space"> </div>
 <!-- Services Details-->
 <!--Top Navigation -->
 <div class="topnav">
@@ -12,14 +10,18 @@
 </div>
 
 <!--Top Navigation -->
+<br>
+<a href="/admin" style="float:left">  <button type = "button" class = "button btn-primary"><i class="fa fa-arrow-left"></i>  </button> </a>
+<br>
+
 <center>
   <h2>Quản lí hóa đơn</h2> </center>
+
 <% if (hoadon.length != 0) {%>
   <div class="space"> </div>
   <div class="list-group">
 
     <% for (var i=0 ; i < hoadon.length ; i ++)  { %>
-      <!-- hàng for fai có product ở trong -->
       <a href="chitiethoadon?id=<%= hoadon[i].ID%>">
         <div class="list-group-item" id="hoadon">
           Mã hóa đon:
