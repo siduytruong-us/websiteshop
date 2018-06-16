@@ -15,7 +15,7 @@ var transporter = nodemailer.createTransport({ // config mail server
     pass: 'thanhdai123'
   }
 });
-
+//asdasd/
 // default direct for css and html bug not load
 var directName = require('../demo');
 router.use(express.static(directName.dirname + '/Data'));
