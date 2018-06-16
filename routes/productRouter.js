@@ -18,7 +18,7 @@ console.log(directName.dirname);
 router.use(express.static(directName.dirname + '/Data'));
 //
 
-
+//asdaskdlsadklasd/
 
 router.get('/danhsach?:type', function(req, res) { // ham index de vao web chinh
   var type = req.query.type;
