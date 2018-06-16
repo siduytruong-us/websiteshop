@@ -3,7 +3,6 @@ var express = require("express"),
   Passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy
 
-
 var mongodb = require('mongodb');
 var MongoClient = require('mongodb').MongoClient; // connect online
 var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connect online
@@ -17,18 +16,10 @@ var transporter = nodemailer.createTransport({ // setting email for sender
   }
 });
 
-//
-// var passwordMail = require("../models/email.js");
-// var passwordMail = new passwordMail()
-
 var directName = require('../demo');
 router.use(express.static(directName.dirname + '/Data'));
 
-
-
 router.post('/email', function(req, res, next) {
-
-
   MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
     var dbo = db.db("3dwebsite");
@@ -39,11 +30,12 @@ router.post('/email', function(req, res, next) {
         password: 'ABCDE12345'
       }
     });
+    db.close();
   });
+
   var Mail = require("../models/email.js");
   var sendMail = new Mail();
   sendMail.resetMail(req.body.email)
-
 
   transporter.sendMail(sendMail.mail, function(err, info) {
     if (err) {
@@ -55,35 +47,6 @@ router.post('/email', function(req, res, next) {
     }
   });
 });
-
-
-
-router.post('/email', function(req, res, next) {
-  MongoClient.connect(uri, function(err, db) {
-    if (err) throw err;
-    var dbo = db.db("3dwebsite");
-    dbo.collection("customer").update({
-      email: req.body.email
-    }, {
-      $set: {
-        password: 'ABCDE12345'
-      }
-    });
-  });
-
-
-  transporter.sendMail(passwordMail, function(err, info) {
-    if (err) {
-      console.log(err);
-      res.redirect('/');
-    } else {
-      console.log('Message sent: ' + info.response);
-      res.redirect('/');
-    }
-  });
-});
-
-
 
 router.get('/verify?:ID', function(req, res) {
   var ID = req.query.ID;

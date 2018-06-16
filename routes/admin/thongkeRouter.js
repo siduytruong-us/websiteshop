@@ -35,7 +35,7 @@ router.get('/admin/top10', isAdminLoggedin, function(req, res) {
 
 
 var doanhthuTheoNam;
-router.get('/admin/chart', function(req, res) {
+router.get('/admin/chart', isAdminLoggedin, function(req, res) {
   thongke.TongDoanhThu(function(result) {
     tongdoanhthu = result
   });
@@ -52,7 +52,7 @@ router.get('/admin/chart', function(req, res) {
 
 });
 
-router.get('/admin/thongke', function(req, res) {
+router.get('/admin/thongke', isAdminLoggedin, function(req, res) {
   thongke.TongDoanhThu(function(result) {
     res.render("manage", {
       tongdoanhthu: result,
@@ -62,7 +62,7 @@ router.get('/admin/thongke', function(req, res) {
   });
 });
 
-router.post('/admin/thongkedoanhso', function(req, res) {
+router.post('/admin/thongkedoanhso', isAdminLoggedin, function(req, res) {
   var type = req.body.loai;
   var ngay = req.body.bday;
   var thang = req.body.bmonth;
@@ -73,7 +73,7 @@ router.post('/admin/thongkedoanhso', function(req, res) {
     thongke.thongKeTheoNgay(ngay,function(result) {
       console.log(result);
       res.render("manage", {
-        //tongdoanhthu: result,
+        tongdoanhthu: result,
         user: req.user,
         body: "staff/thongkedoanhso.ejs",
       });

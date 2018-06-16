@@ -9,14 +9,17 @@
     </form>
   </div>
 </div>
-<div class="space"> </div>
-<div id="chart_div" style="width:400; height:300; float:right"></div>
-<div class="space"> </div>
-
-<center>
-
-</center>
-
+<% if (tongdoanhthu.tongSP !=0) { %>
+  <center>
+    <div class="space"> </div>
+      <div id="chart_div" style="width:400; height:300;"></div>
+    <div class="space"> </div>
+  </center>
+  <% } else { %>
+    <center>
+      <h2> Rất tiếc, không có sản nào được bán trong khoảng thời gian trên </h2>
+    </center>
+  <% }  %>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
   // Load the Visualization API and the piechart package.
