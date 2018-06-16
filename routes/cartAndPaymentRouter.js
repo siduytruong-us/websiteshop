@@ -134,7 +134,7 @@ router.post('/checkout/hoadon', function(req, res) {
       } /////
     });
   });
-
+  req.session.cart = null;
   res.render('checkout/thanksPage', {
     user: req.user
   });
