@@ -1,0 +1,115 @@
+<style>
+  .button {
+      background-color: blue;
+      border: none;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 12px;
+  }
+</style>
+
+<center><h3 >Thống kê doanh số bán hàng</h3></center>
+
+<div class="space"> </div>
+<div class="topnav">
+  <a class="active" style="width:80px;" href=""> <i class = "fa fa-home" ></i> </a>
+  <div class="search-container">
+    <form action="">
+      <input type="text" placeholder="Search.." name="search">
+    </form>
+  </div>
+</div>
+<div class="space"> </div>
+<div id="chart_div" style="width:400; height:300; float:right"></div>
+<div class="space"> </div>
+
+<center>
+  <p>Chọn cách thống kê doanh số</p>
+  <form  method="POST" action="thongkedoanhso">
+    <select id="type" name="loai" onchange="myFunction()">
+      <option value="none">none
+      <option value="ngay">Ngày
+      <option value="thang">Tháng
+      <!-- <option value="quy">Quý -->
+      <option value="nam">Năm
+    </select>
+
+    <input type="date" name="bday" id="ngay">
+    <input type="month" name="bmonth" id="thang">
+    <input type="number" name="byear" id="nam" min="1900" max="2099" step="1" value="2018">
+
+    <div class="space"> </div>
+    <input type="submit" class="button">
+  </form>
+</center>
+
+<script>
+document.getElementById("ngay").style.display="none";
+document.getElementById("thang").style.display="none";
+document.getElementById("nam").style.display="none";
+
+function myFunction() {
+  var ngay = document.getElementById("ngay");
+  var thang = document.getElementById("thang");
+  var nam = document.getElementById("nam");
+  var x = document.getElementById("type").value;
+
+  if(x=="ngay")
+  {
+    ngay.style.display="block";
+    thang.style.display="none";
+    nam.style.display="none";
+  }
+  else  if(x=="thang")
+  {
+    ngay.style.display="none";
+    thang.style.display="block";
+    nam.style.display="none";
+  }
+  else  if(x=="nam")
+  {
+    ngay.style.display="none";
+    thang.style.display="none";
+    nam.style.display="block";
+  }
+}
+</script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  // Load the Visualization API and the piechart package.
+  google.charts.load('current', {
+    'packages': ['corechart']
+  });
+
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Topping');
+    data.addColumn('number', 'Slices');
+    data.addRows([
+      ['Mẹ bé', <%= tongdoanhthu.tongket["mebe"]%>],
+      ['Thú Cưng', <%= tongdoanhthu.tongket["thucung"]%>],
+      ['Fashion', <%= tongdoanhthu.tongket["fashion"]%>],
+      ['Gia Dụng', <%= tongdoanhthu.tongket["giadung"]%>],
+      ['Điện tử', <%= tongdoanhthu.tongket["dientu"]%>],
+      ['Công nghệ Xe', <%= tongdoanhthu.tongket["xe"]%>]
+    ]);
+
+    // Set chart options
+    var options = {
+      'title': 'Thống kê theo sản phẩm đã bán\nTổng sản phẩm: <%= tongdoanhthu.tongSP%> ',
+      'is3D': true,
+      'width': 400,
+      'height': 300
+    };
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script>

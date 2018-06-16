@@ -3,7 +3,7 @@ var express = require("express"),
 var MongoClient = require('mongodb').MongoClient; // connect online
 var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connect online
 var chitiethoadon = require('../../models/chitiethoadon'); /////// chi tiet hoa don
-
+var thongke = require('../../models/hoadon');
 var directName = require('../../demo');
 router.use(express.static('/Data'));
 
@@ -36,18 +36,12 @@ router.get('/admin/top10', isAdminLoggedin, function(req, res) {
 
 var doanhthuTheoNam;
 router.get('/admin/chart', function(req, res) {
-
-  var thongke = require('../../models/hoadon');
-
   thongke.TongDoanhThu(function(result) {
     tongdoanhthu = result
-
   });
   thongke.DoanhThuThangInYear(2018, function(result) {
     doanhthuTheoNam = result;
   })
-  console.log();
-
   setTimeout(function() {
     res.render("staff/chart", {
       tongdoanhthu: tongdoanhthu,
@@ -56,6 +50,35 @@ router.get('/admin/chart', function(req, res) {
     })
   }, 3000);
 
+});
+
+router.get('/admin/thongke', function(req, res) {
+  thongke.TongDoanhThu(function(result) {
+    res.render("manage", {
+      tongdoanhthu: result,
+      user: req.user,
+      body: "staff/thongke.ejs",
+    });
+  });
+});
+
+router.post('/admin/thongkedoanhso', function(req, res) {
+  var type = req.body.loai;
+  var ngay = req.body.bday;
+  var thang = req.body.bmonth;
+  var nam = req.body.byear;
+  console.log(type+" "+ngay+" "+thang+" "+nam);
+  if(type=="ngay")
+  {
+    thongke.thongKeTheoNgay(ngay,function(result) {
+      console.log(result);
+      res.render("manage", {
+        //tongdoanhthu: result,
+        user: req.user,
+        body: "staff/thongkedoanhso.ejs",
+      });
+    });
+  }
 });
 
 module.exports = router;

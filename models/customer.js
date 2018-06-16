@@ -87,14 +87,16 @@ function findCustomer(idkh, callback) { // customer
         console.log(err);
         throw err;
         callback("errorIDcustomer");
-      } else {
-
-          var bytes = crypto.AES.decrypt(result.password,'dudada');
-          pass = bytes.toString(crypto.enc.Utf8);
-          result.password = pass;
-
-        callback(result);
-          pass = null;
+      }
+      else {
+          if (result != null) {
+              var bytes = crypto.AES.decrypt(result.password,'dudada');
+              pass = bytes.toString(crypto.enc.Utf8);
+              result.password = pass;
+              callback(result);
+              pass = null;
+          }
+          else callback("errorCustomer");
       }
     });
     db.close();
