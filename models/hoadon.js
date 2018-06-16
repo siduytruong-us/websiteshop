@@ -46,8 +46,6 @@ function hoadonCollection(callback) {
   });
 }
 
-
-
 function thongKe(danhsach, type) {
   var count = 0;
   var temp = danhsach.filter(x => x.item.type === type);
@@ -56,8 +54,6 @@ function thongKe(danhsach, type) {
   }
   return count
 }
-
-
 
 function TongDoanhThu(callback) {
   MongoClient.connect(uri, function(err, db) {
@@ -105,7 +101,6 @@ function TongDoanhThu(callback) {
 var month = ["00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
 
 function DoanhThuThangInYear(year, callback) {
-
   MongoClient.connect(uri, function(err, db) {
     if (err) throw err;
     var dbo = db.db("3dwebsite");
@@ -124,20 +119,16 @@ function DoanhThuThangInYear(year, callback) {
               x += parseInt(temp[i].danhsachsanpham[each].quantity);
             }
           }
-
           var thang = {};
           thang[month] = x
           count.push(thang);
-
         });
-
         callback(count);
       }
     });
     db.close();
   });
 }
-
 
 function updateHoaDonByID(ID,dagiao) { // customer
   MongoClient.connect(uri, function(err, db) {
@@ -155,7 +146,54 @@ function updateHoaDonByID(ID,dagiao) { // customer
   });
 }
 
+function thongKeTheoNgay(str, callback) {
+  MongoClient.connect(uri, function(err, db) {
+    if (err) throw err;
+    var ngay = str[8]+str[9];
+    var thang = str[5]+str[6];
+    var nam = str[0]+str[1]+str[2]+str[3];
 
+    var dbo = db.db("3dwebsite");
+    dbo.collection("hoadon").find().toArray(function(err, result) {
+      if (err) {
+        throw err;
+        console.log(err);
+      } else if (result.length > 0) {
+        var tongket = {
+          giadung: 0,
+          fashion: 0,
+          mebe: 0,
+          thucung: 0,
+          xe: 0,
+          dientu: 0,
+        }
+        for (var i = 0; i < result.length; i++) {
+          if(result[i].time.date == ngay && result[i].time.month == thang && result[i].time.year == nam){
+            var danhsach = result[i].danhsachsanpham;
+            tongket["giadung"] += parseInt(thongKe(danhsach, "giadung"));
+            tongket["fashion"] += parseInt(thongKe(danhsach, "fashion"));
+
+            tongket["thucung"] += parseInt(thongKe(danhsach, "thucung"));
+            tongket["xe"] += parseInt(thongKe(danhsach, "xe"));
+
+            tongket["dientu"] += parseInt(thongKe(danhsach, "dientu"));
+            tongket["mebe"] += parseInt(thongKe(danhsach, "mebe"));
+          }
+        }
+        var sum = 0;
+        for (var each in tongket) {
+          sum += tongket[each]
+        }
+        var result = {
+          tongSP: sum,
+          tongket: tongket
+        }
+        callback(result);
+      }
+    });
+    db.close();
+  });
+}
 
 module.exports = mongoose.model('Hoadon', someschema);
 module.exports.hoadonCollection = hoadonCollection;
@@ -163,3 +201,4 @@ module.exports.hoadonCount = hoadonCount;
 module.exports.TongDoanhThu = TongDoanhThu;
 module.exports.DoanhThuThangInYear = DoanhThuThangInYear;
 module.exports.updateHoaDonByID = updateHoaDonByID;
+module.exports.thongKeTheoNgay = thongKeTheoNgay;

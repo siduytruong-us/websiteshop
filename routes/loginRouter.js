@@ -2,6 +2,7 @@ var express = require("express"),
   router = express.Router(),
   Passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy
+var typeproduct = require("../models/typeproduct");
 
 function isLoggedin(req, res, next) {
   if (req.user) {
@@ -40,10 +41,13 @@ router.get('/loginFailed', function(req, res) {
 });
 
 router.get('/forgotPassword', function(req, res) {
-  res.render("index",{
-    body: 'login/forgotPassword.ejs',
-    user: req.user
-  });
+  typeproduct.typeproductCollection(function(kq) {
+    res.render('index', {
+       typeproduct: kq,
+       user: req.user,
+       body: 'login/forgotPassword.ejs'
+      });
+    });
 })
 
 

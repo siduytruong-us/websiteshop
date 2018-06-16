@@ -1,0 +1,54 @@
+<center><h3 >Thống kê doanh số bán hàng</h3></center>
+
+<div class="space"> </div>
+<div class="topnav">
+  <a class="active" style="width:80px;" href=""> <i class = "fa fa-home" ></i> </a>
+  <div class="search-container">
+    <form action="">
+      <input type="text" placeholder="Search.." name="search">
+    </form>
+  </div>
+</div>
+<% if (tongdoanhthu.tongSP !=0) { %>
+  <center>
+    <div class="space"> </div>
+      <div id="chart_div" style="width:400; height:300;"></div>
+    <div class="space"> </div>
+  </center>
+  <% } else { %>
+    <center>
+      <h2> Rất tiếc, không có sản nào được bán trong khoảng thời gian trên </h2>
+    </center>
+  <% }  %>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+  // Load the Visualization API and the piechart package.
+  google.charts.load('current', {
+    'packages': ['corechart']
+  });
+
+  google.charts.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Topping');
+    data.addColumn('number', 'Slices');
+    data.addRows([
+      ['Mẹ bé', <%= tongdoanhthu.tongket["mebe"]%>],
+      ['Thú Cưng', <%= tongdoanhthu.tongket["thucung"]%>],
+      ['Fashion', <%= tongdoanhthu.tongket["fashion"]%>],
+      ['Gia Dụng', <%= tongdoanhthu.tongket["giadung"]%>],
+      ['Điện tử', <%= tongdoanhthu.tongket["dientu"]%>],
+      ['Công nghệ Xe', <%= tongdoanhthu.tongket["xe"]%>]
+    ]);
+
+    // Set chart options
+    var options = {
+      'title': 'Thống kê theo sản phẩm đã bán\nTổng sản phẩm: <%= tongdoanhthu.tongSP%> ',
+      'is3D': true,
+      'width': 400,
+      'height': 300
+    };
+    var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script>

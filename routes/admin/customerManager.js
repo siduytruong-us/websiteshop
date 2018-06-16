@@ -43,7 +43,7 @@ router.post('/admin/findCustomer', isAdminLoggedin, function(req, res) { //
   console.log("id: "+idCustomer);
   var customer = require('../../models/customer');
   customer.findCustomer(idCustomer, function(result) {
-    if (result[0] == "e" || result == null) {
+    if (result == "errorCustomer" || result == null) {
       console.log("find Failed customer");
       cusresult = null;
       res.redirect('/admin/findFailedCustomer');
@@ -75,7 +75,7 @@ router.get('/admin/findFailedCustomer', isAdminLoggedin, function(req, res) { //
       user: req.user,
       customer: result,
       flag: false,
-      customerresult: cusresult,
+      customerresult: null,
       body: "staff/quanlytaikhoan.ejs"
     });
   });
