@@ -10,7 +10,7 @@
     <p><%= __('Password')%>:
       <input type="password" id="password" name="password" value="<%=user.password%>" style="width:80%" required/>
     </p>
-    <p><%= __('Confilm Password')%>:
+    <p><%= __('Confirm Password')%>:
       <input type="password" id="re_password" onchange="checkPass()" value="<%=user.password%>" placeholder="Confilm Password" style="width:80%" required/>
     </p>
     <p><%= __('Address')%>:
@@ -19,7 +19,7 @@
     <p><%= __('Email')%>:
       <input type="email" name="email" value="<%= user.email%>" style="height: 40px;width: 60%;" required="">
     </p>
-    <p><%= __('Phone')%>:
+    <p><%= __('Phone Number')%>:
       <input type="tel" name="dienthoai" value="<%= user.dienthoai%>" style="height:  40px;width:60%;" required="" pattern="[0-9]{1,11}" title="Chỉ có kí tự số">
     </p>
 

@@ -6,32 +6,32 @@
   <a href="shopcart">    <i class="fa fa-shopping-cart" ></i></a>
   <div class="search-container">
       <form action="/searchProduct">
-        <input type="text" placeholder="Search.." name="search">
+        <input type="text" placeholder="<%= __('Search')%>.." name="search">
 
 
 
              <select required name = "tproduct">
-                <option value="all" selected="">All</option>
+                <option value="all" selected=""><%= __('All')%></option>
                 <option value="id">ID</option>
-                <option value="name">Name</option>
+                <option value="name"><%= __('Name')%></option>
                 <optgroup label="Price">
-                  <option value="price_1">Dưới 100.000đ</option>
+                  <option value="price_1"> < 100.000đ</option>
                   <option value="price_11">100.000 - 500.000đ</option>
                   <option value="price_51">500.000 - 1.000.000đ</option>
                   <option value="price_101">1.000.000 - 2.000.000đ</option>
-                  <option value="price_201">Trên 2.000.000đ</option>
+                  <option value="price_201"> >  2.000.000đ</option>
                 </optgroup>
 
                 <optgroup label="Type">
-                <option value="mebe">Mẹ bé</option>
-                <option value="xe">Xe</option>
-                <option value="dientu">Điện tử</option>
-                <option value="fashion">Fashion</option>
-                <option value="giadung">Gia dụng</option>
-                <option value="thucung">Thú cưng</option>
+                <option value="mebe"><%= __('mebe')%></option>
+                <option value="xe"><%= __('xe')%></option>
+                <option value="dientu"><%= __('dientu')%></option>
+                <option value="fashion"><%= __('fashion')%></option>
+                <option value="giadung"><%= __('giadung')%></option>
+                <option value="thucung"><%= __('thucung')%></option>
                 </optgroup>
               </select>
-<a  href="/searchnangcao" type = "button" style=" padding:1%; margin-top: -1%; float: right; font-size: 13px;"> Tìm kiếm nâng cao </a>
+<a  href="/searchnangcao" type = "button" style=" padding:1%; margin-top: -1%; float: right; font-size: 13px;"> <%= __('tiemkiemNC')%> </a>
     </form>
   </div>
 </div>
@@ -39,7 +39,7 @@
 <!--Menu type -->
 <% if  (typeproduct) {%>
   <div class="dropdown">
-    <button class="dropbtn">Menu</button>
+    <button class="dropbtn"><%= __('menu')%></button>
     <div class="dropdown-content">
 
       <% for(var i = 0; i < typeproduct.length; i++ ){%>

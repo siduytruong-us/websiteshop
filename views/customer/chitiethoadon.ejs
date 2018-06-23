@@ -2,7 +2,7 @@
   <h2><%= __('Invoice details')%></h2> </center>
 *<%= __('ID')%>:
 <%= hoadon[0].ID%>
-  <br>*<%= __('Customer name')%>:
+  <br>*<%= __('Customer')%>:
   <%= hoadon[0].customer.hoten%> - <%= __('Address')%>:
     <%= hoadon[0].customer.diachi%>
       <br>*<%= __('List of product')%>:
@@ -14,7 +14,7 @@
           </li>
           <%}%>
       </ul>
-      <b>*<%= __('Total money')%>: <%= hoadon[0].total%>đ </b>
+      <b>*<%= __('Total Price')%>: <%= hoadon[0].total%>đ </b>
       <br>
       <% if ( hoadon[0].dagiao == "no") {%>
         <%= __('Delivery status')%>: <i class="fa fa-remove" style="color: #ff3333;"></i>

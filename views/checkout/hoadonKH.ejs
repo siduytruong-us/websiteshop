@@ -19,17 +19,17 @@
 
 </center>
 <div class="w3-container">
-  <h3><%= __('Your order')%>:</h3>
+  <h3><%= __('Your Order')%>:</h3>
 
   <ul class="w3-ul">
     <% for (var  i = 0; i < cart.items.length; i ++ ) {  %>
       <li>
-        Tên:
-        <%= cart.items[i].item.name%> - Số lượng:
+        <%= __('Name')%>:
+        <%= cart.items[i].item.name%> - <%= __('Quantity')%>:
           <%= cart.items[i].quantity%>
       </li>
       <% } %>
-        <li> <b><%= __('Total money')%>: <%= total%> </b>
+        <li> <b><%= __('Total Price')%>: <%= total%> </b>
 
         </li>
   </ul>

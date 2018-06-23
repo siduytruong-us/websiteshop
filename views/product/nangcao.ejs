@@ -6,32 +6,32 @@
     <input  type="text" placeholder="Search.." required name="search" style = " width: 40%; pandding-width: 1%; pandding-height: 1%">
   <select  style = "pandding-width: 1%; pandding-height: 1%" name = "tprice">
       <option value = "">(Price)</option>
-       <option value="price_1">Dưới 100.000đ</option>
+       <option value="price_1"> < 100.000đ</option>
        <option value="price_11">100.000 - 500.000đ</option>
        <option value="price_51">500.000 - 1.000.000đ</option>
        <option value="price_101">1.000.000 - 2.000.000đ</option>
-       <option value="price_201">Trên 2.000.000đ</option>
+       <option value="price_201"> > Trên 2.000.000đ</option>
    </select>
 
    <select name = "ttype" >
      <option value = "">(Type)</option>
-     <option value="mebe">Mẹ bé</option>
-     <option value="xe">Xe</option>
-     <option value="dientu">Điện tử</option>
-     <option value="fashion">Fashion</option>
-     <option value="giadung">Gia dụng</option>
-     <option value="thucung">Thú cưng</option>
+     <option value="mebe"><%= __('mebe')%></option>
+     <option value="xe"><%= __('xe')%></option>
+     <option value="dientu"><%= __('dientu')%></option>
+     <option value="fashion"><%= __('fashion')%></option>
+     <option value="giadung"><%= __('giadung')%></option>
+     <option value="thucung"><%= __('thucung')%></option>
    </select>
 
    <select name = "tnameid">
      <option value = "">(Name,ID)</option>
      <option value="nameid">All</option>
-     <option value="name">Name</option>
+     <option value="name"><%= __('Name')%></option>
      <option value="id">ID</option>
    </select>
  <br>
  <br>
- <button type = "submit" style = "width:24%; border-radius:5%" class = "button btn-primary">Tìm kiếm</button>
+ <button type = "submit" style = "width:24%; border-radius:5%" class = "button btn-primary"><%= __('Search')%></button>
 </center>
  </form>
 <div class="space"> </div>
@@ -57,7 +57,7 @@
 
       <%} else {%>
         <center>
-          <h3>No item or product found </h3> </center>
+          <h3><%= __('No Items Found')%> </h3> </center>
         <%}%>
           <!--end 1hang-->
           <!--end 1hang-->

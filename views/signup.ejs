@@ -46,26 +46,26 @@
     <center>
       <form method="POST" action="signup" name="frm">
         <p>
-          <input type="text" name="firstname" placeholder="First Name" style="width:40%" required pattern="[A-Za-z\s]{1,50}" title="Chỉ có kí tự chữ cái" />
-          <input type="text" name="lastname" placeholder="Last Name" style="width:40%" required pattern="[A-Za-z\s]{1,50}" title="Chỉ có kí tự chữ cái" />
+          <input type="text" name="firstname" placeholder="<%= __('First Name')%>" style="width:40%" required pattern="[A-Za-z\s]{1,50}" title="Chỉ có kí tự chữ cái" />
+          <input type="text" name="lastname" placeholder="<%= __('Last Name')%>" style="width:40%" required pattern="[A-Za-z\s]{1,50}" title="Chỉ có kí tự chữ cái" />
         </p>
         <p>
-          <input type="text" name="username" value="" placeholder="Your Username" style="width:80%" required pattern="[A-Za-z0-9]{1,10}" title="Không chứa kí tự đặc biệt" />
+          <input type="text" name="username" value="" placeholder="<%= __('Your Name')%>" style="width:80%" required pattern="[A-Za-z0-9]{1,10}" title="Không chứa kí tự đặc biệt" />
         </p>
         <p>
-          <input type="password" name="password" placeholder="Password" style="width:80%" required/>
+          <input type="password" name="password" placeholder="<%= __('Password')%>" style="width:80%" required/>
         </p>
         <p>
-          <input type="password" onchange="checkPass()" name="re_password" placeholder="Confilm Password" style="width:80%" required/>
+          <input type="password" onchange="checkPass()" name="re_password" placeholder="<%= __('Confirm Password')%>" style="width:80%" required/>
         </p>
         <p>
-          <input type="text" name="diachi" placeholder="Dia chi" style="width:80%" required pattern="[A-Za-z0-9\s]{1,50}" title="Không chứa kí tự đặc biệt" />
+          <input type="text" name="diachi" placeholder="<%= __('Address')%>" style="width:80%" required pattern="[A-Za-z0-9\s]{1,50}" title="Không chứa kí tự đặc biệt" />
         </p>
         <p>
-          <input type="email" name="email" placeholder="Email" style="width:80%" required/>
+          <input type="email" name="email" placeholder="<%= __('Email')%>" style="width:80%" required/>
         </p>
         <p>
-          <input type="tel" name="phone" placeholder="Phone Number" style="width:80%" required pattern="[0-9]{1,11}" title="Chỉ có kí tự số" />
+          <input type="tel" name="phone" placeholder="<%= __('Phone Number')%>" style="width:80%" required pattern="[0-9]{1,11}" title="Chỉ có kí tự số" />
         </p>
 
         <button type="submit" class="button btn-primary submit" style="width:80%">Register</button>
@@ -89,7 +89,7 @@
       var re_password = document.frm.re_password.value;
 
       if (password != re_password) {
-        alert("Vui lòng nhập lại password");
+        alert("<%= __('Please, re-Enter Your Password')%>");
         document.frm.re_password.value = "";
       }
     }

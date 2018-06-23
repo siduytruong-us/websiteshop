@@ -157,6 +157,7 @@ label {
   color: #fff;
   font-size: 25px;
   border-radius: 3px;
+  width: 30%;
 }
 
 .checkout:hover {

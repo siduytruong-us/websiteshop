@@ -8,27 +8,27 @@
 
 <div class="noidung">
   <h4 class="ten" id="productName">
-                    Tên : <%= infoProduct.name%>
+                    <%= __('Name')%> : <%= infoProduct.name%>
                 </h4>
 
   <div class="mota" id="productInfo">
-    Thông tin:
+    <%= __('Describe')%>:
     <%= infoProduct.info%>
   </div>
 
   <div class="giatien" id="productPrice">
-    Trị Giá:
+    <%= __('Price')%>:
     <%= infoProduct.price%> đ
   </div>
   <form action="addToCart?ID=<%= infoProduct.ID%>" method="POST">
     <div class="soluong">
-      Số lượng:
+      <%= __('Quantity')%>:
 
       <input type="number" value="1" min="1" max="10" style="width:5%" name="soluong" onchange="totalPrice() " id="tongSL">
 
     </div>
 
-    <b>TOTAL PRICE: </b>
+    <b><%= __('Total Price')%>: </b>
     <div class="giatien" id="price">
 
     </div>
@@ -58,8 +58,7 @@
 </div>
 
 <div class="space"> </div>
-
-<h3> Các sản phẩm liên quan </h3>
+<h3><%= __('Sponsored products related to this item')%> </h3>
 
 <% if (product.length != 0) { %>
   <% for (var i=0 ; i< product.length ; i ++)  { %>

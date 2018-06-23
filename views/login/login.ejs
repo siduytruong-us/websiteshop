@@ -198,18 +198,18 @@
   <div class="wrapper">
     <div class="login">
       <form  action = "/login" method="POST">
-        <p class="title" style="font-size: 40px;"><%= __('Log in')%></p>
-        <input type="text" placeholder="Your Username" name="username" id="m_username" autofocus/>
+        <p class="title" style="font-size: 40px;"><%= __('signIn')%></p>
+        <input type="text" placeholder="<%= __('Username')%>" name="username" id="m_username" autofocus/>
         <i class="fa fa-user"></i>
 
-        <input type="password" placeholder="Your Password" name="password" id="m_password" />
+        <input type="password" placeholder="<%= __('Password')%>" name="password" id="m_password" />
         <i class="fa fa-key"></i>
           <div id="my-signin2"></div>
 
         <a href="forgotPassword"><%= __('Forgot your password')%>?</a>
         <button type="submit" id="loginbtn">
         <i class="spinner"></i>
-        <span class="state"><%= __('Log in')%></span>
+        <span class="state"><%= __('signIn')%></span>
       </button>
       </form>
     </div>
