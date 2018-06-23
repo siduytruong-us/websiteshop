@@ -198,7 +198,7 @@
   <div class="wrapper">
     <div class="login">
       <form  action = "/login" method="POST">
-        <p class="title" style="font-size: 40px;">Log in</p>
+        <p class="title" style="font-size: 40px;"><%= __('Log in')%></p>
         <input type="text" placeholder="Your Username" name="username" id="m_username" autofocus/>
         <i class="fa fa-user"></i>
 
@@ -206,10 +206,10 @@
         <i class="fa fa-key"></i>
           <div id="my-signin2"></div>
 
-        <a href="forgotPassword">Forgot your password?</a>
+        <a href="forgotPassword"><%= __('Forgot your password')%>?</a>
         <button type="submit" id="loginbtn">
         <i class="spinner"></i>
-        <span class="state">Log in</span>
+        <span class="state"><%= __('Log in')%></span>
       </button>
       </form>
     </div>
@@ -234,7 +234,7 @@
 
       }
       else {
-        alert("Tài khoảng của bạn đăng ký thành công. Vui lòng check email để xác nhận tài khoản !");
+        alert("<%=__('Your account is successfully registered. Please check email to confirm your account')%> !");
       }
     }
 

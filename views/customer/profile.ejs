@@ -1,30 +1,30 @@
 <center>
 
   <form method="post" action="updateProfile" name="frm">
-    <p>Name:
+    <p><%= __('Name')%>:
       <input type="text" id="name" name="name" value="<%=user.hoten%>" readonly="on" style="width:80%" required pattern="[A-Za-z]{1,50}" title="Chỉ có kí tự chữ cái" />
     </p>
-    <p>Username:
+    <p><%= __('Username')%>:
       <input type="text" id="username" name="username" value="<%=user.ID%>" readonly="on" style="width:80%" required/>
     </p>
-    <p>Password:
+    <p><%= __('Password')%>:
       <input type="password" id="password" name="password" value="<%=user.password%>" style="width:80%" required/>
     </p>
-    <p>Confilm Password:
+    <p><%= __('Confilm Password')%>:
       <input type="password" id="re_password" onchange="checkPass()" value="<%=user.password%>" placeholder="Confilm Password" style="width:80%" required/>
     </p>
-    <p>Dia chi:
+    <p><%= __('Address')%>:
       <input type="text" id="diachi" name="diachi" value="<%=user.diachi%>" style="width:80%" required pattern="[A-Za-z0-9]{1,50/s}" title="Không chứa kí tự đặc biệt" />
     </p>
-    <p>Email:
+    <p><%= __('Email')%>:
       <input type="email" name="email" value="<%= user.email%>" style="height: 40px;width: 60%;" required="">
     </p>
-    <p>Phone:
+    <p><%= __('Phone')%>:
       <input type="tel" name="dienthoai" value="<%= user.dienthoai%>" style="height:  40px;width:60%;" required="" pattern="[0-9]{1,11}" title="Chỉ có kí tự số">
     </p>
 
 
-    <button type="submit" class="button btn-primary submit" style="width:40%">Update</button>
+    <button type="submit" class="button btn-primary submit" style="width:40%"><%= __('Update')%></button>
   </form>
 
 </center>

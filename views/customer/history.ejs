@@ -1,6 +1,6 @@
 
 <center>
-  <h3>Lịch sử mua hàng</h3> </center>
+  <h3><%= __('Purchase history')%></h3> </center>
 <div class="space"> </div>
 
 
@@ -16,22 +16,22 @@
         <!-- hàng for fai có product ở trong -->
         <a href="chitiethoadon?id=<%= hoadon[i].ID%>">
           <div class="list-group-item" id="hoadon">
-            Mã hóa đon:
+            <%= __('ID')%>:
             <%= hoadon[i].ID %>
-              <h6>Tên khách hàng: <%= hoadon[i].customer.hoten %> - Địa chỉ: <%= hoadon[i].customer.diachi %></h6>
+              <h6><%= __('Customer name')%>: <%= hoadon[i].customer.hoten %> - <%= __('Address')%>: <%= hoadon[i].customer.diachi %></h6>
 
               <% if ( hoadon[i].dagiao == "no") {%>
-                Tình trạng giao hàng: <i class="fa fa-remove" style="color: #ff3333;"></i>
+                <%= __('Delivery status')%>: <i class="fa fa-remove" style="color: #ff3333;"></i>
                 <%} else if ( hoadon[i].dagiao == "yes") { %>
-                  Tình trạng giao hàng: <i class="fa fa-check" style="color: #79ff4d;"></i>
+                  <%= __('Delivery status')%>: <i class="fa fa-check" style="color: #79ff4d;"></i>
                   <%} else {%>
-                    Tình trạng giao hàng: <span style="color: #1a75ff" ;> <b>ON THE WAY !!! </b> </span>
+                    <%= __('Delivery status')%>: <span style="color: #1a75ff" ;> <b><%= __('ON THE WAY')%> !!! </b> </span>
                     <%}%>
           </div>
         </a>
         <% } %>
           <%} else {%>
             <center>
-              <h3>Notthing found </h3> </center>
+              <h3><%= __('Notthing found')%> </h3> </center>
             <%}%>
     </div>
