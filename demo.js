@@ -2,7 +2,8 @@ var express = require('express');
 var sessions = require('express-session');
 var url = require('url');
 var app = express();
-var i18n = require("i18n");
+var cookieParser = require('cookie-parser')
+
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -44,6 +45,9 @@ var LocalStrategy = require("passport-local").Strategy;
 app.use(Passport.initialize());
 app.use(Passport.session())
 
+// Language
+var i18n = require("i18n");
+app.use(cookieParser())
 app.use(i18n.init);
 
 i18n.configure({
@@ -53,28 +57,12 @@ cookie: 'lang',
 });
 
 app.use('/change-lang/:lang', (req, res) => {
-      var lang = req.params.lang;
-      if (lang == 'vi') {
-
-        i18n.setLocale(req, 'vi'); // --> req: مرحبا res: مرحبا res.locals: مرحبا
-        i18n.setLocale(res, 'vi'); // --> req: Hallo res: مرحبا res.locals: مرحبا
-        i18n.setLocale(res.locals, 'vi');
-
-
-        res.cookie('lang', 'vi', { maxAge: 900000 });
-        console.log(lang);
-        res.redirect('back');
-      }
-      else if (lang == 'en') {
-        i18n.setLocale(req, 'en'); // --> req: مرحبا res: مرحبا res.locals: مرحبا
-        i18n.setLocale(res, 'en'); // --> req: Hallo res: مرحبا res.locals: مرحبا
-        i18n.setLocale(res.locals, 'en');
-        res.cookie('lang', 'en', { maxAge: 900000 });
-        console.log(lang);
-        res.redirect('back');
-      }
-
+      res.cookie('lang', req.params.lang, { maxAge: 900000 });
+      res.redirect('back');
 });
+
+////
+
 app.set("view engine", "ejs");
 app.set("views", "./views")
 app.set("view options", { layout: "layout" });
@@ -103,7 +91,6 @@ app.use(cartAndPaymentRouter);
 app.use(customerManager);
 app.use(thongKe);
 app.use(productManager);
-
 // app.use(Language);
 
 // // Error handler
