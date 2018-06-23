@@ -150,6 +150,8 @@ function searchProductByPrice(nameProduct, callback) { // customer
     });
   });
 }
+
+
 function datanameid(nameProduct, callback)
 {
 	var kt = true;
@@ -161,10 +163,35 @@ function datanameid(nameProduct, callback)
 					searchProduct = result;
 					console.log("in ra mang search");
 				}
+		});
+	searchProductByID(nameProduct.toString(), function(result) {
+				//searchProduct = result;
+				if (result[0] == "e" || nameProduct == " ") {
+					//searchProduct = [];
+				} else {
+					for(var i = 0; i<result.length; i++)
+					{
+						for(var j = 0; j<searchProduct.length;j++)
+						{
+							if(result[i].ID == searchProduct[j].ID)
+							{
+								kt = false;
+							}
+						}
+						if(kt == false)
+						{
+							kt = true;
+						}
+						else
+						{
+							searchProduct.push(result[i]);
+						}
+					}
+					console.log("in ra mang search");
+				}
+				callback(searchProduct);
 	});
 }
-
-
 
 function updateProductByID(id, name, info, price, link) { // customer
   MongoClient.connect(uri, function(err, db) {
@@ -207,7 +234,9 @@ module.exports.searchProductByName =searchProductByName;
 
 module.exports.searchProductByID =searchProductByID;
 //module.exports.searchAll = searchAll;
+
 module.exports.datanameid = datanameid;
+
 module.exports.searchProductByType =searchProductByType;
 module.exports.searchProductByPrice =searchProductByPrice;
 module.exports.updateProductByID =updateProductByID;
