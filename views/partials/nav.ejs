@@ -44,7 +44,7 @@
 
       <% for(var i = 0; i < typeproduct.length; i++ ){%>
         <a href="danhsach?type=<%= typeproduct[i].type %>">
-          <%= typeproduct[i].name %>
+          <%= __(typeproduct[i].type)%>
         </a>
         <%}%>
 
