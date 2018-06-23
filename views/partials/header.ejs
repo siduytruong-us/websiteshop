@@ -1,9 +1,20 @@
 <header>
   <a href="/"><img src = "image/logo.png" style ="margin-top: 30px;"> </a>
+<!-- <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Language
+  </button>
+    <ul class="dropdown-menu">
+      <li><a href="/change-lang/en">English</a> </li>
+      <li><a href="/change-lang/vi">Vietnamese</a> </li>
+    </ul>
+  </div> -->
+
+
   <% if (user == null) { %>
     <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
+
       <li class="dropdown">
-        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Management <span class="caret"></span></a>
+        <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Management</a>
         <ul class="dropdown-menu">
           <li><a href="login">Sign in</a></li>
           <li role="separator" class="divider"></li>
@@ -14,7 +25,7 @@
     <% } else { %>
     <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
         <li class="dropdown">
-          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Management <span class="caret"></span></a>
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user" aria-hidden="true"></i> User Management </span></a>
           <ul class="dropdown-menu">
             <li><a href="/profile">User Account</a></li>
             <li role="separator" class="divider"></li>
@@ -25,6 +36,17 @@
         </li>
       </ul>
       <% } %>
+
+      <ul class="nav navbar-nav navbar-right" style="margin-right: 20px">
+
+        <li class="dropdown">
+          <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Language</a>
+          <ul class="dropdown-menu">
+            <li><a href="/change-lang/en">English</a> </li>
+            <li><a href="/change-lang/vi">Vietnamese</a> </li>
+          </ul>
+        </li>
+      </ul>
 
         <% if (user == null) { %>
           <div id="callNow" style="clear: both;">

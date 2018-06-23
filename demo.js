@@ -2,7 +2,7 @@ var express = require('express');
 var sessions = require('express-session');
 var url = require('url');
 var app = express();
-
+var i18n = require("i18n");
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -44,9 +44,41 @@ var LocalStrategy = require("passport-local").Strategy;
 app.use(Passport.initialize());
 app.use(Passport.session())
 
+app.use(i18n.init);
+
+i18n.configure({
+ locales:['en', 'vi'],
+ directory: __dirname +  '/locales',
+cookie: 'lang',
+});
+
+app.use('/change-lang/:lang', (req, res) => {
+      var lang = req.params.lang;
+      if (lang == 'vi') {
+
+        i18n.setLocale(req, 'vi'); // --> req: مرحبا res: مرحبا res.locals: مرحبا
+        i18n.setLocale(res, 'vi'); // --> req: Hallo res: مرحبا res.locals: مرحبا
+        i18n.setLocale(res.locals, 'vi');
+
+
+        res.cookie('lang', 'vi', { maxAge: 900000 });
+        console.log(lang);
+        res.redirect('back');
+      }
+      else if (lang == 'en') {
+        i18n.setLocale(req, 'en'); // --> req: مرحبا res: مرحبا res.locals: مرحبا
+        i18n.setLocale(res, 'en'); // --> req: Hallo res: مرحبا res.locals: مرحبا
+        i18n.setLocale(res.locals, 'en');
+        res.cookie('lang', 'en', { maxAge: 900000 });
+        console.log(lang);
+        res.redirect('back');
+      }
+
+});
 app.set("view engine", "ejs");
 app.set("views", "./views")
 app.set("view options", { layout: "layout" });
+
 var indexRouter = require('./routes/indexRouter.js');
 var adminRouter = require('./routes/adminRouter.js');
 var emailRouter = require('./routes/emailRouter.js');
@@ -57,8 +89,9 @@ var cartAndPaymentRouter = require('./routes/cartAndPaymentRouter.js');
 var customerManager = require('./routes/admin/customerManager');
 var thongKe = require('./routes/admin/thongkeRouter');
 var productManager = require('./routes/admin/productManager');
-
 var hoadonManager = require('./routes/admin/hoadonManager');
+
+var Language = require('./routes/Language.js');
 app.use(hoadonManager);
 app.use(customerRouter);
 app.use(indexRouter);
@@ -71,6 +104,7 @@ app.use(customerManager);
 app.use(thongKe);
 app.use(productManager);
 
+// app.use(Language);
 
 // // Error handler
 // app.use(function(req, res, next) {

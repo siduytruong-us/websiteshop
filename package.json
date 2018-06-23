@@ -21,6 +21,7 @@
     "express-sessions": "^1.0.6",
     "formidable": "^1.2.1",
     "fs": "0.0.1-security",
+    "i18n": "^0.8.3",
     "localstorage": "^1.0.1",
     "mongodb": "^3.0.8",
     "mongoose": "^5.1.0",
