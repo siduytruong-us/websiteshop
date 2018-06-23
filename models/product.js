@@ -150,7 +150,19 @@ function searchProductByPrice(nameProduct, callback) { // customer
     });
   });
 }
+function datanameid(nameProduct, callback)
+{
+	var kt = true;
+	var searchProduct = [];
+	searchProductByName(nameProduct.toString(), function(result) {
+				if (result[0] == "e" || nameProduct == " ") {
 
+				} else {
+					searchProduct = result;
+					console.log("in ra mang search");
+				}
+	});
+}
 
 
 
@@ -195,6 +207,7 @@ module.exports.searchProductByName =searchProductByName;
 
 module.exports.searchProductByID =searchProductByID;
 //module.exports.searchAll = searchAll;
+module.exports.datanameid = datanameid;
 module.exports.searchProductByType =searchProductByType;
 module.exports.searchProductByPrice =searchProductByPrice;
 module.exports.updateProductByID =updateProductByID;

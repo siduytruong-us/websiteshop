@@ -372,6 +372,203 @@ router.get('/searchSuccess', function(req, res) {
   });
 });
 
+router.get('/searchnangcao', function(req, res) {
+  //searchProduct = [];
+  var temp = searchProduct;
+  searchProduct = [];
+  typeproduct.typeproductCollection(function(kq) {
+    res.render('index', {
+
+      typeproduct: kq,
+      user: req.user,
+    //  type: type,
+      product: temp,
+      body: 'product/nangcao'
+    });
+  });
+});
+
+router.get('/searchnc?:search', function(req, res){
+var nameProduct = req.query.search;
+var tprice = req.query.tprice;
+var ttype = req.query.ttype;
+var tnameid = req.query.tnameid;
+var sproduct = new Array();
+sproduct = [];
+searchProduct = [];
+var product = require('../models/product');
+  if(tprice =="" && ttype == "" && tnameid == "")
+  {
+    var kt = true;
+    product.searchProductByName(nameProduct.toString(), function(result) {
+          if (result[0] == "e" || nameProduct == " ") {
+
+          } else {
+            searchProduct = result;
+            console.log("in ra mang search");
+          }
+      });
+    product.searchProductByID(nameProduct.toString(), function(result) {
+          //searchProduct = result;
+          if (result[0] == "e" || nameProduct == " ") {
+            //searchProduct = [];
+          } else {
+            for(var i = 0; i<result.length; i++)
+            {
+              for(var j = 0; j<searchProduct.length;j++)
+              {
+                if(result[i].ID == searchProduct[j].ID)
+                {
+                  kt = false;
+                }
+              }
+              if(kt == false)
+              {
+                kt = true;
+              }
+              else
+              {
+                searchProduct.push(result[i]);
+              }
+            }
+            console.log("in ra mang search");
+          }
+    });
+
+    //type
+    product.searchProductByType(nameProduct.toString(), function(result) {
+          //searchProduct = result;
+          if (result[0] == "e" || nameProduct == " ") {
+            console.log("err");
+            //searchProduct = [];
+          } else {
+            for(var i = 0; i<result.length; i++)
+            {
+              for(var j = 0; j<searchProduct.length;j++)
+              {
+                if(result[i].ID == searchProduct[j].ID)
+                {
+                  kt = false;
+                }
+              }
+              if(kt == false)
+              {
+                kt = true;
+              }
+              else
+              {
+                searchProduct.push(result[i]);
+              }
+            }
+            console.log("in ra mang search");
+          }
+          res.redirect('searchnangcao');
+    });
+  }
+  else
+  {
+    if(tnameid !="" && tprice == "" && ttype =="")
+    {
+      product.datanameid(nameProduct,function(result){
+        searchProduct = result;
+        res.redirect("searchnangcao");
+      });
+
+    }
+
+    else if((ttype != "" && tprice == "" && tnameid == "")|| (tnameid !="" && ttype!= "" && tprice == "" ))
+    {
+      product.datanameid(nameProduct,function(result){
+        searchProduct = result;
+        for(var k = 0 ; k<searchProduct.length; k++)
+        {
+          if(ttype == searchProduct[k].type)
+          {
+            sproduct.push(searchProduct[k]);
+          }
+        }
+           searchProduct = sproduct;
+           sproduct = [];
+        res.redirect("searchnangcao");
+      });
+
+    }
+    else if((tprice != "" && ttype == "" && tnameid =="")||(tprice !=""&&ttype ==""&&tnameid!=""))
+    {
+      product.datanameid(nameProduct,function(result){
+        searchProduct = result;
+        for(var k = 0; k< searchProduct.length;k++)
+        {
+         if(searchProduct[k].price <= 100000 && searchProduct[k].price > 0 && tprice == "price_1")
+         {
+           sproduct.push(searchProduct[k]);
+         }
+        else if(searchProduct[k].price >= 100000 && searchProduct[k].price <= 500000 && tprice == "price_11")
+         {
+           sproduct.push(searchProduct[k]);
+         }
+          else if(searchProduct[k].price >= 500000 && searchProduct[k].price <= 1000000 && tprice == "price_51")
+         {
+           sproduct.push(searchProduct[k]);
+         }
+          else if(searchProduct[k].price >= 1000000 && searchProduct[k].price <= 2000000 && tprice == "price_101")
+         {
+           sproduct.push(searchProduct[k]);
+         }
+          else if(searchProduct[k].price >=2000000 && tprice == "price_201")
+         {
+           sproduct.push(searchProduct[k]);
+         }
+        }
+        searchProduct = sproduct;
+        sproduct = [];
+        res.redirect("searchnangcao");
+      });
+    }
+    else if((ttype != "" && tprice != "" && tnameid != "")||(tprice != "" && ttype !=""&&tnameid==""))
+    {
+      console.log(tprice);
+      product.datanameid(nameProduct,function(result){
+        searchProduct = result;
+        for(var k = 0 ; k<searchProduct.length; k++)
+        {
+          if(ttype == searchProduct[k].type)
+          {
+            sproduct.push(searchProduct[k]);
+          }
+        }
+           searchProduct = sproduct;
+           sproduct = [];
+           for(var k = 0; k< searchProduct.length;k++)
+           {
+            if(searchProduct[k].price <= 100000 && searchProduct[k].price > 0 && tprice == "price_1")
+            {
+              sproduct.push(searchProduct[k]);
+            }
+           else if(searchProduct[k].price >= 100000 && searchProduct[k].price <= 500000 && tprice == "price_11")
+            {
+              sproduct.push(searchProduct[k]);
+            }
+             else if(searchProduct[k].price >= 500000 && searchProduct[k].price <= 1000000 && tprice == "price_51")
+            {
+              sproduct.push(searchProduct[k]);
+            }
+             else if(searchProduct[k].price >= 1000000 && searchProduct[k].price <= 2000000 && tprice == "price_101")
+            {
+              sproduct.push(searchProduct[k]);
+            }
+             else if(searchProduct[k].price >=2000000 && tprice == "price_201")
+            {
+              sproduct.push(searchProduct[k]);
+            }
+           }
+         searchProduct = sproduct;
+         sproduct = [];
+        res.redirect("searchnangcao");
+      });
+    }
+  }
+});
 
 
 

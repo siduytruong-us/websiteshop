@@ -5,9 +5,12 @@
   <a href="#contact">Contact</a>
   <a href="shopcart">    <i class="fa fa-shopping-cart" ></i></a>
   <div class="search-container">
-    <form action="/searchProduct">
-      <input type="text" placeholder="Search.." name="search">
-             <select required name = "tproduct" >
+      <form action="/searchProduct">
+        <input type="text" placeholder="Search.." name="search">
+
+
+
+             <select required name = "tproduct">
                 <option value="all" selected="">All</option>
                 <option value="id">ID</option>
                 <option value="name">Name</option>
@@ -18,6 +21,7 @@
                   <option value="price_101">1.000.000 - 2.000.000đ</option>
                   <option value="price_201">Trên 2.000.000đ</option>
                 </optgroup>
+
                 <optgroup label="Type">
                 <option value="mebe">Mẹ bé</option>
                 <option value="xe">Xe</option>
@@ -26,8 +30,8 @@
                 <option value="giadung">Gia dụng</option>
                 <option value="thucung">Thú cưng</option>
                 </optgroup>
-
               </select>
+<a  href="/searchnangcao" type = "button" style=" padding:1%; margin-top: -1%; float: right; font-size: 13px;"> Tìm kiếm nâng cao </a>
     </form>
   </div>
 </div>

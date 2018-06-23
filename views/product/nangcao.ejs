@@ -1,0 +1,62 @@
+
+
+<div class="space"> </div>
+<form action="/searchnc">
+  <center>
+    <input  type="text" placeholder="Search.." required name="search" style = " width: 40%; pandding-width: 1%; pandding-height: 1%">
+  <select  style = "pandding-width: 1%; pandding-height: 1%" name = "tprice">
+      <option value = "">(Price)</option>
+       <option value="price_1">Dưới 100.000đ</option>
+       <option value="price_11">100.000 - 500.000đ</option>
+       <option value="price_51">500.000 - 1.000.000đ</option>
+       <option value="price_101">1.000.000 - 2.000.000đ</option>
+       <option value="price_201">Trên 2.000.000đ</option>
+   </select>
+
+   <select name = "ttype" >
+     <option value = "">(Type)</option>
+     <option value="mebe">Mẹ bé</option>
+     <option value="xe">Xe</option>
+     <option value="dientu">Điện tử</option>
+     <option value="fashion">Fashion</option>
+     <option value="giadung">Gia dụng</option>
+     <option value="thucung">Thú cưng</option>
+   </select>
+
+   <select name = "tnameid">
+     <option value = "">(Name,ID)</option>
+     <option value="nameid">All</option>
+     <option value="name">Name</option>
+     <option value="id">ID</option>
+   </select>
+ </center>
+ </form>
+<div class="space"> </div>
+
+<% if (product.length != 0) {%>
+
+  <% for (var i=0 ; i< product.length ; i ++)  { %>
+    <!-- hàng for fai có product ở trong -->
+    <div class="_1sanpham">
+      <a href="chitietsanpham?ID=<%= product[i].ID%>" id="link04">
+       <%if (product[i].link) {%>
+            <img src="img/<%=product[i].link%>" id="<%= product[i].ID%>" src="" width="200" height="200">
+            <%} else {%>
+              <img src="img/noimage.jpg" id="img04" src="" width="200" height="200">
+              <%}%>
+            <p class="tieude" id = "productName4"><%= product[i].name %></p>
+      </a>
+      <p class="tien" id="productPrice4">
+        <%= product[i].price %> đ
+      </p>
+    </div>
+    <% } %>
+
+      <%} else {%>
+        <center>
+          <h3>No item or product found </h3> </center>
+        <%}%>
+          <!--end 1hang-->
+          <!--end 1hang-->
+
+          <!--end khung-->
