@@ -66,5 +66,9 @@
 	"logIn": "logIn",
 	"Update": "Update",
 	"ON THE WAY": "ON THE WAY",
-	"Register": "Đăng ký tài khoản"
+	"Register": "Đăng ký tài khoản",
+	"Invoice details": "Danh sách hóa đơn",
+	"Customer": "Khách hàng",
+	"Please enter your email here": "Vui lòng nhập Email ở đây",
+	"Submit": "Gửi"
 }

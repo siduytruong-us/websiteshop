@@ -60,5 +60,9 @@
 	"Register": "Register",
 	"Username": "Username",
 	"Forgot your password": "Forgot your password",
-	"Your account is successfully registered. Please check email to confirm your account": "Your account is successfully registered. Please check email to confirm your account"
+	"Your account is successfully registered. Please check email to confirm your account": "Your account is successfully registered. Please check email to confirm your account",
+	"Invoice details": "Invoice details",
+	"Customer": "Customer",
+	"List of product": "List of product",
+	"Name product": "Name product"
 }
