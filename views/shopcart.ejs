@@ -1,4 +1,9 @@
-<h1><%= user.hoten%>'s <%= __('Shoping Cart')%></h1>
+<% if (user) {%>
+<h1><%= user.hoten%> <%= __('Shoping Cart')%></h1>
+  <%} else {%>
+<h1><%= __('Shoping Cart')%></h1>
+    <%}%>
+
 <% if (cart.items.length > 0) {%>
   <form method="post" action="checkout">
     <div class="shopping-cart">

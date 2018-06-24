@@ -85,7 +85,7 @@ router.get('/shopcart', function(req, res) { // ham index de vao web chinh
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   res.render("index", {
     cart: cart,
-    user: req.user ? req.user : "",
+    user: req.user,
     body: "shopcart.ejs",
     typeproduct: null
   });

@@ -82,6 +82,7 @@ router.get('/admin', isAdminLoggedin, function(req, res) { // ham index de vao w
 router.get('/admin/logout', isAdminLoggedin, function(req, res) { // ham index de vao web chinh
   console.log("logout from admin");
   req.logout();
+  req.user = null;
   res.redirect("/logout");
 });
 
