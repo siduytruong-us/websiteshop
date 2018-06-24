@@ -33,6 +33,17 @@ router.get('/admin/top10', isAdminLoggedin, function(req, res) {
   });
 });
 
+router.get('/admin/top10Type', isAdminLoggedin, function(req, res) {
+  chitiethoadon.chitiethoadonGroupType(function(result) {
+    result.sort((a, b) => b.tongso - a.tongso);
+    res.render("manage", {
+      user: req.user,
+      top10Type: result,
+      n: result.length<=10 ? result.length : 10,
+      body: "staff/top10Type.ejs",
+    });
+  });
+});
 
 var doanhthuTheoNam;
 router.get('/admin/chart', isAdminLoggedin, function(req, res) {
@@ -68,7 +79,17 @@ router.post('/admin/thongkedoanhso', isAdminLoggedin, function(req, res) {
   var thang = req.body.bmonth;
   var nam = req.body.byear;
   console.log(type+" "+ngay+" "+thang+" "+nam);
-  if(type=="ngay")
+  if(type=="none")
+  {
+    thongke.TongDoanhThu(function(result) {
+      res.render("manage", {
+        tongdoanhthu: result,
+        user: req.user,
+        body: "staff/thongke.ejs",
+      });
+    });
+  }
+  else if(type=="ngay")
   {
     thongke.thongKeTheoNgay(ngay,function(result) {
       console.log(result);
@@ -79,6 +100,29 @@ router.post('/admin/thongkedoanhso', isAdminLoggedin, function(req, res) {
       });
     });
   }
+  else if(type=="thang")
+  {
+    thongke.thongKeTheoThang(thang,function(result) {
+      console.log(result);
+      res.render("manage", {
+        tongdoanhthu: result,
+        user: req.user,
+        body: "staff/thongkedoanhso.ejs",
+      });
+    });
+  }
+  else if(type=="nam")
+  {
+    thongke.thongKeTheoNam(nam,function(result) {
+      console.log(result);
+      res.render("manage", {
+        tongdoanhthu: result,
+        user: req.user,
+        body: "staff/thongkedoanhso.ejs",
+      });
+    });
+  }
+  
 });
 
 module.exports = router;
