@@ -1,0 +1,20 @@
+<br>
+<a href="/admin" style="float:left">  <button type = "button" class = "button btn-primary"><i class="fa fa-arrow-left"></i>  </button> </a>
+<br>
+
+<center>
+  <h3>Danh sách top 10 gian hàng bán chạy nhất</h3></center>
+<div class="space"> </div>
+<div class="list-group">
+  <% if (top10Type) {%>
+    <% for (var i=0 ; i < n ; i ++)  { %>
+      <!-- hàng for fai có product ở trong -->
+      <a class="list-group-item">
+        <%= top10Type[i]._id.loaisp %>
+            <h6><%= top10Type[i].tongso %></h6> </a>
+      <% } %>
+        <%} else {%>
+          <center>
+            <h3>Chưa có mặt hàng nào được bán </h3> </center>
+          <%}%>
+</div>
