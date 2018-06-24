@@ -17,9 +17,9 @@
           <form method="POST" action="adminUpdateCustomer">
               <center>
               <input type="text"  name="idkh" value="<%= updateCustomer.ID%>" style="width:60%" readonly = "on"/>
-              <input type="text"  name="hoten" value="<%= updateCustomer.hoten%>" style="width:60%" required pattern="[^0-9~!@#$%^*()-=_+:\x22'<>?,.{}]{5,}"/>
+              <input type="text"  name="hoten" value="<%= updateCustomer.hoten%>" style="width:60%" required pattern="[^0-9~!@#$%^*()-=_+:\x22'<>?,.{}]{5,}" title="Không chứa kí tự đặc biệt" />
               <input type="password" name="password" value="<%= updateCustomer.password%>" style="width:60%" readonly = "on" required/>
-              <input type="text"  name="diachi" value="<%= updateCustomer.diachi%>" style="width:60%" required pattern="[^~!@#$%^*()=_+:\x22'<>?,.{}]{5,}" title="Không chứa kí tự đặc biệt" />
+              <input type="text"  name="diachi" value="<%= updateCustomer.diachi%>" style="width:60%" required pattern="[^~!@#$%^*()=_+:\x22'<>?{}]{5,}" title="Không chứa kí tự đặc biệt" />
               <input type="email" name="email" value="<%= updateCustomer.email%>" style="height: 40px;width: 60%;" required="">
               <input type="tel" name="dienthoai" value="<%= updateCustomer.dienthoai%>" style="height:  40px;width:60%; margin-top: 15px; margin-left:4px" required="" pattern="[0-9]{1,11}" title="Chỉ có kí tự số">
               <br>
