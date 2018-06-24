@@ -15,16 +15,14 @@ Passport.use(new LocalStrategy(
   (username, password, done) => {
     console.log('passport pass: '+ password);
 
-
-
-    var temp
+    var temp;
     if (username[0] != 's') {
 
       customer.customerCollection(function(result) {
         temp = result;
 
-        user = temp.filter(x => x.ID === username);
-        console.log('passport passuser: '+ user[0].password);
+        var user = temp.filter(x => x.ID === username);
+
         if (!user[0]) {
           return done(null, false);
         }
@@ -80,7 +78,7 @@ Passport.deserializeUser((id, done) => {
         result[0].password = pass;
         pass = null;
         done(err, result[0]);
-      
+
       });
     }
     db.close();
