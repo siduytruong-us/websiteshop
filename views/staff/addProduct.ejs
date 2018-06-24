@@ -13,7 +13,7 @@
         </p>
 
         <p>
-          <input type="text" id="name" name="name" placeholder="Name product" style="width:80%" required pattern="[A-Za-z0-9]{1,50}" >
+          <input type="text" id="name" name="name" placeholder="Name product" style="width:80%" required pattern="[^~!@#$%^*()=_+:\x22'<>?,.{}]{5,}" >
         </p>
         <p>
           <input type="text" id="price" name="price" placeholder="Price" style="width:80%" required pattern="[0-9]{1,10}" >
@@ -31,7 +31,7 @@
 
         </p>
         <p>
-          <input type="text" id="info" name="info" placeholder="Info" style="width:80%" required pattern="[A-Za-z0-9]{1,1000}" >
+          <input type="text" id="info" name="info" placeholder="Info" style="width:80%" required pattern="[^~!@#$%^*()=_+:\x22'<>?,.{}]{5,}" >
         </p>
 
        <button type ="submit"  class ="button btn-primary submit" style="width:80%">Add product</button>

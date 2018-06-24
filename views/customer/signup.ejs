@@ -2,8 +2,8 @@
   <h3> <%= __('Register')%> </h3>
   <form method="POST" action="signup" name="frm" onload="logError()">
     <p>
-      <input type="text" name="firstname" placeholder="<%= __('First Name')%>" style="width:40%" required pattern="[A-Za-z\s]{1,50}" title="Chỉ có kí tự chữ cái" />
-      <input type="text" name="lastname" placeholder="<%= __('Last Name')%>" style="width:40%" required pattern="[A-Za-z\s]{1,50}" title="Chỉ có kí tự chữ cái" />
+      <input type="text" name="firstname" placeholder="<%= __('First Name')%>" style="width:40%" required pattern="[^0-9~!@#$%^*()-=_+:\x22'<>?,.{}]{5,}" title="Chỉ có kí tự chữ cái" />
+      <input type="text" name="lastname" placeholder="<%= __('Last Name')%>" style="width:40%" required pattern="[^0-9~!@#$%^*()-=_+:\x22'<>?,.{}]{5,}" title="Chỉ có kí tự chữ cái" />
     </p>
     <p>
       <input type="text" name="username" value="" placeholder="<%= __('Your Name')%>" style="width:80%" required pattern="[A-Za-z0-9]{1,10}" title="Không chứa kí tự đặc biệt" />
@@ -15,7 +15,7 @@
       <input type="password" onchange="checkPass()" name="re_password" placeholder="<%= __('Confirm Password')%>" style="width:80%" required/>
     </p>
     <p>
-      <input type="text" name="diachi" placeholder="<%= __('Address')%>" style="width:80%" required pattern="[A-Za-z0-9\s]{1,50}" title="Không chứa kí tự đặc biệt" />
+      <input type="text" name="diachi" placeholder="<%= __('Address')%>" style="width:80%" requiredpattern="[^~!@#$%^*()=_+:\x22'<>?,.{}]{5,}" title="Không chứa kí tự đặc biệt" />
     </p>
     <p>
       <input type="email" name="email" placeholder="<%= __('Email')%>" style="width:80%" required/>

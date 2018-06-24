@@ -2,7 +2,8 @@
 
   <form method="post" action="updateProfile" name="frm">
     <p><%= __('Name')%>:
-      <input type="text" id="name" name="name" value="<%=user.hoten%>" readonly="on" style="width:80%" required pattern="[A-Za-z]{1,50}" title="Chỉ có kí tự chữ cái" />
+      <input type="text" id="name" name="name" value="<%=user.hoten%>" readonly="on" style="width:80%" required pattern="[^0-9~!@#$%^*()-=_+:\x22'<>?,.{}]{5,}"
+ title="Chỉ có kí tự chữ cái" />
     </p>
     <p><%= __('Username')%>:
       <input type="text" id="username" name="username" value="<%=user.ID%>" readonly="on" style="width:80%" required/>
@@ -14,7 +15,7 @@
       <input type="password" id="re_password" onchange="checkPass()" value="<%=user.password%>" placeholder="Confilm Password" style="width:80%" required/>
     </p>
     <p><%= __('Address')%>:
-      <input type="text" id="diachi" name="diachi" value="<%=user.diachi%>" style="width:80%" required pattern="[A-Za-z0-9]{1,50/s}" title="Không chứa kí tự đặc biệt" />
+      <input type="text" id="diachi" name="diachi" value="<%=user.diachi%>" style="width:80%" required pattern="[^~!@#$%^*()=_+:\x22'<>?,.{}]{5,}" title="Không chứa kí tự đặc biệt" />
     </p>
     <p><%= __('Email')%>:
       <input type="email" name="email" value="<%= user.email%>" style="height: 40px;width: 60%;" required="">
