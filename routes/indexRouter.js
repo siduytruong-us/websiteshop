@@ -63,9 +63,14 @@ router.get('/me', function(req, res) {
 
 
 router.get("/signup", function(req, res) {
-  res.render("signup", {
-    error: "true"
+  typeproduct.typeproductCollection(function(kq) {
+  res.render("index", {
+    user: req.user,
+    error: "true",
+    body: 'customer/signup.ejs',
+    typeproduct:kq
   });
+});
 });
 
 
@@ -150,9 +155,14 @@ console.log('pass2:' + password);
 });
 
 router.get('/signupFail', function(req, res) {
-  res.render('signup', {
-    error: "Username hoặc email đã được đăng kí"
+  typeproduct.typeproductCollection(function(kq) {
+  res.render("index", {
+    user: req.user,
+    error: "Username hoặc email đã được đăng kí",
+    body: 'customer/signup.ejs',
+    typeproduct:kq
   });
+});
 });
 
 
