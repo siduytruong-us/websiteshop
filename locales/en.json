@@ -57,5 +57,8 @@
 	"Customer name": "Customer name",
 	"Delivery status": "Delivery status",
 	"ON THE WAY": "ON THE WAY",
-	"Register": "Register"
+	"Register": "Register",
+	"Username": "Username",
+	"Forgot your password": "Forgot your password",
+	"Your account is successfully registered. Please check email to confirm your account": "Your account is successfully registered. Please check email to confirm your account"
 }
