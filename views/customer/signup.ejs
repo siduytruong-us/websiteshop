@@ -2,8 +2,8 @@
   <h3> <%= __('Register')%> </h3>
   <form method="POST" action="signup" name="frm" onload="logError()">
     <p>
-      <input type="text" name="firstname" placeholder="<%= __('First Name')%>" style="width:40%" required pattern="[^0-9~!@#$%^*()-=_+:\x22'<>?,.{}]{5,}" title="Chỉ có kí tự chữ cái" />
-      <input type="text" name="lastname" placeholder="<%= __('Last Name')%>" style="width:40%" required pattern="[^0-9~!@#$%^*()-=_+:\x22'<>?,.{}]{5,}" title="Chỉ có kí tự chữ cái" />
+      <input type="text" name="firstname" placeholder="<%= __('First Name')%>" style="width:40%" required pattern="[^0-9~!@#$%^*()-=_+:\x22'<>?,.{}]{2,}" title="Chỉ có kí tự chữ cái" />
+      <input type="text" name="lastname" placeholder="<%= __('Last Name')%>" style="width:40%" required pattern="[^0-9~!@#$%^*()-=_+:\x22'<>?,.{}]{2,}" title="Chỉ có kí tự chữ cái" />
     </p>
     <p>
       <input type="text" name="username" value="" placeholder="<%= __('Your Name')%>" style="width:80%" required pattern="[A-Za-z0-9]{1,10}" title="Không chứa kí tự đặc biệt" />
