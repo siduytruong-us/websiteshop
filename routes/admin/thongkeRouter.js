@@ -5,6 +5,7 @@ var uri = "mongodb+srv://duy:vippergod12@data-imllf.mongodb.net/test"; // connec
 var chitiethoadon = require('../../models/chitiethoadon'); /////// chi tiet hoa don
 var thongke = require('../../models/hoadon');
 var directName = require('../../demo');
+var typeproduct = require("../../models/typeproduct")
 router.use(express.static('/Data'));
 
 
@@ -21,13 +22,27 @@ function isAdminLoggedin(req, res, next) {
   res.redirect('/');
 }
 
-router.get('/admin/top10', isAdminLoggedin, function(req, res) {
-  chitiethoadon.chitiethoadonGroup(function(result) {
-    result.sort((a, b) => b.tongso - a.tongso);
+router.get('/admin/thongketop10', isAdminLoggedin, function(req, res) {
     res.render("manage", {
       user: req.user,
-      top10Product: result,
-      n: result.length<=10 ? result.length : 10,
+      body: "staff/chonloaithongke.ejs",
+  });
+});
+
+router.post('/admin/top10', isAdminLoggedin, function(req, res) {
+  var type =req.body.type;
+  chitiethoadon.chitiethoadonGroup(function(result) {
+    result.sort((a, b) => b.tongso - a.tongso);
+    var kq;
+    if(type=="all"){
+      kq = result;
+    } else{
+      kq = result.filter(x => x._id.loaisp === type);
+    }
+    res.render("manage", {
+      user: req.user,
+      top10Product: kq,
+      n: kq.length<=10 ? kq.length : 10,
       body: "staff/top10.ejs",
     });
   });
