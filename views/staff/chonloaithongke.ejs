@@ -1,0 +1,51 @@
+<style>
+  .buttonSummit {
+      background-color: blue;
+      border: none;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 12px;
+  }
+</style>
+
+<br>
+<a href="/admin" style="float:left">  <button type = "button" class = "button btn-primary"><i class="fa fa-arrow-left"></i>  </button> </a>
+<br>
+
+<center>
+  <h3>Thông kê Top 10 sản phẩm bán chạy theo sản phẩm, theo gian hàng</h3></center>
+
+
+<div class="space"> </div>
+<div class="row">
+  <div class="col-sm-6" style="margin:px">
+    <center>
+      <a href="/admin/top10Type">  <button type="button" class="btn btn-primary" style="width:40%;">Thống kê theo gian hàng</button></a>
+    </center>
+  </div>
+
+  <div class="col-sm-6" style="margin:px">
+    <center>
+      <p>Thống kê top 10 theo sản phẩm</p>
+      <form  method="POST" action="top10">
+        <select id="type" name="type">
+          <option value="all">Tất cả
+          <option value="mebe">Mẹ bé
+          <option value="dientu">Công nghệ
+          <option value="fashion">Thời trang
+          <option value="giadung">Gia dụng
+          <option value="xe">Xe
+          <option value="thucung">Thú cưng
+        </select>
+        <div class="space"> </div>
+        <input type="submit" class="buttonSummit">
+      </form>
+    </center>
+  </div>
+</div>
