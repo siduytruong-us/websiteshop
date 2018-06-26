@@ -124,7 +124,6 @@ router.get('/searchProduct?:search', function(req, res) {
       } else {
         console.log(result.length);
         console.log("in ra mang search");
-       //console.log(result);
       }
       res.redirect('searchSuccess');
     });
@@ -138,7 +137,6 @@ router.get('/searchProduct?:search', function(req, res) {
         searchProduct = [];
       } else {
         console.log("in ra mang search");
-       // console.log(searchProduct);
       }
       res.redirect('searchSuccess');
     });
@@ -146,216 +144,26 @@ router.get('/searchProduct?:search', function(req, res) {
   //price
   else if(searchtype == "price_1" || searchtype =="price_11"|| searchtype == "price_51" || searchtype == "price_101" || searchtype == "price_201")
     {
-      var kt = true;
-    product.searchProductByName(nameProduct.toString(), function(result) {
-          //searchProduct = result;
-          if (result[0] == "e" || nameProduct == " ") {
-            //searchProduct = [];
-          } else {
-            searchProduct = result;
-            console.log("in ra mang search");
-           // console.log(searchProduct);
-          }
-          //res.redirect('searchSuccess');
+      product.searchPrice(nameProduct,searchtype,function(result){
+        searchProduct = result;
+        res.redirect('searchSuccess');
       });
-    product.searchProductByID(nameProduct.toString(), function(result) {
-          //searchProduct = result;
-          if (result[0] == "e" || nameProduct == " ") {
-            //searchProduct = [];
-          } else {
-            for(var i = 0; i<result.length; i++)
-            {
-              for(var j = 0; j<searchProduct.length;j++)
-              {
-                if(result[i].ID == searchProduct[j].ID)
-                {
-                  kt = false;
-                }
-              }
-              if(kt == false)
-              {
-                kt = true;
-              }
-              else
-              {
-                searchProduct.push(result[i]);
-              }
-            }
-            console.log("in ra mang search");
-          }
-    });
-    //type
-    product.searchProductByType(nameProduct.toString(), function(result) {
-          //searchProduct = result;
-          if (result[0] == "e" || nameProduct == " ") {
-            console.log("err");
-            //searchProduct = [];
-          } else {
-            for(var i = 0; i<result.length; i++)
-            {
-              for(var j = 0; j<searchProduct.length;j++)
-              {
-                if(result[i].ID == searchProduct[j].ID)
-                {
-                  kt = false;
-                }
-              }
-              if(kt == false)
-              {
-                kt = true;
-              }
-              else
-              {
-                searchProduct.push(result[i]);
-              }
-            }
-                 console.log("in ra mang search");
-                console.log(searchProduct.length);
-               for(var k = 0; k< searchProduct.length;k++)
-               {
-                if(searchProduct[k].price <= 100000 && searchProduct[k].price > 0 && searchtype == "price_1")
-                {
-                  sproduct.push(searchProduct[k]);
-                }
-               else if(searchProduct[k].price >= 100000 && searchProduct[k].price <= 500000 && searchtype == "price_11")
-                {
-                  sproduct.push(searchProduct[k]);
-                }
-                 else if(searchProduct[k].price >= 500000 && searchProduct[k].price <= 1000000 && searchtype == "price_51")
-                {
-                  sproduct.push(searchProduct[k]);
-                }
-                 else if(searchProduct[k].price >= 1000000 && searchProduct[k].price <= 2000000 && searchtype == "price_101")
-                {
-                  sproduct.push(searchProduct[k]);
-                }
-                 else if(searchProduct[k].price >=2000000 && searchtype == "price_201")
-                {
-                  sproduct.push(searchProduct[k]);
-                }
-               }
-          }
-             searchProduct = sproduct;
-            res.redirect('searchSuccess');
-    });
-  }
+    }
   //search type
   else if(searchtype == "mebe" || searchtype == "xe" || searchtype == "dientu" || searchtype == "fashion" || searchtype == "giadung" ||searchtype == "thucung")
-  {
-     product.searchProductByName(nameProduct.toString(), function(result) {
-          //searchProduct = result;
-          if (result[0] == "e" || nameProduct == " ") {
-            //searchProduct = [];
-          } else {
-            searchProduct = result;
-            console.log("in ra mang search");
-          }
+    {
+      product.searchType(nameProduct,searchtype,function(result){
+        searchProduct = result;
+        res.redirect('searchSuccess');
       });
-    product.searchProductByID(nameProduct.toString(), function(result) {
-          //searchProduct = result;
-          if (result[0] == "e" || nameProduct == " ") {
-            //searchProduct = [];
-          } else {
-            for(var i = 0; i<result.length; i++)
-            {
-              for(var j = 0; j<searchProduct.length;j++)
-              {
-                if(result[i].ID == searchProduct[j].ID)
-                {
-                  kt = false;
-                }
-              }
-              if(kt == false)
-              {
-                kt = true;
-              }
-              else
-              {
-                searchProduct.push(result[i]);
-              }
-            }
-            console.log("in ra mang search");
-            console.log(searchProduct.length);
-            for(var k = 0 ; k<searchProduct.length; k++)
-            {
-              if(searchtype == searchProduct[k].type)
-              {
-                sproduct.push(searchProduct[k]);
-              }
-            }
-          }
-         searchProduct = sproduct;
-         res.redirect('searchSuccess');
-    });
-  }
+    }
   else if(searchtype == "all")
-  {
-    var kt = true;
-    product.searchProductByName(nameProduct.toString(), function(result) {
-          if (result[0] == "e" || nameProduct == " ") {
-
-          } else {
-            searchProduct = result;
-            console.log("in ra mang search");
-          }
+    {
+      product.searchAll(nameProduct,function(result){
+        searchProduct = result;
+        res.redirect('searchSuccess');
       });
-    product.searchProductByID(nameProduct.toString(), function(result) {
-          //searchProduct = result;
-          if (result[0] == "e" || nameProduct == " ") {
-            //searchProduct = [];
-          } else {
-            for(var i = 0; i<result.length; i++)
-            {
-              for(var j = 0; j<searchProduct.length;j++)
-              {
-                if(result[i].ID == searchProduct[j].ID)
-                {
-                  kt = false;
-                }
-              }
-              if(kt == false)
-              {
-                kt = true;
-              }
-              else
-              {
-                searchProduct.push(result[i]);
-              }
-            }
-            console.log("in ra mang search");
-          }
-    });
-
-    //type
-    product.searchProductByType(nameProduct.toString(), function(result) {
-          //searchProduct = result;
-          if (result[0] == "e" || nameProduct == " ") {
-            console.log("err");
-            //searchProduct = [];
-          } else {
-            for(var i = 0; i<result.length; i++)
-            {
-              for(var j = 0; j<searchProduct.length;j++)
-              {
-                if(result[i].ID == searchProduct[j].ID)
-                {
-                  kt = false;
-                }
-              }
-              if(kt == false)
-              {
-                kt = true;
-              }
-              else
-              {
-                searchProduct.push(result[i]);
-              }
-            }
-            console.log("in ra mang search");
-          }
-          res.redirect('searchSuccess');
-    });
-  }
+    }
 });
 
 router.get('/searchSuccess', function(req, res) {
@@ -415,7 +223,6 @@ var product = require('../models/product');
       });
 
     }
-
     else if((ttype != "" && tprice == "" && tnameid == "")|| (tnameid !="" && ttype!= "" && tprice == "" ))
     {
       if(nameProduct[0] == " " || nameProduct =="" || nameProduct == null)
@@ -431,8 +238,6 @@ var product = require('../models/product');
           res.redirect('searchnangcao');
         });
       }
-
-
     }
     else if((tprice != "" && ttype == "" && tnameid =="")||(tprice !=""&&ttype ==""&&tnameid!=""))
     {
@@ -461,7 +266,6 @@ var product = require('../models/product');
         });
       }
       else {
-        console.log(tprice);
         product.pricetypenameidNC(nameProduct,tprice,ttype,function(result){
           searchProduct = result;
           res.redirect('searchnangcao');

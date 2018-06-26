@@ -73,28 +73,6 @@ function findProductByType (type, callback) {
 
 
 
-// function searchProductByName(nameProduct, callback) { // customer
-//   MongoClient.connect(uri, function(err, db) {
-//     var ids = "/" + nameProduct + "/";
-//     if (err) throw err;
-//     var dbo = db.db("3dwebsite");
-//     dbo.collection("product").find({
-//       name: eval(ids)
-//     }).toArray(function(err, result) {
-//       if (err) {
-//         console.log(err);
-//         throw err;
-//       } else if (result.length > 0) {
-//         callback(result);
-//       } else if (result.length == 0) {
-//         callback("error Nameproduct");
-//       }
-//     });
-//   });
-// }
-
-
-
 
 function searchProductByName(nameProduct, callback) { // customer
   MongoClient.connect(uri, function(err, db) {
@@ -221,7 +199,89 @@ function datanameid(nameProduct, callback)
 				callback(searchProduct);
 	});
 }
+function searchType(nameProduct,ttype,callback)
+{
+	var searchProduct = [];
+	var sproduct = [];
+	//var kt = true;
+		datanameid(nameProduct,function(result)
+	{
+		searchProduct = result;
+		sproduct = searchProduct.filter(x => x.type == ttype);
+		searchProduct = sproduct;
+		callback(searchProduct);
+	});
+}
 
+function searchAll(nameProduct,callback)
+{
+	var searchProduct = [];
+	var kt = true;
+	datanameid(nameProduct,function(result){
+		searchProduct = result;
+	});
+	searchProductByType(nameProduct.toString(), function(result) {
+				//searchProduct = result;
+				if (result[0] == "e" || nameProduct == " ") {
+					console.log("err");
+					//searchProduct = [];
+				} else {
+					for(var i = 0; i<result.length; i++)
+					{
+						for(var j = 0; j<searchProduct.length;j++)
+						{
+							if(result[i].ID == searchProduct[j].ID)
+							{
+								kt = false;
+							}
+						}
+						if(kt == false)
+						{
+							kt = true;
+						}
+						else
+						{
+							searchProduct.push(result[i]);
+						}
+					}
+					console.log("in ra mang search");
+				}
+				callback(searchProduct);
+	});
+}
+function searchPrice(nameProduct,searchtype,callback)
+{
+	var searchProduct = [];
+	var sproduct = [];
+	searchAll(nameProduct,function(result){
+		searchProduct = result;
+		for(var k = 0; k< searchProduct.length;k++)
+		{
+			 if(searchProduct[k].price <= 100000 && searchProduct[k].price > 0 && searchtype == "price_1")
+			 {
+				 sproduct.push(searchProduct[k]);
+			 }
+			else if(searchProduct[k].price >= 100000 && searchProduct[k].price <= 500000 && searchtype == "price_11")
+			 {
+				 sproduct.push(searchProduct[k]);
+			 }
+				else if(searchProduct[k].price >= 500000 && searchProduct[k].price <= 1000000 && searchtype == "price_51")
+			 {
+				 sproduct.push(searchProduct[k]);
+			 }
+				else if(searchProduct[k].price >= 1000000 && searchProduct[k].price <= 2000000 && searchtype == "price_101")
+			 {
+				 sproduct.push(searchProduct[k]);
+			 }
+				else if(searchProduct[k].price >=2000000 && searchtype == "price_201")
+			 {
+				 sproduct.push(searchProduct[k]);
+			 }
+		}
+		searchProduct = sproduct;
+		callback(searchProduct);
+	});
+}
 function typenameidNC(nameProduct,ttype,callback)
 {
 	var searchProduct = [];
@@ -238,7 +298,6 @@ function typenameidNC(nameProduct,ttype,callback)
 			 searchProduct = sproduct;
 			 sproduct = [];
 			 callback(searchProduct);
-		//res.redirect("searchnangcao");
 	});
 }
 function	pricenameidNC(nameProduct,tprice,callback)
@@ -446,10 +505,10 @@ module.exports = mongoose.model('Product',someschema);
 module.exports.productCollection = productCollection;
 module.exports.findItem = findItemByID;
 module.exports.searchProductByName =searchProductByName;
-
+module.exports.searchType =searchType;
 module.exports.searchProductByID =searchProductByID;
-//module.exports.searchAll = searchAll;
-
+module.exports.searchAll = searchAll;
+module.exports.searchPrice = searchPrice;
 module.exports.datanameid = datanameid;
 module.exports.typenameidNC = typenameidNC;
 module.exports.pricenameidNC = pricenameidNC;
