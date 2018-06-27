@@ -332,7 +332,6 @@ function	pricenameidNC(nameProduct,tprice,callback)
 		searchProduct = sproduct;
 		sproduct = [];
 		callback(searchProduct);
-		//res.redirect("searchnangcao");
 	});
 }
 
@@ -376,7 +375,6 @@ function pricetypenameidNC(nameProduct,tprice,ttype,callback){
 		 searchProduct = sproduct;
 		 sproduct = [];
 		 callback(searchProduct);
-		//res.redirect("searchnangcao");
 	});
 };
 
@@ -389,7 +387,6 @@ function allNC(nameProduct,callback)
 		searchProductByType(nameProduct,function(result1){
 			if (result1[0] == "e" || nameProduct == " ") {
 				console.log("err");
-				//searchProduct = [];
 			} else {
 				for(var i = 0; i<result1.length; i++)
 				{
@@ -411,7 +408,6 @@ function allNC(nameProduct,callback)
 				}
 				console.log("in ra mang search");
 			}
-		//	res.redirect('searchnangcao');
 		callback(searchProduct);
 		});
 	});
