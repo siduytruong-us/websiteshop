@@ -10,25 +10,25 @@
     <label><%= __('Username')%>: </label>
       <input type="text" id="username" name="username" value="<%=user.ID%>" readonly="on" style="width:80%" required/>
     <br>
-    <label><%= __('Password')%>:
+    <label><%= __('Password')%>:    </label>
       <input type="password" id="password" name="password" value="<%=user.password%>" style="width:80%;margin-left: 9px" required/>
-    </label>
+
 	<br>
-    <label><%= __('Confirm Password')%>:
+    <label><%= __('Confirm Password')%>:  </label>
       <input type="password" id="re_password" onchange="checkPass()" value="<%=user.password%>" placeholder="Confilm Password" style="width:74%" required/>
-    </label>
+
 <br>
-    <label><%= __('Address')%>:
+    <label><%= __('Address')%>:  </label>
       <input type="text" id="diachi" name="diachi" value="<%=user.diachi%>" style="width:80%;margin-left: 22px" required pattern="[^~!@#$%*()=_+:\x22'<>?{}]{5,}" title="Không chứa kí tự đặc biệt" />
-    </label>
+
 <br>
-    <label><%= __('Email')%>:
+    <label><%= __('Email')%>:  </label>
       <input type="email" name="email" value="<%= user.email%>" style="height: 45px;width: 80%;;margin-left: 40px" required="">
-    </label>
+
 <br>
-    <label><%= __('Phone Number')%>:
+    <label><%= __('Phone Number')%>:     </label>
       <input type="tel" name="dienthoai" value="<%= user.dienthoai%>" style="height:  45px;width:74%;margin-left: 18px" required="" pattern="[0-9]{1,11}" title="Chỉ có kí tự số">
-    </label>
+
 <br>
 
 
