@@ -1,6 +1,6 @@
-<center>
+<center onload="logError()">
   <h3> <%= __('Register')%> </h3>
-  <form method="POST" action="signup" name="frm" onload="logError()">
+  <form method="POST" action="signup" name="frm" >
     <p>
       <input type="text" name="firstname" placeholder="<%= __('First Name')%>" style="width:40%" required pattern="[^0-9~!@#$%^*()-=_+:\x22'<>?,.{}]{2,}" title="Chỉ có kí tự chữ cái" />
       <input type="text" name="lastname" placeholder="<%= __('Last Name')%>" style="width:40%" required pattern="[^0-9~!@#$%^*()-=_+:\x22'<>?,.{}]{2,}" title="Chỉ có kí tự chữ cái" />
